@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "661111416512",
+    "project_id": "digital-contest-f689c",
+    "storage_bucket": "digital-contest-f689c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661111416512:android:9d9303d81b3df004d12f25",
+        "android_client_info": {
+          "package_name": "com.example.digital_contest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661111416512-d1ri5s4c9b0knqat4i0mbbqafjlaueam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD81wGho1CHq3kqHyuxvnVdS-vlAcxvm8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661111416512-d1ri5s4c9b0knqat4i0mbbqafjlaueam.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
