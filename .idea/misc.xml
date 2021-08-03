@@ -9,6 +9,11 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/workspace/digital_contest/app/src/main/res/layout/activity_login2.xml" value="0.30625" />
         <entry key="..\:/Users/user/AndroidStudioProjects/workspace/digital_contest/app/src/main/res/layout/activity_sing_up.xml" value="0.30625" />
         <entry key="..\:/Users/user/AndroidStudioProjects/workspace/digital_contest/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2078125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2318840579710145" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.2318840579710145" />
+        <entry key="app/src/main/res/layout/fragment_first_tab.xml" value="0.2318840579710145" />
+        <entry key="app/src/main/res/layout/fragment_second_tab.xml" value="0.2318840579710145" />
+        <entry key="app/src/main/res/layout/fragment_third_tab.xml" value="0.2318840579710145" />
       </map>
     </option>
   </component>
