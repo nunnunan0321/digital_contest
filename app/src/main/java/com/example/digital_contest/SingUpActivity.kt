@@ -8,13 +8,17 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SingUpActivity : AppCompatActivity() {
     lateinit var auth : FirebaseAuth
+    lateinit var db : FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sing_up)
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
 
         //matching
         val inputId = findViewById<EditText>(R.id.edt_singUp_inputId)
@@ -50,13 +54,25 @@ class SingUpActivity : AppCompatActivity() {
             }
 
 
+            var userData = hashMapOf<String, Any>()
+            userData["name"] = inputName.text.toString()
+            userData["email"] = inputEmail.text.toString()
+            userData["id"] = inputId.text.toString()
 
             auth.createUserWithEmailAndPassword(inputEmail.text.toString(), inputPassword.text.toString())
                 .addOnCompleteListener(this) { task ->
                     if(task.isSuccessful){
-                        Toast.makeText(this, "회원가입에 성공하였습니다.", Toast.LENGTH_LONG).show()
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
+                        db.collection("user")
+                            .add(userData)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "회원가입에 성공하였습니다.", Toast.LENGTH_LONG).show()
+                                val intent = Intent(this, LoginActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                            .addOnFailureListener{
+                                Toast.makeText(this, "회원가입에 실패하였습니다.", Toast.LENGTH_LONG).show()
+                            }
                     }   else{
                         Toast.makeText(this, "회원가입에 실패하였습니다.", Toast.LENGTH_LONG).show()
                     }
