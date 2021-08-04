@@ -15,5 +15,7 @@ class MainActivity : AppCompatActivity() {
         pager.adapter = pagerAdapter
         val tab:TabLayout=findViewById(R.id.tab)
         tab.setupWithViewPager(pager)
+
+
     }
 }

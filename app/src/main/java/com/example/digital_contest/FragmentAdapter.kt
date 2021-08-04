@@ -1,5 +1,9 @@
 package com.example.digital_contest
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -29,5 +33,6 @@ class FragmentAdapter (fm : FragmentManager): FragmentPagerAdapter(fm) {
             2->"third"
             else -> "main"
         }
-        return title     }
+        return title
+    }
 }

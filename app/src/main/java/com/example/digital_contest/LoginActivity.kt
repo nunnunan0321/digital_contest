@@ -32,6 +32,15 @@ class LoginActivity : AppCompatActivity() {
         val loginBtn = findViewById<Button>(R.id.btn_login_login)
         val singUp = findViewById<TextView>(R.id.txt_login_singUp)
 
+
+        if(!(auth.currentUser == null)){
+            val intent = Intent(this, MainActivity::class.java)
+            Toast.makeText(this, "어서오세요", Toast.LENGTH_LONG).show()
+
+            startActivity(intent)
+            finish()
+        }
+
         singUp.setOnClickListener{
             val intent = Intent(this, SingUpActivity::class.java)
             startActivity(intent)
@@ -63,6 +72,7 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_LONG).show()
                                 val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
+                                finish()
                             }   else{
                                 //로그인에 실패했을때
                                 Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_LONG).show()
@@ -72,10 +82,21 @@ class LoginActivity : AppCompatActivity() {
                 .addOnFailureListener{
                     Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_LONG).show()
                 }
-
-
-
+            //println(getEmail(inputId.text.toString()))
         }
+    }
 
+    fun getEmail(id : String) : String{
+        var email : String
+        db.collection("user")
+            .whereEqualTo("id", id)
+            .get()
+            .addOnSuccessListener { documents ->
+                for(document in documents){
+                    email =  document.data["email"].toString()
+                }
+            }
+
+        return "!"
     }
 }
