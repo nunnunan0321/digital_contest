@@ -1,4 +1,4 @@
-package com.example.digital_contest
+package com.example.digital_contest.Activity.Main
 
 import android.view.View
 import androidx.viewpager.widget.ViewPager

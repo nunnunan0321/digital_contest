@@ -1,10 +1,11 @@
-package com.example.digital_contest
+package com.example.digital_contest.Activity.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
+import com.example.digital_contest.Activity.Main.Fragment.FragmentAdapter
+import com.example.digital_contest.R
+import com.example.digital_contest.Activity.Main.Fragment.ZoomOutPageTransformer
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {

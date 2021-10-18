@@ -1,9 +1,5 @@
-package com.example.digital_contest
+package com.example.digital_contest.Activity.Main.Fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -13,7 +9,7 @@ class FragmentAdapter (fm : FragmentManager): FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         val fragment =  when(position)
         {
-            0->FirstTabFragment().newInstant()
+            0-> FirstTabFragment().newInstant()
             1-> SecondTabFragment().newInstant()
             2-> ThirdTabFragment().newInstant()
             else -> FirstTabFragment().newInstant()
