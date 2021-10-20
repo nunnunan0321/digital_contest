@@ -2,11 +2,17 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+
+    //Firebase
+    id 'com.google.gms.google-services'
+
+    //Google Map API
+    //id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 //firebase
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.android.application'
+//apply plugin: 'com.google.gms.google-services'
 
 
 android {
@@ -45,20 +51,31 @@ android {
 }
 
 dependencies {
-    //firebase
+    // Firebase
     implementation platform('com.google.firebase:firebase-bom:28.3.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.firebaseui:firebase-ui-auth:7.2.0' //auth
-    implementation 'com.google.firebase:firebase-firestore-ktx' //firestore
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    // LifeCycle
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+
+    // GoogleMap API
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+
+    // Coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+
 
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

@@ -5,13 +5,19 @@ import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.example.digital_contest.Activity.Main.Fragment.FragmentAdapter
 import com.example.digital_contest.R
-import com.example.digital_contest.Activity.Main.Fragment.ZoomOutPageTransformer
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
         val pagerAdapter = FragmentAdapter(supportFragmentManager)
         val pager:ViewPager=findViewById(R.id.viewPager)
@@ -22,5 +28,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }
 
