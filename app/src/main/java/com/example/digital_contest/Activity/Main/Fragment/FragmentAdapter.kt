@@ -10,7 +10,7 @@ class FragmentAdapter (fm : FragmentManager): FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         val fragment =  when(position)
         {
-            0-> SupportMapFragment() //맵 Fragment 가져오기
+            0-> FirstTabFragment().newInstant() //맵 Fragment 가져오기
             1-> SecondTabFragment().newInstant()
             2-> ThirdTabFragment().newInstant()
             else -> FirstTabFragment().newInstant()
