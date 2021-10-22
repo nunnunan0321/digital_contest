@@ -4,36 +4,43 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.example.digital_contest.Activity.Main.MainActivity
 import com.example.digital_contest.R
 import com.example.digital_contest.Activity.SignUp.SignUpActivity
+import com.example.digital_contest.Model.DB.AuthDB
+import com.example.digital_contest.Model.User
+import com.example.digital_contest.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var auth : FirebaseAuth
-    lateinit var db : FirebaseFirestore
+    lateinit var binding : ActivityLoginBinding
+    lateinit var db : AuthDB
+
+    lateinit var id : String
+    lateinit var password : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        db = AuthDB()
 
-        //matching
-        val inputId = findViewById<EditText>(R.id.edt_login_inputId)
-        val inputPassword = findViewById<EditText>(R.id.edt_login_inputPassword)
-        val loginBtn = findViewById<Button>(R.id.btn_login_login)
-        val singUp = findViewById<TextView>(R.id.txt_login_singUp)
-
+        initClickEvent()
 
         // 자동 로그인
         // 현재 로그인된 계정을 가져온다. 가져온 계정이 있다면 이미 이전에 로그인이 된것이다.
         // 로그인 후 화면으로 이동시킨다.
-        if(auth.currentUser != null){
+        if(db.auth.currentUser != null){
             val intent = Intent(this, MainActivity::class.java)
             Toast.makeText(this, "어서오세요", Toast.LENGTH_LONG).show()
 
@@ -41,69 +48,51 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        singUp.setOnClickListener{
-            var inputData = hashMapOf<String, String>()
 
-            val intent = Intent(this, SignUpActivity::class.java)
-            intent.putExtra("inputData", inputData)
+    }
+
+    fun initClickEvent() = with(binding){
+        txtLoginSingUp.setOnClickListener{
+            val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
             startActivity(intent)
         }
 
-        loginBtn.setOnClickListener{
-            val id = inputId.text.toString()
-            val password = inputPassword.text.toString()
+        btnLoginLogin.setOnClickListener{
+            id = edtLoginInputId.text.toString()
+            password = edtLoginInputPassword.text.toString()
 
-            if(TextUtils.isEmpty(id)){
-                inputId.setError("ID를 입력해주세요.")
-                return@setOnClickListener
-            }   else if(TextUtils.isEmpty(password)){
-                inputPassword.setError("비밀번호를 입력해주세요")
-                return@setOnClickListener
-            }
+            if(loginInputEmptyCheck()) {return@setOnClickListener}
 
+            CoroutineScope(Dispatchers.IO).launch {
+                val loginResult : User? = db.login(id, password)
+                Log.d("loginResult", loginResult.toString())
 
-            db.collection("user").document(id)
-                .get()
-                .addOnSuccessListener { document ->
-                    val email = document.get("email").toString()
-
-                    login(email, password)
+                if(loginResult == null){
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(this@LoginActivity, "로그인에 실패했습니다.", Toast.LENGTH_LONG).show()
+                    }
+                    return@launch
                 }
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                intent.putExtra("userData", loginResult)
+
+                startActivity(intent)
+                finish()
+            }
         }
     }
 
-    fun login(email : String, password : String){
-        // email과 password를 받아서 로그인을 진행하고 로그인에 성공했다면 MainActivity로 이동한다.
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if(it.isSuccessful){
-                    // 로그인에 성공했을때
-                    Toast.makeText(this, "로그인에 성공했습니다. \n 어서오세요.", Toast.LENGTH_LONG).show()
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }   else{
-                    Toast.makeText(this, "로그인에 실패했습니다", Toast.LENGTH_LONG).show()
-                }
-            }
-    } // end login()
-
-
-
-    fun getEmailById(id : String) : String? {
-        // id를 받아서 해당 id의 email을 가져온다. -> 폐기 예정
-        var email : String? = null
-
-        val documents = db.collection("user")
-            .whereEqualTo("id", id)
-            .get()
-            .addOnSuccessListener { it ->
-            for (document in it) {
-                email = document.data["email"].toString()
-                break
-            }
+    fun loginInputEmptyCheck() : Boolean {
+        if(id.isEmpty()){
+            binding.edtLoginInputId.error = "ID를 입력하세요"
+        }
+        else if(password.isEmpty()){
+            binding.edtLoginInputPassword.error = "비밀번호를 입력하세요."
+        }
+        else{
+            return false
         }
 
-        return email
+        return true
     }
-} //end class
+}
