@@ -1,13 +1,12 @@
-package com.example.digital_contest.Model.DB
+package com.example.digital_contest.Model.DB.Auth
 
 import android.util.Log
-import android.widget.Toast
 import com.example.digital_contest.Model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class AuthDB : auth{
+class AuthDB : auth {
     val auth : FirebaseAuth = FirebaseAuth.getInstance()
     val db : FirebaseFirestore = FirebaseFirestore.getInstance()
     

@@ -1,4 +1,4 @@
-package com.example.digital_contest.Model.DB
+package com.example.digital_contest.Model.DB.Auth
 
 import com.example.digital_contest.Model.User
 

@@ -3,19 +3,18 @@ package com.example.digital_contest.Activity.SignUp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.digital_contest.Activity.Login.LoginActivity
-import com.example.digital_contest.Model.DB.AuthDB
-import com.example.digital_contest.Model.DB.AuthResult
+import com.example.digital_contest.Activity.Sphash.authDB
+import com.example.digital_contest.Model.DB.Auth.AuthDB
+import com.example.digital_contest.Model.DB.Auth.AuthResult
 import com.example.digital_contest.Model.User
 import com.example.digital_contest.R
 import com.example.digital_contest.databinding.ActivitySingUpBinding
 import kotlinx.coroutines.*
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var db : AuthDB
     lateinit var binding : ActivitySingUpBinding
 
     lateinit var id : String
@@ -26,8 +25,7 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sing_up)
-
-        db = AuthDB()
+        
 
         initClickEvent() //클릭이벤트 설정 함수
     }
@@ -36,6 +34,7 @@ class SignUpActivity : AppCompatActivity() {
         // 클릭 이벤트 설정 함수
         btnSingUpSingUp.setOnClickListener{
             //로그인 버튼을 눌렀을때 처리하는 함수, id, email등을 가져오고 빈 값이 있는지 확인한뒤 로그인을 진행한다.
+
             id = edtSingUpInputId.text.toString()
             email = edtSingUpInputEmail.text.toString()
             password = edtSingUpInputPassword.text.toString()
@@ -49,14 +48,16 @@ class SignUpActivity : AppCompatActivity() {
                 var result : AuthResult//? = null
 
                 runBlocking {
-                    result = db.signUp(userData, password)
+                    result = authDB.signUp(userData, password)
                 }
 
                 if(result == AuthResult.OK){
+                    //회원가입에 성공한 경우 LoginActivity로 이동한다.
                     val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                 }   else withContext(Dispatchers.Main){
+                    //회원 가입에 실패한 경우
                     Toast.makeText(this@SignUpActivity, "회원가입에 실해했습니다.", Toast.LENGTH_LONG).show()
                 }
             }

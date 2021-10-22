@@ -3,21 +3,16 @@ package com.example.digital_contest.Activity.Login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.digital_contest.Activity.Main.MainActivity
 import com.example.digital_contest.R
 import com.example.digital_contest.Activity.SignUp.SignUpActivity
-import com.example.digital_contest.Model.DB.AuthDB
+import com.example.digital_contest.Activity.Sphash.authDB
+import com.example.digital_contest.Model.DB.Auth.AuthDB
 import com.example.digital_contest.Model.User
 import com.example.digital_contest.databinding.ActivityLoginBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +20,6 @@ import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding : ActivityLoginBinding
-    lateinit var db : AuthDB
 
     lateinit var id : String
     lateinit var password : String
@@ -33,14 +27,13 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        db = AuthDB()
 
         initClickEvent()
 
         // 자동 로그인
         // 현재 로그인된 계정을 가져온다. 가져온 계정이 있다면 이미 이전에 로그인이 된것이다.
         // 로그인 후 화면으로 이동시킨다.
-        if(db.auth.currentUser != null){
+        if(authDB.auth.currentUser != null){
             val intent = Intent(this, MainActivity::class.java)
             Toast.makeText(this, "어서오세요", Toast.LENGTH_LONG).show()
 
@@ -64,8 +57,7 @@ class LoginActivity : AppCompatActivity() {
             if(loginInputEmptyCheck()) {return@setOnClickListener}
 
             CoroutineScope(Dispatchers.IO).launch {
-                val loginResult : User? = db.login(id, password)
-                Log.d("loginResult", loginResult.toString())
+                val loginResult : User? = authDB.login(id, password)
 
                 if(loginResult == null){
                     withContext(Dispatchers.Main){
@@ -73,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     return@launch
                 }
+
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 intent.putExtra("userData", loginResult)
 
