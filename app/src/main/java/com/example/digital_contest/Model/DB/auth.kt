@@ -10,4 +10,8 @@ interface auth {
     suspend fun saveUserData(user: User) : AuthResult
 
     suspend fun idOverlapCheck(user : User) : AuthResult
+
+    suspend fun login(id : String, password : String) : User?
+
+    suspend fun getUserDataById(id : String) : User?
 }

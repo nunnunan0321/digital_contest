@@ -1,5 +1,7 @@
 package com.example.digital_contest.Model.DB
 
+import android.util.Log
+import android.widget.Toast
 import com.example.digital_contest.Model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -60,4 +62,28 @@ class AuthDB : auth{
 
         return result
     }
+
+    override suspend fun getUserDataById(id: String): User? {
+        var user : User? = null
+        db.collection("user").document(id).get()
+            .addOnSuccessListener {
+                user = it.toObject(User::class.java)!! as User
+            }
+            .await()
+
+        return user
+    }
+
+    override suspend fun login(id: String, password: String): User? {
+        var user : User? = getUserDataById(id)
+
+        if(user == null){
+            return null
+        }
+
+        auth.signInWithEmailAndPassword(user.email, password)
+
+        return user
+    }
+
 }
