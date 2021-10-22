@@ -56,21 +56,7 @@ class ThirdTabFragment:Fragment(){
                 ?.remove(this)
                 ?.commit()
         }
-
-        db.collection("user")
-            .whereEqualTo("email", current_user?.email)
-            .get()
-            .addOnSuccessListener { documents ->
-                for(document in documents){
-                    view.findViewById<TextView>(R.id.txt_thirdTap_id).text = document.id.toString()
-                    view.findViewById<TextView>(R.id.txt_thirdTap_name).text = document["name"].toString()
-                    view.findViewById<TextView>(R.id.txt_thirdTap_email).text = current_user?.email
-                }
-            }
-
-
-
-
     }
+
 
 }
