@@ -3,9 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.digital_contest">
 
+    <!--사용자의 정확한 위치 정보 권한(GPS) 접근
+
+        에러 발생 가능성 있음.
+        1. Android 12 이상일 경우
+        2. Android 11 이상이며, 백그라운드 액세스 권한을 차단한 경우
+        3. 사용자가 액세스 권한을 차단한 경우
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!--인터넷 권한 접근-->
     <uses-permission android:name="android.permission.INTERNET"/>
+
+
+
 
     <application
         android:allowBackup="true"
@@ -15,11 +29,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Digital_contest.NoActionBar"
         android:usesCleartextTraffic="true">
+
         <!--GoogleMap API Client ID-->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <!--GoogleMap API KEY-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDTwDqbndD9z0kxeJYS6aiC1ZU1ZfvA3LA" />
