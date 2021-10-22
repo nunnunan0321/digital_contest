@@ -1,107 +1,94 @@
 package com.example.digital_contest.Activity.SignUp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.widget.Button
-import android.widget.EditText
+import android.util.Log
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import com.example.digital_contest.Activity.Login.LoginActivity
+import com.example.digital_contest.Model.DB.AuthDB
+import com.example.digital_contest.Model.DB.AuthResult
+import com.example.digital_contest.Model.User
 import com.example.digital_contest.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.digital_contest.databinding.ActivitySingUpBinding
+import kotlinx.coroutines.*
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var auth : FirebaseAuth
-    lateinit var db : FirebaseFirestore
+    lateinit var db : AuthDB
+    lateinit var binding : ActivitySingUpBinding
+
+    lateinit var id : String
+    lateinit var email : String
+    lateinit var password : String
+    lateinit var name : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sing_up)
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sing_up)
 
+        db = AuthDB()
 
-        //matching
-        val inputId = findViewById<EditText>(R.id.edt_singUp_inputId)
-        val inputName = findViewById<EditText>(R.id.edt_singUp_inputName)
-        val inputEmail = findViewById<EditText>(R.id.edt_singUp_inputEmail)
-        val inputPassword = findViewById<EditText>(R.id.edt_singUp_inputPassword)
-        val inputPasswordRe = findViewById<EditText>(R.id.edt_singUp_inputPasswordRe)
-        val singUpBtn = findViewById<Button>(R.id.btn_singUp_singUp)
+        initClickEvent() //클릭이벤트 설정 함수
+    }
+    
+    fun initClickEvent() = with(binding){
+        // 클릭 이벤트 설정 함수
+        btnSingUpSingUp.setOnClickListener{
+            //로그인 버튼을 눌렀을때 처리하는 함수, id, email등을 가져오고 빈 값이 있는지 확인한뒤 로그인을 진행한다.
+            id = edtSingUpInputId.text.toString()
+            email = edtSingUpInputEmail.text.toString()
+            password = edtSingUpInputPassword.text.toString()
+            name = edtSingUpInputName.text.toString()
 
+            if(inputEmptyCheck()) { return@setOnClickListener }  //입력받을것중에 입력하지않은게 있는지 확인, 있다면 클릭 이벤트 종료
 
-        singUpBtn.setOnClickListener{
-            val id = inputId.text.toString()
-            val email = inputEmail.text.toString()
-            val password = inputPassword.text.toString()
-            val name = inputName.text.toString()
+            val userData = User(id = id, name = name, email=email)
 
-            if(TextUtils.isEmpty(id)){ // inputId.text.toString()이 null인지 판단
-                inputId.error = "ID를 입력헤주세요."
-                return@setOnClickListener//null이라면 에러 반환
+            CoroutineScope(Dispatchers.IO).launch {
+                var result : AuthResult//? = null
 
-            }   else if(TextUtils.isEmpty(name)) {
-                inputName.error = "이름을 입력해주세요."
-                return@setOnClickListener
-            }   else if(TextUtils.isEmpty(email)){
-                inputEmail.error = "이메일을 입력헤주세요."
-                return@setOnClickListener
-
-            }   else if(TextUtils.isEmpty(password)){
-                inputPassword.error = "비밀번호를 입력헤주세요."
-                return@setOnClickListener
-
-            }   else if(TextUtils.isEmpty((inputPasswordRe.text.toString()))){
-                inputPasswordRe.error = "비밀번호를 다시 입력헤주세요."
-                return@setOnClickListener
-
-            }   else if(password != inputPasswordRe.text.toString()){
-                inputPassword.error = "비밀번호가 일치하지 않습니다."
-                inputPasswordRe.error = "비밀번호가 일치하지 않습니다."
-                return@setOnClickListener
-
-            }
-
-
-
-
-            //Log.d("SingUp", singUp(inputEmail.text.toString(), inputPassword.text.toString()).toString())
-            if(saveUserData(name, id, email)){
-                if(singUp(email, password)){ //로그인을 진행한다.
-                    Toast.makeText(this, "회원가입에 성공했습니다.", Toast.LENGTH_LONG).show()
-                    finish()
-                }   else{
-                    Toast.makeText(this, "회원가입에 실패했습니다.", Toast.LENGTH_LONG).show()
+                runBlocking {
+                    result = db.signUp(userData, password)
                 }
-            }   else{
-                Toast.makeText(this, "회원가입에 실패했습니다.", Toast.LENGTH_LONG).show()
+
+                if(result == AuthResult.OK){
+                    val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }   else withContext(Dispatchers.Main){
+                    Toast.makeText(this@SignUpActivity, "회원가입에 실해했습니다.", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
 
-    fun saveUserData(name : String, id : String, email : String) : Boolean{
-        // 사용자의 정보(이름, id, password)를 데이터베이스에 저장하고 저장 결과를 반환합니다.
-
-        var userData = hashMapOf<String, Any>(
-            "name" to name,
-//            "id" to id,
-            "email" to email,
-        )
-
-        db.collection("user").document(id)
-            .set(userData)
-            .addOnSuccessListener(
-                return true
-            )
-
-        return false
-    }
-
-    fun singUp(email : String, password : String ) : Boolean{
-        // email과 password를 받아서 회원가입을 진행합니다.
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnSuccessListener (
-                return true
-            )
+    fun inputEmptyCheck(): Boolean = with(binding){
+        /*
+        * 입력 받아야 하는 값중에 빈 값이 있는지 확인 한다. 있다면 True를 반환하고 없다면 False를 반환한다.
+        */
+        if(id.isEmpty()){ // inputId.text.toString()이 null인지.isEmpty()판단
+            edtSingUpInputId.error = "ID를 입력헤주세요."
+        }
+        else if(name.isEmpty()) {
+            edtSingUpInputName.error = "이름을 입력해주세요."
+        }
+        else if(email.isEmpty()){
+            edtSingUpInputEmail.error = "이메일을 입력헤주세요."
+        }
+        else if(password.isEmpty()){
+            edtSingUpInputPassword.error = "비밀번호를 입력헤주세요."
+        }
+        else if(edtSingUpInputPasswordRe.text.toString().isEmpty()){
+            edtSingUpInputPasswordRe.error = "비밀번호를 다시 입력헤주세요."
+        }
+        else if(password != edtSingUpInputPasswordRe.text.toString()){
+            edtSingUpInputPassword.error = "비밀번호가 일치하지 않습니다."
+            edtSingUpInputPasswordRe.error = "비밀번호가 일치하지 않습니다."
+        }
+        else{
+            return false
+        }
 
         return false
     }

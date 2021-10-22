@@ -42,10 +42,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         singUp.setOnClickListener{
-            var inputData = hashMapOf<String, String>()
-
             val intent = Intent(this, SignUpActivity::class.java)
-            intent.putExtra("inputData", inputData)
             startActivity(intent)
         }
 
