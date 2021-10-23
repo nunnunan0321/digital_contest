@@ -13,10 +13,7 @@ import com.example.digital_contest.Activity.Sphash.authDB
 import com.example.digital_contest.Model.DB.Auth.AuthDB
 import com.example.digital_contest.Model.User
 import com.example.digital_contest.databinding.ActivityLoginBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding : ActivityLoginBinding
@@ -33,10 +30,18 @@ class LoginActivity : AppCompatActivity() {
         // 자동 로그인
         // 현재 로그인된 계정을 가져온다. 가져온 계정이 있다면 이미 이전에 로그인이 된것이다.
         // 로그인 후 화면으로 이동시킨다.
-        if(authDB.auth.currentUser != null){
+        val currentUser = authDB.auth.currentUser
+        if(currentUser != null){
             val intent = Intent(this, MainActivity::class.java)
-            Toast.makeText(this, "어서오세요", Toast.LENGTH_LONG).show()
-
+            
+//            var userData : User? = null
+//
+//            CoroutineScope(Dispatchers.IO).launch {
+//                userData = authDB.getUserDataBuEmail(currentUser.email.toString())!!
+//            }
+            
+            Toast.makeText(this, "어서오세요 ${currentUser.email}님", Toast.LENGTH_LONG).show()
+            
             startActivity(intent)
             finish()
         }
@@ -67,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                intent.putExtra("userData", loginResult)
+                intent.putExtra("userData", loginResult!!)
 
                 startActivity(intent)
                 finish()

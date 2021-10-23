@@ -15,5 +15,5 @@ interface auth {
 
     suspend fun getUserDataById(id : String) : User?
 
-    suspend fun getUserDataBuEmail(email : String) : User?
+    suspend fun getUserDataByEmail(email : String) : User?
 }

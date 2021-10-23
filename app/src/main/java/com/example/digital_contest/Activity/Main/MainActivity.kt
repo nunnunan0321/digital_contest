@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.viewpager.widget.ViewPager
 import com.example.digital_contest.Activity.Main.Fragment.FragmentAdapter
+import com.example.digital_contest.Model.User
 import com.example.digital_contest.R
 import com.google.android.material.tabs.TabLayout
 
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         val tab:TabLayout=findViewById(R.id.tab)
         tab.setupWithViewPager(pager)
 
-
+//        val userData : User = intent.getSerializableExtra("userData") as User
+//        Log.d("userData", userData.toString())
     }
 }
