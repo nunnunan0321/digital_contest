@@ -91,7 +91,7 @@ class FirstTabFragment:Fragment(), GoogleMap.OnMyLocationButtonClickListener,
     override fun onMyLocationClick(location: Location) {
         //location 에 위치 정보
         Toast.makeText(requireContext(), "Current location:\n$location", Toast.LENGTH_LONG).show()
-        Log.d(TAG, "location : $location")
+        Log.d(TAG, "location : ${location.latitude} ${location.longitude}")
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -102,7 +102,6 @@ class FirstTabFragment:Fragment(), GoogleMap.OnMyLocationButtonClickListener,
         enableMyLocation()
 
     }
-
 
 
     private fun setUpMapIfNeeded() {
