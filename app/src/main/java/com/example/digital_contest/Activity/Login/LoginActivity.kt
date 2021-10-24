@@ -26,27 +26,17 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         initClickEvent()
-
-        // 자동 로그인
-        // 현재 로그인된 계정을 가져온다. 가져온 계정이 있다면 이미 이전에 로그인이 된것이다.
-        // 로그인 후 화면으로 이동시킨다.
+        
+        
+        //자동 로그인 코드
         val currentUser = authDB.auth.currentUser
         if(currentUser != null){
-            val intent = Intent(this, MainActivity::class.java)
-            
-//            var userData : User? = null
-//
-//            CoroutineScope(Dispatchers.IO).launch {
-//                userData = authDB.getUserDataBuEmail(currentUser.email.toString())!!
-//            }
-            
-            Toast.makeText(this, "어서오세요 ${currentUser.email}님", Toast.LENGTH_LONG).show()
-            
-            startActivity(intent)
-            finish()
+            CoroutineScope(Dispatchers.IO).launch {
+                val userData = authDB.getUserDataByEmail(currentUser.email.toString())!!
+
+                gotoMain(userData)
+            }
         }
-
-
     }
 
     fun initClickEvent() = with(binding){
@@ -71,11 +61,7 @@ class LoginActivity : AppCompatActivity() {
                     return@launch
                 }
 
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                intent.putExtra("userData", loginResult!!)
-
-                startActivity(intent)
-                finish()
+                gotoMain(loginResult)
             }
         }
     }
@@ -93,4 +79,12 @@ class LoginActivity : AppCompatActivity() {
 
         return true
     }
+
+    fun gotoMain(userData : User){
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("userData", userData)
+        startActivity(intent)
+        finish()
+    }
+
 }
