@@ -70,7 +70,7 @@ class AuthDB : auth {
     }
 
     override suspend fun getUserDataById(id: String): User? {
-        //id중복 체크 기능 함수, 아직 제작 안함
+        //id를 가지고 사용자 정보를 가져오는 함수
         
         var user : User? = null
         db.collection("user").document(id).get()

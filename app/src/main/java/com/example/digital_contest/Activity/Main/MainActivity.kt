@@ -16,10 +16,15 @@ import com.example.digital_contest.R
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
+    lateinit var userData : User
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        userData = intent.getSerializableExtra("userData") as User
+//        Log.d("userData Mainactivity", userData.toString())
 
 
         val locationPermissionRequest = registerForActivityResult(
@@ -49,8 +54,5 @@ class MainActivity : AppCompatActivity() {
         pager.setPageTransformer(true, ZoomOutPageTransformer()) //화면 이동시 화면 축소
         val tab:TabLayout=findViewById(R.id.tab)
         tab.setupWithViewPager(pager)
-
-//        val userData : User = intent.getSerializableExtra("userData") as User
-//        Log.d("userData", userData.toString())
     }
 }

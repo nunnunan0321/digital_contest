@@ -33,17 +33,19 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = authDB.auth.currentUser
         if(currentUser != null){
             val intent = Intent(this, MainActivity::class.java)
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val userData = authDB.getUserDataByEmail(currentUser.email.toString())!!
+                withContext(Dispatchers.Main){
+                    Toast.makeText(this@LoginActivity, "어서오세요 ${currentUser.email}님", Toast.LENGTH_LONG).show()
+
+                    intent.putExtra("userData", userData)
+                    startActivity(intent)
+                    finish()
+                }
+            }
             
-//            var userData : User? = null
-//
-//            CoroutineScope(Dispatchers.IO).launch {
-//                userData = authDB.getUserDataBuEmail(currentUser.email.toString())!!
-//            }
-            
-            Toast.makeText(this, "어서오세요 ${currentUser.email}님", Toast.LENGTH_LONG).show()
-            
-            startActivity(intent)
-            finish()
+
         }
 
 

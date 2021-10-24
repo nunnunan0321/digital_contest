@@ -16,7 +16,7 @@ class WriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_write)
 
-        userData = intent.getSerializableExtra("user") as User
+//        userData = intent.getSerializableExtra("userData") as User
     }
 
     fun initClickEvent() = with(binding){
