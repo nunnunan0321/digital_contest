@@ -48,15 +48,19 @@
         </activity>
 
         <activity
-            android:name=".Activity.SignUp.SignUpActivity"
-            android:exported="true" />
-
-        <activity
             android:name=".Activity.Login.LoginActivity"
             android:exported="true" />
 
         <activity
+            android:name=".Activity.SignUp.SignUpActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".Activity.Main.MainActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".Activity.Write.WriteActivity"
             android:exported="true" />
     </application>
 

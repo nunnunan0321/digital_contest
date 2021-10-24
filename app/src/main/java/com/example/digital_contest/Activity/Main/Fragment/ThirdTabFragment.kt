@@ -45,8 +45,6 @@ class ThirdTabFragment:Fragment(){
 
 
 
-
-
         logOutBtn.setOnClickListener {
             auth.signOut()
             val intent = Intent(activity, LoginActivity::class.java)

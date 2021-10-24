@@ -82,14 +82,13 @@ class AuthDB : auth {
         return user
     }
 
-    override suspend fun getUserDataBuEmail(email: String): User? {
+    override suspend fun getUserDataByEmail(email: String): User? {
         var resultUsserData : User? = null
 
         db.collection("user").whereEqualTo("email", email).get()
             .addOnSuccessListener { documents ->
                 for(document in documents){
                     resultUsserData = document.toObject(User::class.java)
-                    Log.d("userData", resultUsserData.toString())
                 }
             }.await()
 
@@ -110,5 +109,4 @@ class AuthDB : auth {
 
         return user
     }
-
 }
