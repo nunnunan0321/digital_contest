@@ -9,10 +9,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager.widget.ViewPager
 import com.example.digital_contest.Activity.Main.Fragment.FragmentAdapter
 import com.example.digital_contest.Model.User
 import com.example.digital_contest.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
@@ -42,17 +45,20 @@ class MainActivity : AppCompatActivity() {
             }
             }
         }
-
         locationPermissionRequest.launch(arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION))
 
+//        val pagerAdapter = FragmentAdapter(supportFragmentManager)
+//        val pager:ViewPager=findViewById(R.id.viewPager)
+//        pager.adapter = pagerAdapter
+//        pager.setPageTransformer(true, ZoomOutPageTransformer()) //화면 이동시 화면 축소
+//        val tab:TabLayout=findViewById(R.id.tab)
+//        tab.setupWithViewPager(pager)
 
-        val pagerAdapter = FragmentAdapter(supportFragmentManager)
-        val pager:ViewPager=findViewById(R.id.viewPager)
-        pager.adapter = pagerAdapter
-        pager.setPageTransformer(true, ZoomOutPageTransformer()) //화면 이동시 화면 축소
-        val tab:TabLayout=findViewById(R.id.tab)
-        tab.setupWithViewPager(pager)
+
+
+        val navControl = findNavController(R.id.fragment_main)
+        findViewById<BottomNavigationView>(R.id.bottomNav_main).setupWithNavController(navControl)
     }
 }

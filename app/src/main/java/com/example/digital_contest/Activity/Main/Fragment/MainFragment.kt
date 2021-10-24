@@ -3,12 +3,9 @@ package com.example.digital_contest.Activity.Main.Fragment
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
-import android.content.Context
-import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,7 +15,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.digital_contest.R
 import com.google.android.gms.maps.*
@@ -28,11 +24,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import java.security.Permission
 import java.util.*
 
 
-class FirstTabFragment:Fragment(), GoogleMap.OnMyLocationButtonClickListener,
+class MainFragment:Fragment(), GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener, OnMapReadyCallback,
     ActivityCompat.OnRequestPermissionsResultCallback {
     lateinit var auth : FirebaseAuth
@@ -46,12 +41,12 @@ class FirstTabFragment:Fragment(), GoogleMap.OnMyLocationButtonClickListener,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_first_tab, container, false)
+        return inflater.inflate(R.layout.fragment_main_tab, container, false)
     }
-    fun newInstant() : FirstTabFragment
+    fun newInstant() : MainFragment
     {
         val args = Bundle()
-        val frag = FirstTabFragment()
+        val frag = MainFragment()
         frag.arguments = args
         return frag
     }

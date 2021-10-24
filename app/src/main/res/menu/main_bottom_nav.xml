@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/MainFragment"
+        android:title="Main"
+        android:icon="@drawable/ic_home"
+        />
+    <item
+        android:id="@+id/LikeListFragment"
+        android:title="Like List"
+        android:icon="@drawable/ic_heart"
+        />
+    <item
+        android:id="@+id/MyProfileFragment"
+        android:title="My Profile"
+        android:icon="@drawable/ic_person"
+        />
+    <item
+        android:id="@+id/MoreMenuFragment"
+        android:title="More Menu"
+        android:icon="@drawable/ic_menu"
+        />
+
+</menu>

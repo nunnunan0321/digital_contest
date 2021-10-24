@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/MainFragment">
+
+
+    <fragment
+        android:id="@+id/MainFragment"
+        android:name="com.example.digital_contest.Activity.Main.Fragment.MainFragment"
+        tools:layout="@layout/fragment_main_tab"
+        android:label="Main tab"
+        />
+    <fragment
+        android:id="@+id/LikeListFragment"
+        android:name="com.example.digital_contest.Activity.Main.Fragment.LikeListFragment"
+        tools:layout="@layout/fragment_like_list_tab"
+        android:label="Like List tab"
+        />
+    <fragment
+        android:id="@+id/MyProfileFragment"
+        android:name="com.example.digital_contest.Activity.Main.Fragment.MyProfileFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_my_profile"
+        />
+    <fragment
+        android:id="@+id/MoreMenuFragment"
+        android:name="com.example.digital_contest.Activity.Main.Fragment.MoreMenuFragment"
+        tools:layout="@layout/fragment_more_menu_tab"
+        android:label="More Menu tab"
+        />
+
+</navigation>

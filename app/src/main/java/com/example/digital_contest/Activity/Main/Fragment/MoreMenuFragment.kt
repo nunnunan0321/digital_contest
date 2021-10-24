@@ -1,24 +1,19 @@
 package com.example.digital_contest.Activity.Main.Fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.digital_contest.Activity.Login.LoginActivity
 import com.example.digital_contest.Activity.Main.MainActivity
-import com.example.digital_contest.Activity.Sphash.authDB
-import com.example.digital_contest.Activity.Write.WriteActivity
 import com.example.digital_contest.Model.User
 import com.example.digital_contest.databinding.FragmentThirdTabBinding
 import com.example.digital_contest.R
 
 
-class ThirdTabFragment:Fragment(){
+class MoreMenuFragment:Fragment(){
     lateinit var binding : FragmentThirdTabBinding
     lateinit var userData : User
 
@@ -27,7 +22,7 @@ class ThirdTabFragment:Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_third_tab,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_more_menu_tab,container,false)
         val root = binding.root
 
         userData = (activity as MainActivity).userData
@@ -36,10 +31,10 @@ class ThirdTabFragment:Fragment(){
 
         return root
     }
-    fun newInstant() : ThirdTabFragment
+    fun newInstant() : MoreMenuFragment
     {
         val args = Bundle()
-        val frag = ThirdTabFragment()
+        val frag = MoreMenuFragment()
         frag.arguments = args
         return frag
     }
@@ -58,7 +53,7 @@ class ThirdTabFragment:Fragment(){
             //프래그먼트에서의 finish() 와 같다함
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.remove(this@ThirdTabFragment)
+                ?.remove(this@MoreMenuFragment)
                 ?.commit()
         }
 
