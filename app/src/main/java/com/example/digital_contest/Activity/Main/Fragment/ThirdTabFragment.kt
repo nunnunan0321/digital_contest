@@ -8,22 +8,28 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.digital_contest.Activity.Login.LoginActivity
+import com.example.digital_contest.Activity.Sphash.authDB
 import com.example.digital_contest.R
+import com.example.digital_contest.databinding.FragmentThirdTabBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ThirdTabFragment:Fragment(){
-    lateinit var auth : FirebaseAuth
-    lateinit var db : FirebaseFirestore
+    lateinit var binding : FragmentThirdTabBinding
 
     override fun onCreateView(//view를 넣어주는 역할을
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_third_tab,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_third_tab,container,false)
+        val root = binding.root
+
+
+        return root
     }
     fun newInstant() : ThirdTabFragment
     {
@@ -36,27 +42,26 @@ class ThirdTabFragment:Fragment(){
         super.onViewCreated(view, savedInstanceState)
         class MainActivity : AppCompatActivity()
 
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
-        val current_user = auth.currentUser
+        val current_user = authDB.auth.currentUser
 
 
         val logOutBtn = view.findViewById<Button>(R.id.btn_thirdTap_logout)
 
 
+        initClickEvent()
+    }
 
-        logOutBtn.setOnClickListener {
-            auth.signOut()
+    fun initClickEvent() = with(binding){
+        btnThirdTapLogout.setOnClickListener {
+            authDB.auth.signOut()
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
 
             //프래그먼트에서의 finish() 와 같다함
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.remove(this)
+                ?.remove(this@ThirdTabFragment)
                 ?.commit()
         }
     }
-
-
 }
