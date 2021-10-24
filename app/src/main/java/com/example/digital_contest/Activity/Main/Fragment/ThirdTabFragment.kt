@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -28,12 +29,17 @@ class ThirdTabFragment:Fragment(){
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_third_tab,container,false)
         val root = binding.root
 
+        val current_user = authDB.auth.currentUser!!
+
+
+
+
+        initClickEvent()
 
         return root
     }
 
-    fun newInstant() : ThirdTabFragment
-    {
+    fun newInstant() : ThirdTabFragment {
         val args = Bundle()
         val frag = ThirdTabFragment()
         frag.arguments = args
@@ -43,12 +49,6 @@ class ThirdTabFragment:Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         class MainActivity : AppCompatActivity()
-
-        val current_user = authDB.auth.currentUser
-
-
-
-        initClickEvent()
     }
 
     fun initClickEvent() = with(binding){
@@ -68,18 +68,13 @@ class ThirdTabFragment:Fragment(){
 
         btnThirdTapWrite.setOnClickListener {
             val intent = Intent(activity, WriteActivity::class.java)
-//            intent.putExtra('userData', )
+//            Log.d("userData", userData.toString())
+//            intent.putExtra("userData", userData)
             startActivity(intent)
         }
 
         btnThirdTapGetUserData.setOnClickListener{
-            CoroutineScope(Dispatchers.Main).launch {
-                var userData : User = CoroutineScope(Dispatchers.IO).async {
-                    return@async authDB.getUserDataByEmail(authDB.auth.currentUser!!.email.toString())!!
-                }.await()
-
-                Log.d("userData", userData.toString())
-            }
+//            Toast.makeText(requireContext(), "${userData.id}, ${userData.name}", Toast.LENGTH_LONG).show()
         }
     }
 }
