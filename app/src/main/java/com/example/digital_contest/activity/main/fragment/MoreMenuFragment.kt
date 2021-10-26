@@ -56,10 +56,7 @@ class MoreMenuFragment:Fragment(){
             startActivity(intent)
 
             //프래그먼트에서의 finish() 와 같다함
-            activity?.supportFragmentManager
-                ?.beginTransaction()
-                ?.remove(this@MoreMenuFragment)
-                ?.commit()
+            activity?.finish()
         }
 
         btnThirdTapWrite.setOnClickListener {

@@ -25,18 +25,6 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         initClickEvent()
-        
-        
-        //자동 로그인 코드
-        val currentUser = authDB.auth.currentUser
-        if(currentUser != null){
-            CoroutineScope(Dispatchers.IO).launch {
-                val userData = authDB.getUserDataByEmail(currentUser.email.toString())!!
-                temp_userData = userData
-
-                gotoMain(userData)
-            }
-        }
     }
 
     fun initClickEvent() = with(binding){
@@ -86,5 +74,4 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
 }

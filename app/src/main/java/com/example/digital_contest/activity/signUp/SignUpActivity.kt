@@ -39,7 +39,7 @@ class SignUpActivity : AppCompatActivity() {
             password = edtSingUpInputPassword.text.toString()
             name = edtSingUpInputName.text.toString()
 
-            if(inputEmptyCheck()) { return@setOnClickListener }  //입력받을것중에 입력하지않은게 있는지 확인, 있다면 클릭 이벤트 종료
+            if(signIpnputEmptyCheck()) { return@setOnClickListener }  //입력받을것중에 입력하지않은게 있는지 확인, 있다면 클릭 이벤트 종료
 
             val userData = User(id = id, name = name, email=email)
 
@@ -63,7 +63,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    fun inputEmptyCheck(): Boolean = with(binding){
+    fun signIpnputEmptyCheck(): Boolean = with(binding){
         /*
         * 입력 받아야 하는 값중에 빈 값이 있는지 확인 한다. 있다면 True를 반환하고 없다면 False를 반환한다.
         */
