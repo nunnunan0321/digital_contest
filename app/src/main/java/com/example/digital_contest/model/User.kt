@@ -1,4 +1,4 @@
-package com.example.digital_contest.Model
+package com.example.digital_contest.model
 
 import java.io.Serializable
 

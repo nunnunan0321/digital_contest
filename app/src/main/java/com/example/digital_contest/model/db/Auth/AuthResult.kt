@@ -1,4 +1,4 @@
-package com.example.digital_contest.Model.DB.Auth
+package com.example.digital_contest.model.db.Auth
 
 enum class AuthResult {
     OK,

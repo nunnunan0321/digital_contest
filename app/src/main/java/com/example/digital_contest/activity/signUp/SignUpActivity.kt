@@ -1,17 +1,16 @@
-package com.example.digital_contest.Activity.SignUp
+package com.example.digital_contest.activity.signUp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.digital_contest.Activity.Login.LoginActivity
-import com.example.digital_contest.Activity.Sphash.authDB
-import com.example.digital_contest.Model.DB.Auth.AuthDB
-import com.example.digital_contest.Model.DB.Auth.AuthResult
-import com.example.digital_contest.Model.User
+import com.example.digital_contest.model.db.Auth.AuthResult
 import com.example.digital_contest.R
+import com.example.digital_contest.activity.login.LoginActivity
+import com.example.digital_contest.activity.sphash.authDB
 import com.example.digital_contest.databinding.ActivitySingUpBinding
+import com.example.digital_contest.model.User
 import kotlinx.coroutines.*
 
 class SignUpActivity : AppCompatActivity() {

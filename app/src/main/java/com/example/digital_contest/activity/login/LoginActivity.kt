@@ -1,17 +1,16 @@
-package com.example.digital_contest.Activity.Login
+package com.example.digital_contest.activity.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.digital_contest.Activity.Main.MainActivity
+import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.R
-import com.example.digital_contest.Activity.SignUp.SignUpActivity
-import com.example.digital_contest.Activity.Sphash.authDB
-import com.example.digital_contest.Model.DB.Auth.AuthDB
-import com.example.digital_contest.Model.User
+import com.example.digital_contest.activity.signUp.SignUpActivity
+import com.example.digital_contest.activity.sphash.authDB
+import com.example.digital_contest.activity.sphash.temp_userData
+import com.example.digital_contest.model.User
 import com.example.digital_contest.databinding.ActivityLoginBinding
 import kotlinx.coroutines.*
 
@@ -33,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         if(currentUser != null){
             CoroutineScope(Dispatchers.IO).launch {
                 val userData = authDB.getUserDataByEmail(currentUser.email.toString())!!
+                temp_userData = userData
 
                 gotoMain(userData)
             }

@@ -8,25 +8,25 @@
 
     <fragment
         android:id="@+id/MainFragment"
-        android:name="com.example.digital_contest.Activity.Main.Fragment.MainFragment"
+        android:name="com.example.digital_contest.activity.main.fragment.MainFragment"
         tools:layout="@layout/fragment_main_tab"
         android:label="Main tab"
         />
     <fragment
         android:id="@+id/LikeListFragment"
-        android:name="com.example.digital_contest.Activity.Main.Fragment.LikeListFragment"
+        android:name="com.example.digital_contest.activity.main.fragment.LikeListFragment"
         tools:layout="@layout/fragment_like_list_tab"
         android:label="Like List tab"
         />
     <fragment
         android:id="@+id/MyProfileFragment"
-        android:name="com.example.digital_contest.Activity.Main.Fragment.MyProfileFragment"
+        android:name="com.example.digital_contest.activity.main.fragment.MyProfileFragment"
         android:label="My Profile"
         tools:layout="@layout/fragment_my_profile"
         />
     <fragment
         android:id="@+id/MoreMenuFragment"
-        android:name="com.example.digital_contest.Activity.Main.Fragment.MoreMenuFragment"
+        android:name="com.example.digital_contest.activity.main.fragment.MoreMenuFragment"
         tools:layout="@layout/fragment_more_menu_tab"
         android:label="More Menu tab"
         />

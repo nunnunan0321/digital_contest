@@ -1,6 +1,6 @@
-package com.example.digital_contest.Model.DB.Auth
+package com.example.digital_contest.model.db.Auth
 
-import com.example.digital_contest.Model.User
+import com.example.digital_contest.model.User
 
 interface auth {
     suspend fun signUp(user : User, password : String) : AuthResult

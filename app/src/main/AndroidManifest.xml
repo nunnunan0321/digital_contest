@@ -38,7 +38,7 @@
             android:required="false" />
 
         <activity
-            android:name=".Activity.Sphash.SplashActivity"
+            android:name=".activity.sphash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,20 +48,21 @@
         </activity>
 
         <activity
-            android:name=".Activity.Login.LoginActivity"
+            android:name=".activity.login.LoginActivity"
             android:exported="true" />
 
         <activity
-            android:name=".Activity.SignUp.SignUpActivity"
+            android:name=".activity.signUp.SignUpActivity"
             android:exported="true" />
 
         <activity
-            android:name=".Activity.Main.MainActivity"
+            android:name=".activity.main.MainActivity"
             android:exported="true" />
 
         <activity
-            android:name=".Activity.Write.WriteActivity"
+            android:name=".activity.write.WriteActivity"
             android:exported="true" />
+<!--        sdadasdsad-->
     </application>
 
 </manifest>

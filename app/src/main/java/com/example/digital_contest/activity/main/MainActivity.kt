@@ -1,7 +1,8 @@
-package com.example.digital_contest.Activity.Main
+package com.example.digital_contest.activity.main
 
 import android.Manifest
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,12 +12,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.viewpager.widget.ViewPager
-import com.example.digital_contest.Activity.Main.Fragment.FragmentAdapter
-import com.example.digital_contest.Model.User
+import com.example.digital_contest.activity.write.WriteActivity
+import com.example.digital_contest.model.User
 import com.example.digital_contest.R
+import com.example.digital_contest.activity.sphash.temp_userData
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     lateinit var userData : User
@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         userData = intent.getSerializableExtra("userData") as User
+        temp_userData = userData
         Toast.makeText(this, "어서오세요. ${userData.name}님", Toast.LENGTH_LONG).show()
 
 
@@ -60,5 +61,13 @@ class MainActivity : AppCompatActivity() {
 
         val navControl = findNavController(R.id.fragment_main)
         findViewById<BottomNavigationView>(R.id.bottomNav_main).setupWithNavController(navControl)
+    }
+
+    fun gotoWrite(){
+        val intent = Intent(this, WriteActivity::class.java)
+        intent.putExtra("userData", userData)
+        startActivity(intent)
+
+        Log.d("mainActivity", userData.toString())
     }
 }

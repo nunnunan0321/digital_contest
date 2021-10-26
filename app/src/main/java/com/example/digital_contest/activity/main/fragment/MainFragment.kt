@@ -1,4 +1,4 @@
-package com.example.digital_contest.Activity.Main.Fragment
+package com.example.digital_contest.activity.main.fragment
 
 import android.Manifest
 import android.annotation.SuppressLint

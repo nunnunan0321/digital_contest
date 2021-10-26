@@ -1,7 +1,6 @@
-package com.example.digital_contest.Model.DB.Auth
+package com.example.digital_contest.model.db.Auth
 
-import android.util.Log
-import com.example.digital_contest.Model.User
+import com.example.digital_contest.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await

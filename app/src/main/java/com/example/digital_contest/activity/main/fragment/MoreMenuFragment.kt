@@ -1,4 +1,4 @@
-package com.example.digital_contest.Activity.Main.Fragment
+package com.example.digital_contest.activity.main.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.digital_contest.Activity.Login.LoginActivity
-import com.example.digital_contest.Activity.Main.MainActivity
-import com.example.digital_contest.Activity.Sphash.authDB
-import com.example.digital_contest.Activity.Write.WriteActivity
-import com.example.digital_contest.Model.User
+import com.example.digital_contest.activity.main.MainActivity
+import com.example.digital_contest.model.User
 import com.example.digital_contest.R
+import com.example.digital_contest.activity.login.LoginActivity
+import com.example.digital_contest.activity.sphash.authDB
+import com.example.digital_contest.activity.write.WriteActivity
 import com.example.digital_contest.databinding.FragmentMoreMenuTabBinding
 
 
@@ -63,7 +63,8 @@ class MoreMenuFragment:Fragment(){
         }
 
         btnThirdTapWrite.setOnClickListener {
-            val intent = Intent(activity, WriteActivity::class.java)
+//            (activity as MainActivity).gotoWrite()
+            val intent = Intent(requireContext(), WriteActivity::class.java)
             intent.putExtra("userData", userData)
             startActivity(intent)
         }
