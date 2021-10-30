@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.signUp.SignUpActivity
@@ -16,6 +17,7 @@ import kotlinx.coroutines.*
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding : ActivityLoginBinding
+    lateinit var viewModel : LoginActivityViewModel
 
     lateinit var id : String
     lateinit var password : String
@@ -23,6 +25,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        viewModel = LoginActivityViewModel()
+
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         initClickEvent()
     }

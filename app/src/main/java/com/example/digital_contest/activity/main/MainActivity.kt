@@ -50,14 +50,6 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION))
 
-//        val pagerAdapter = FragmentAdapter(supportFragmentManager)
-//        val pager:ViewPager=findViewById(R.id.viewPager)
-//        pager.adapter = pagerAdapter
-//        pager.setPageTransformer(true, ZoomOutPageTransformer()) //화면 이동시 화면 축소
-//        val tab:TabLayout=findViewById(R.id.tab)
-//        tab.setupWithViewPager(pager)
-
-
 
         val navControl = findNavController(R.id.fragment_main)
         findViewById<BottomNavigationView>(R.id.bottomNav_main).setupWithNavController(navControl)
