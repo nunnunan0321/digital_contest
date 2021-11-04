@@ -74,7 +74,7 @@ class AuthDB : auth {
         var user : User? = null
         db.collection("user").document(id).get()
             .addOnSuccessListener {
-                user = it.toObject(User::class.java)!! as User
+                user = it.toObject(User::class.java)//!! as User
             }
             .await()
 

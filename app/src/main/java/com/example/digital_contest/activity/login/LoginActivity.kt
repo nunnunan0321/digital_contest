@@ -1,5 +1,6 @@
 package com.example.digital_contest.activity.login
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -45,8 +46,14 @@ class LoginActivity : AppCompatActivity() {
 
             if(loginInputEmptyCheck()) {return@setOnClickListener}
 
+            val loadingDialog = Dialog(this@LoginActivity)
+            loadingDialog.setContentView(R.layout.dialog_loading)
+            loadingDialog.show()
+
             CoroutineScope(Dispatchers.IO).launch {
                 val loginResult : User? = authDB.login(id, password)
+
+                loadingDialog.dismiss()
 
                 if(loginResult == null){
                     withContext(Dispatchers.Main){

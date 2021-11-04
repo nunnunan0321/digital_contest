@@ -1,5 +1,6 @@
 package com.example.digital_contest.activity.signUp
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,6 +35,10 @@ class SignUpActivity : AppCompatActivity() {
         btnSingUpSingUp.setOnClickListener{
             //로그인 버튼을 눌렀을때 처리하는 함수, id, email등을 가져오고 빈 값이 있는지 확인한뒤 로그인을 진행한다.
 
+            val loadingDialog = Dialog(this@SignUpActivity)
+            loadingDialog.setContentView(R.layout.dialog_loading)
+            loadingDialog.show()
+
             id = edtSingUpInputId.text.toString()
             email = edtSingUpInputEmail.text.toString()
             password = edtSingUpInputPassword.text.toString()
@@ -48,6 +53,10 @@ class SignUpActivity : AppCompatActivity() {
 
                 runBlocking {
                     result = authDB.signUp(userData, password)
+                }
+
+                withContext(Dispatchers.Main){
+                    loadingDialog.dismiss()
                 }
 
                 if(result == AuthResult.OK){
