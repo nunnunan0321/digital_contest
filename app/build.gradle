@@ -65,6 +65,9 @@ dependencies {
     // GoogleMap API
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
 
+    // GooglePlay Location API
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+
     // Coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
 
