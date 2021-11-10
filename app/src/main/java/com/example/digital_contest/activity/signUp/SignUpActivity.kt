@@ -27,33 +27,26 @@ class SignUpActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
 
-        initClickEvent() //클릭이벤트 설정 함수
-    }
-    
-    fun initClickEvent() = with(binding){
-        // 클릭 이벤트 설정 함수
-        btnSingUpSingUp.setOnClickListener{
+        binding.btnSingUpSingUp.setOnClickListener{
             //로그인 버튼을 눌렀을때 처리하는 함수, id, email등을 가져오고 빈 값이 있는지 확인한뒤 로그인을 진행한다.
 
             val loadingDialog = Dialog(this@SignUpActivity)
             loadingDialog.setContentView(R.layout.dialog_loading)
             loadingDialog.show()
 
-            val id = viewModel!!.id.value!!.toString()
-            val email = viewModel!!.email.value!!.toString()
-            val password = viewModel!!.password.value!!.toString()
-            val name = viewModel!!.name.value!!.toString()
+            val inputId = viewModel.id.value!!.toString()
+            val inputEmail = viewModel.email.value!!.toString()
+            val inputName = viewModel.name.value!!.toString()
+            val inputPassword = viewModel.password.value!!.toString()
 
-            val userData = User(id = id, name = name, email=email)
+            val userData = User(id = inputId, name = inputName, email=inputEmail)
 
-            CoroutineScope(Dispatchers.IO).launch {
-                var result : AuthResult = authDB.signUp(userData, password)
+            CoroutineScope(Dispatchers.Main).launch {
+                val authResult : AuthResult = CoroutineScope(Dispatchers.IO).async{
+                    authDB.signUp(userData, inputPassword)
+                }.await()
 
-                withContext(Dispatchers.Main){
-                    loadingDialog.dismiss()
-                }
-
-                if(result == AuthResult.OK){
+                if(authResult == AuthResult.OK){
                     //회원가입에 성공한 경우 LoginActivity로 이동한다.
                     val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
                     startActivity(intent)
