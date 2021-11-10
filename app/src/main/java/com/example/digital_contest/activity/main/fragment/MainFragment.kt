@@ -3,6 +3,7 @@ package com.example.digital_contest.activity.main.fragment
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
@@ -15,8 +16,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.digital_contest.R
+import com.example.digital_contest.activity.main.MainActivity
+import com.example.digital_contest.activity.write.WriteActivity
+import com.example.digital_contest.databinding.FragmentMainTabBinding
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -27,11 +32,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 
-class MainFragment:Fragment(), GoogleMap.OnMyLocationButtonClickListener,
+class MainFragment:Fragment(),
+    GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener, OnMapReadyCallback,
     ActivityCompat.OnRequestPermissionsResultCallback {
-    lateinit var auth : FirebaseAuth
-    lateinit var db : FirebaseFirestore
+
+    lateinit var binding : FragmentMainTabBinding
     private var permissionDenied = false
     private lateinit var map: GoogleMap
 
@@ -41,7 +47,16 @@ class MainFragment:Fragment(), GoogleMap.OnMyLocationButtonClickListener,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main_tab, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_tab, container, false)
+        val root = binding.root
+
+        binding.floatBtnMainGotoWrite.setOnClickListener {
+            val intent = Intent(requireContext(), WriteActivity::class.java)
+            intent.putExtra("userData", (activity as MainActivity).userData)
+            startActivity(intent)
+        }
+
+        return root
     }
     fun newInstant() : MainFragment
     {
