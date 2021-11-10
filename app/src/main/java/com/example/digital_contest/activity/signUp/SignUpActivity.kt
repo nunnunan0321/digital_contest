@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.digital_contest.model.db.Auth.AuthResult
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.login.LoginActivity
@@ -16,16 +17,15 @@ import kotlinx.coroutines.*
 
 class SignUpActivity : AppCompatActivity() {
     lateinit var binding : ActivitySingUpBinding
-
-    lateinit var id : String
-    lateinit var email : String
-    lateinit var password : String
-    lateinit var name : String
+    lateinit var viewModel : SingUpActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sing_up)
-        
+        viewModel = ViewModelProvider(this).get(SingUpActivityViewModel::class.java)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
 
         initClickEvent() //클릭이벤트 설정 함수
     }
@@ -39,21 +39,15 @@ class SignUpActivity : AppCompatActivity() {
             loadingDialog.setContentView(R.layout.dialog_loading)
             loadingDialog.show()
 
-            id = edtSingUpInputId.text.toString()
-            email = edtSingUpInputEmail.text.toString()
-            password = edtSingUpInputPassword.text.toString()
-            name = edtSingUpInputName.text.toString()
-
-            if(signIpnputEmptyCheck()) { return@setOnClickListener }  //입력받을것중에 입력하지않은게 있는지 확인, 있다면 클릭 이벤트 종료
+            val id = viewModel!!.id.value!!.toString()
+            val email = viewModel!!.email.value!!.toString()
+            val password = viewModel!!.password.value!!.toString()
+            val name = viewModel!!.name.value!!.toString()
 
             val userData = User(id = id, name = name, email=email)
 
             CoroutineScope(Dispatchers.IO).launch {
-                var result : AuthResult//? = null
-
-                runBlocking {
-                    result = authDB.signUp(userData, password)
-                }
+                var result : AuthResult = authDB.signUp(userData, password)
 
                 withContext(Dispatchers.Main){
                     loadingDialog.dismiss()
@@ -70,35 +64,5 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    fun signIpnputEmptyCheck(): Boolean = with(binding){
-        /*
-        * 입력 받아야 하는 값중에 빈 값이 있는지 확인 한다. 있다면 True를 반환하고 없다면 False를 반환한다.
-        */
-        if(id.isEmpty()){ // inputId.text.toString()이 null인지.isEmpty()판단
-            edtSingUpInputId.error = "ID를 입력헤주세요."
-        }
-        else if(name.isEmpty()) {
-            edtSingUpInputName.error = "이름을 입력해주세요."
-        }
-        else if(email.isEmpty()){
-            edtSingUpInputEmail.error = "이메일을 입력헤주세요."
-        }
-        else if(password.isEmpty()){
-            edtSingUpInputPassword.error = "비밀번호를 입력헤주세요."
-        }
-        else if(edtSingUpInputPasswordRe.text.toString().isEmpty()){
-            edtSingUpInputPasswordRe.error = "비밀번호를 다시 입력헤주세요."
-        }
-        else if(password != edtSingUpInputPasswordRe.text.toString()){
-            edtSingUpInputPassword.error = "비밀번호가 일치하지 않습니다."
-            edtSingUpInputPasswordRe.error = "비밀번호가 일치하지 않습니다."
-        }
-        else{
-            return false
-        }
-
-        return false
     }
 }

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.digital_contest.activity.signUp.SingUpActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,21 +19,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:text="회원 가입"
+            android:textSize="40dp"
+
             android:layout_marginVertical="20dp"
+
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
-            android:text="회원 가입"
-            android:textSize="40dp" />
+            />
 
         <EditText
             android:id="@+id/edt_singUp_inputName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:text="@={viewModel.name}"
+
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
+
             app:layout_constraintTop_toBottomOf="@+id/txt_singUp_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,8 +51,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:text="@={viewModel.id}"
+
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
+
             app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,8 +67,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:text="@={viewModel.email}"
+
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
+
             app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputId"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,8 +83,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:text="@={viewModel.password}"
+
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
+
             app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputEmail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,8 +100,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:text="@={viewModel.passwordRe}"
+
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
+
             app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -99,6 +119,7 @@
 
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
+
             app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputPasswordRe"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
