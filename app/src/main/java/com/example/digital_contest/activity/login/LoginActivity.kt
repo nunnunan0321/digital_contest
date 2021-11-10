@@ -46,8 +46,10 @@ class LoginActivity : AppCompatActivity() {
         loadingDialog.setContentView(R.layout.dialog_loading)
         loadingDialog.show()
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val loginResult : User? = authDB.login(id, password)
+        CoroutineScope(Dispatchers.Main).launch {
+            val loginResult : User? = CoroutineScope(Dispatchers.IO).async {
+                authDB.login(id, password)
+            }.await()
 
             loadingDialog.dismiss()
 
