@@ -2,7 +2,8 @@ package com.example.digital_contest.activity.write
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.provider.MediaStore
+import android.widget.Gallery
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -13,16 +14,19 @@ import com.example.digital_contest.databinding.ActivityWriteBinding
 import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
 import com.example.digital_contest.model.db.Board.BoardResult
+import com.google.firebase.firestore.FieldValue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class WriteActivity : AppCompatActivity() {
     lateinit var binding : ActivityWriteBinding
 //    lateinit var viewModel: WriteActivityViewModel
     lateinit var userData : User
 
+    lateinit var title : String
     lateinit var writerID : String
     lateinit var contents : String
 
@@ -44,14 +48,21 @@ class WriteActivity : AppCompatActivity() {
     }
 
     fun initClickEvent() = with(binding){
+        btnWriteImgChoice.setOnClickListener {
+            val galleryIntent = Intent(Intent.ACTION_PICK)
+//            galleryIntent.type = "image/*"
+            galleryIntent.type = MediaStore.Images.Media.CONTENT_TYPE
+            startActivityForResult(galleryIntent, 10)
+        }
+
         btnWriteWrite.setOnClickListener {
+            title = edtWriteTitle.text.toString()
             contents = edtWriteContents.text.toString()
-            Log.d("writeActivity", "클릭됨")
 
             if(saveBoardEmptyCheck()) {return@setOnClickListener}
 
-            val boardData = Board(writerID = writerID, contents = contents)
-            Log.d("writeActivity", boardData.toString())
+            val boardData = Board(title = title, writerID = writerID, contents = contents, uploadDate = FieldValue.serverTimestamp())
+//            Log.d("writeActivity", boardData.toString())
 
             CoroutineScope(Dispatchers.IO).launch {
                 val saveBoardResult = boardDB.saveBoard(boardData)

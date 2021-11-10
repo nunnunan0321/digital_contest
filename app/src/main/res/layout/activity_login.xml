@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@{viewModel.id}"
+            android:text="@={viewModel.id}"
 
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
@@ -47,7 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@{viewModel.password}"
+            android:text="@={viewModel.password}"
 
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
@@ -63,15 +63,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:text="login"
+            android:textSize="25dp"
 
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
+
             app:layout_constraintTop_toBottomOf="@+id/edt_login_inputPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-
-            android:text="login"
-            android:textSize="25dp"
             />
 
         <TextView
@@ -79,28 +79,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:text="회원 가입"
+            android:textSize="15dp"
+
             android:layout_marginVertical="10dp"
+
             app:layout_constraintTop_toBottomOf="@+id/btn_login_login"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-
-            android:text="회원 가입"
-            android:textSize="15dp"
             />
-
-        <!--
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            app:layout_constraintTop_toBottomOf="@+id/txt_login_singUp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
-
-            android:textColor="#F00"
-            android:text="ID 회원가입 제작을 기준으로\n 이전에 회원가입한 계정을은 삭제됨"
-            />
-        -->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
