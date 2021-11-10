@@ -38,7 +38,7 @@ class SplashActivity : AppCompatActivity() {
             }
         }   else{
             //로그인하지 않은 경우 3초후에 LoginActivity로 이동
-            CoroutineScope(Dispatchers.IO).launch {
+            CoroutineScope(Dispatchers.Main).launch {
                 delay(3000)
                 val intent = Intent(this@SplashActivity, LoginActivity::class.java)
                 startActivity(intent)

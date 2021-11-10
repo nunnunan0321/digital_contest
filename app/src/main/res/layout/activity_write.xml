@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.digital_contest.activity.write.WriteActivityViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,11 +15,13 @@
         android:layout_height="match_parent"
         tools:context=".activity.write.WriteActivity">
 
+
         <EditText
             android:id="@+id/edt_write_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:text="@={viewModel.title}"
             android:hint="제목을 입력하세요."
 
             app:layout_constraintTop_toTopOf="parent"
@@ -30,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:text="@={viewModel.content}"
             android:hint="내용을 입력하세요."
 
             app:layout_constraintTop_toBottomOf="@+id/edt_write_title"

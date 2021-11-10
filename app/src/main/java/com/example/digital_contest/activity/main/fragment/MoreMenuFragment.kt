@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -54,20 +55,11 @@ class MoreMenuFragment:Fragment(){
             authDB.auth.signOut()
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
-
-            //프래그먼트에서의 finish() 와 같다함
             activity?.finish()
         }
 
-        btnThirdTapWrite.setOnClickListener {
-//            (activity as MainActivity).gotoWrite()
-            val intent = Intent(requireContext(), WriteActivity::class.java)
-            intent.putExtra("userData", userData)
-            startActivity(intent)
-        }
-
         btnThirdTapGetUserData.setOnClickListener {
-            Log.d("ThirdTap", userData.toString())
+            Toast.makeText(activity, userData.toString(), Toast.LENGTH_LONG).show()
         }
     }
 }

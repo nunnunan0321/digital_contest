@@ -54,9 +54,7 @@ class LoginActivity : AppCompatActivity() {
             loadingDialog.dismiss()
 
             if(loginResult == null){
-                withContext(Dispatchers.Main){
-                    Toast.makeText(this@LoginActivity, "로그인에 실패했습니다.", Toast.LENGTH_LONG).show()
-                }
+                Toast.makeText(this@LoginActivity, "로그인에 실패했습니다.", Toast.LENGTH_LONG).show()
                 return@launch
             }
 

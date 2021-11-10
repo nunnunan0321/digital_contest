@@ -15,6 +15,7 @@ class BoardDB : board {
             .addOnFailureListener {
                 result = BoardResult.Fail
             }
+            .await()
 
         return result
     }

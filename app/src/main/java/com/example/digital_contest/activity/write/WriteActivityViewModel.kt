@@ -7,13 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.digital_contest.model.User
 
 class WriteActivityViewModel : ViewModel() {
-    lateinit var userData : User
-
-    val contents = MutableLiveData("")
-
-
-
-    fun saveBoard(){
-        Log.d("writeActivity", contents.value.toString())
-    }
+    val userData = MutableLiveData<User>()
+    val title = MutableLiveData("")
+    val content = MutableLiveData("")
 }
