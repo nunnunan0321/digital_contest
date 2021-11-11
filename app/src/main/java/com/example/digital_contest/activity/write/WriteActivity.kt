@@ -1,16 +1,16 @@
 package com.example.digital_contest.activity.write
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Gallery
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.sphash.boardDB
-import com.example.digital_contest.activity.sphash.temp_userData
 import com.example.digital_contest.databinding.ActivityWriteBinding
 import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
