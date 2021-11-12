@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.LocationListener
 import android.location.LocationManager
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.digital_contest.activity.sphash.boardDB
@@ -27,5 +28,19 @@ class BoardDB : board {
             }
             .await()
         return result
+    }
+
+    override suspend fun getAllBoard(): ArrayList<Board> {
+        val boardList = arrayListOf<Board>()
+        db.collection("board").get()
+            .addOnSuccessListener {
+                for (document in it){
+//                    Log.d("board", document.toObject(Board::class.java).toString())
+                    boardList.add(document.toObject(Board::class.java))
+                }
+            }.await()
+
+
+        return boardList
     }
 }

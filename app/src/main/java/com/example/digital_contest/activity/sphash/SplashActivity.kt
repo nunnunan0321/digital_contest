@@ -19,6 +19,7 @@ import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.model.db.Board.BoardDB
 import com.example.digital_contest.model.db.Board.board
 import com.firebase.geofire.GeoLocation
+import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -29,7 +30,7 @@ val boardDB : BoardDB = BoardDB()
 
 
 lateinit var temp_userData : User
-var currentLocation : GeoLocation? = null
+var currentLocation : GeoPoint? = null
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,7 @@ class SplashActivity : AppCompatActivity() {
         boardDB.mLocationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         boardDB.mLocationListener = LocationListener { location ->
             with(location){
-                currentLocation = GeoLocation(
+                currentLocation = GeoPoint(
                     latitude, longitude
                 )
             }

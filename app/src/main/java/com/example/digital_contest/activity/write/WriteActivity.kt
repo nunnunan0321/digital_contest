@@ -15,6 +15,7 @@ import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
 import com.example.digital_contest.model.db.Board.BoardResult
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.*
 import java.util.*
 
@@ -54,7 +55,7 @@ class WriteActivity : AppCompatActivity() {
             title = viewModel.title.value!!,
             writerID = viewModel.userData.value!!.id,
             contents = viewModel.content.value!!,
-            uploadDate = FieldValue.serverTimestamp(),
+            uploadDate = Date(),
             location = currentLocation!!
         )
 
