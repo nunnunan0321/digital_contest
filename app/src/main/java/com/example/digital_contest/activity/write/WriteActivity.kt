@@ -1,12 +1,14 @@
 package com.example.digital_contest.activity.write
 
 import android.Manifest
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.telephony.CarrierConfigManager
 import android.util.Log
 import android.widget.Toast
@@ -34,9 +36,11 @@ class WriteActivity : AppCompatActivity() {
     lateinit var binding : ActivityWriteBinding
     lateinit var viewModel: WriteActivityViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_write)
+
         viewModel = ViewModelProvider(this).get(WriteActivityViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

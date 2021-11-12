@@ -39,10 +39,11 @@ class MainFragment:Fragment(),
     GoogleMap.OnMyLocationClickListener, OnMapReadyCallback,
     ActivityCompat.OnRequestPermissionsResultCallback {
 
-    lateinit var binding : FragmentMainTabBinding
+    private lateinit var binding : FragmentMainTabBinding
     private var permissionDenied = false
     private lateinit var map: GoogleMap
-    lateinit var location : Location
+    var userLocationLatitude : Double = 0.0 // 위치 정보는 어디서든지 접근 가능함
+    var userLocationLongitude : Double = 0.0
     private lateinit var locationCallback: LocationCallback
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var locationCallbackCheck : Boolean = true
@@ -106,42 +107,7 @@ class MainFragment:Fragment(),
         enableMyLocation()
         googleMap.addMarker(MarkerOptions().position(LatLng(0.0, 0.0)).title("Marker"))
 
-        fusedLocationClient =  LocationServices.getFusedLocationProviderClient(requireActivity())
-
-        val locationRequest = LocationRequest.create()
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 20 * 1000
-
-        // location 콜백
-        val locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                if (locationResult == null) {
-                    return
-                }
-                for (location in locationResult.locations) {
-                    if (location != null) {
-                        // 위치
-                        val latitude = location.latitude
-                        val longitude = location.longitude
-
-                        Log.d("Test", "GPS Location changed, Latitude: $latitude" +
-                                ", Longitude: $longitude")
-
-                        // locationCallback 이 최초 1회 실행되었을 때만
-                        if(locationCallbackCheck) {
-                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), 14.0F))
-                        }
-                    }
-                }
-                locationCallbackCheck = false
-            }
-        }
-
-
-        // location 업데이트 요청, 업데이트 시작
-        fusedLocationClient.requestLocationUpdates(locationRequest,
-            locationCallback,
-            Looper.getMainLooper());
+        locationUpdateCallback()
     }
 
     // 지도 내에서 내 위치 버튼을 클릭했을 때 실행되는 함수
@@ -204,6 +170,50 @@ class MainFragment:Fragment(),
                 .getAddressLine(0)
 
         Log.e("Address", address)
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun locationUpdateCallback() {
+        fusedLocationClient =  LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        val locationRequest = LocationRequest.create()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval = 20 * 1000
+
+        // location 콜백
+        val locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                if (locationResult == null) {
+                    return
+                }
+                for (location in locationResult.locations) {
+                    if (location != null) {
+                        // 위치
+                        val latitude = location.latitude
+                        val longitude = location.longitude
+
+                        // 아래 두값 전송하면 됨, 사용자 위치임
+                        userLocationLatitude = latitude
+                        userLocationLongitude = longitude
+
+                        Log.d("Test", "GPS Location changed, Latitude: $latitude" +
+                                ", Longitude: $longitude")
+
+                        // locationCallback 이 최초 1회 실행되었을 때만
+                        if(locationCallbackCheck) {
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), 14.0F))
+                        }
+                    }
+                }
+                locationCallbackCheck = false
+            }
+        }
+
+
+        // location 업데이트 요청, 업데이트 시작
+        fusedLocationClient.requestLocationUpdates(locationRequest,
+            locationCallback,
+            Looper.getMainLooper());
     }
 
     companion object {
