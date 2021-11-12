@@ -1,20 +1,10 @@
 package com.example.digital_contest.activity.write
 
-import android.Manifest
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
-import android.telephony.CarrierConfigManager
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.digital_contest.R
@@ -24,9 +14,6 @@ import com.example.digital_contest.databinding.ActivityWriteBinding
 import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
 import com.example.digital_contest.model.db.Board.BoardResult
-import com.firebase.geofire.GeoLocation
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationRequest
 import com.google.firebase.firestore.FieldValue
 import kotlinx.coroutines.*
 import java.util.*
