@@ -20,26 +20,25 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.digital_contest.R
-import com.google.android.gms.location.*
 import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.activity.sphash.currentLocation
+import com.example.digital_contest.activity.view.ViewActivity
 import com.example.digital_contest.activity.write.WriteActivity
 import com.example.digital_contest.databinding.FragmentMainTabBinding
 import com.example.digital_contest.model.Board
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.util.*
+
 
 class MainFragment:Fragment(),
     GoogleMap.OnMyLocationButtonClickListener,
@@ -112,24 +111,52 @@ class MainFragment:Fragment(),
         googleMap.setOnMyLocationButtonClickListener(this)
         googleMap.setOnMyLocationClickListener(this)
         enableMyLocation()
-        googleMap.addMarker(MarkerOptions().position(LatLng(0.0, 0.0)).title("Marker"))
 
         CoroutineScope(Dispatchers.Main).launch {
             val boardsData : Map<String, Board> = CoroutineScope(Dispatchers.IO).async {
                 boardDB.getAllBoard()
             }.await()
 
-            for (board in boardsData.values){
-                googleMap.addMarker(MarkerOptions().position(LatLng(board.location.latitude, board.location.longitude)).title(board.title))
+            for (key in boardsData.keys){
+                val board = boardsData[key]!!
+                googleMap.addMarker(
+                    MarkerOptions().position(
+                        LatLng(
+                            board.location.latitude,
+                            board.location.longitude
+                        )
+                    ).title(board.title).snippet(key)
+                )
             }
         }
+
+        map.setOnMarkerClickListener(markerClickListener)
+        map.setOnInfoWindowClickListener(markerTitleClickListener)
 
         locationUpdateCallback()
     }
 
+    var markerClickListener =
+        OnMarkerClickListener { marker ->
+            val markerTitle = marker.title
+            // 선택한 타겟의 위치
+            val location = marker.position
+
+            false
+        }
+
+    var markerTitleClickListener =
+        GoogleMap.OnInfoWindowClickListener { marker ->
+            val markerTitle = marker.title
+            val markerId = marker.snippet
+            Toast.makeText(requireContext(), "마커 타이틀 클릭 Marker Title : $markerTitle", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), ViewActivity::class.java)
+            intent.putExtra("boardId", markerId)
+            startActivity(intent)
+        }
+
     // 지도 내에서 내 위치 버튼을 클릭했을 때 실행되는 함수
     override fun onMyLocationButtonClick(): Boolean {
-        Toast.makeText(requireContext(), "MyLocation button clicked", Toast.LENGTH_SHORT).show()
         // 카메라가 현재 위치로 이동됨
         return false
     }
@@ -137,13 +164,19 @@ class MainFragment:Fragment(),
     // 지도 내에서 현재 위치를 클릭했을 때(파란색) 실행되는 함수
     override fun onMyLocationClick(location: Location) {
         //location 에 위치 정보
-        Toast.makeText(requireContext(), "Current location:\n$location", Toast.LENGTH_LONG).show()
-        Log.d(TAG, "location : ${location.latitude} ${location.longitude}")
+//        Log.d(TAG, "location : ${location.latitude} ${location.longitude}")
         //map.addMarker(MarkerOptions().position(LatLng(10.0, 0.0)).title("Marker"))
+
     }
 
+
+
     // Permisson 에 대한 결과를 반환하는 함수
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
             return
@@ -163,7 +196,10 @@ class MainFragment:Fragment(),
     private fun enableMyLocation() {
         if (!::map.isInitialized) return
         // Permission Check
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
             == PackageManager.PERMISSION_GRANTED) {
             map.isMyLocationEnabled = true
         } else {
@@ -214,12 +250,18 @@ class MainFragment:Fragment(),
                         userLocationLongitude = longitude
                         currentLocation = GeoPoint(userLocationLatitude, userLocationLongitude)
 
-                        Log.d("Test", "GPS Location changed, Latitude: $latitude" +
-                                ", Longitude: $longitude")
+//                        Log.d("Test", "GPS Location changed, Latitude: $latitude" + ", Longitude: $longitude")
 
                         // locationCallback 이 최초 1회 실행되었을 때만
                         if(locationCallbackCheck) {
-                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), 14.0F))
+                            map.moveCamera(
+                                CameraUpdateFactory.newLatLngZoom(
+                                    LatLng(
+                                        latitude,
+                                        longitude
+                                    ), 14.0F
+                                )
+                            )
                         }
                     }
                 }
@@ -229,9 +271,11 @@ class MainFragment:Fragment(),
 
 
         // location 업데이트 요청, 업데이트 시작
-        fusedLocationClient.requestLocationUpdates(locationRequest,
+        fusedLocationClient.requestLocationUpdates(
+            locationRequest,
             locationCallback,
-            Looper.getMainLooper());
+            Looper.getMainLooper()
+        );
     }
 
     companion object {
