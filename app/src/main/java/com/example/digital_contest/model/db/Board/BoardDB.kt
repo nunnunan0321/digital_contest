@@ -16,9 +16,6 @@ import kotlinx.coroutines.tasks.await
 class BoardDB : board {
     val db : FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    lateinit var mLocationManager: LocationManager
-    lateinit var mLocationListener: LocationListener
-
     override suspend fun saveBoard(boardData: Board): BoardResult {
         var result : BoardResult = BoardResult.OK
 
@@ -40,5 +37,15 @@ class BoardDB : board {
             }.await()
 
         return boardList
+    }
+
+    override suspend fun getBoardById(id: String) : Board? {
+        var boardResult : Board? = null
+        db.collection("board").document(id).get()
+            .addOnSuccessListener {
+                boardResult = it.toObject(Board::class.java)
+            }.await()
+
+        return boardResult
     }
 }
