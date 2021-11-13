@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import com.example.digital_contest.R
 import com.google.android.gms.location.*
 import com.example.digital_contest.activity.main.MainActivity
+import com.example.digital_contest.activity.sphash.currentLocation
 import com.example.digital_contest.activity.write.WriteActivity
 import com.example.digital_contest.databinding.FragmentMainTabBinding
 import com.google.android.gms.maps.*
@@ -31,10 +32,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 import java.util.*
-
-var userLocationLatitude : Double = 0.0 // 위치 정보는 어디서든지 접근 가능함
-var userLocationLongitude : Double = 0.0
 
 class MainFragment:Fragment(),
     GoogleMap.OnMyLocationButtonClickListener,
@@ -197,6 +196,7 @@ class MainFragment:Fragment(),
                         // 아래 두값 전송하면 됨, 사용자 위치임
                         userLocationLatitude = latitude
                         userLocationLongitude = longitude
+                        currentLocation = GeoPoint(userLocationLatitude, userLocationLongitude)
 
                         Log.d("Test", "GPS Location changed, Latitude: $latitude" +
                                 ", Longitude: $longitude")

@@ -7,4 +7,6 @@ interface board {
     suspend fun saveBoard(boardData : Board) : BoardResult
 
     suspend fun getAllBoard() : List<Board>
+
+//    suspend fun
 }

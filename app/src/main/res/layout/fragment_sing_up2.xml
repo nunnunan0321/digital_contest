@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.digital_contest.activity.signUp.SignUpActivityViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:hint="자신을 소개하는 메시지를 입력하세요"
+            android:text="@={viewModel.userMSG}"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <Button
+            android:id="@+id/btn_signUp2_prev"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="이전"
+
+            android:layout_marginEnd="4dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_signUp2_signUp"
+            />
+        <Button
+            android:id="@+id/btn_signUp2_signUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="다음"
+
+            android:layout_marginStart="4dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_signUp2_prev"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

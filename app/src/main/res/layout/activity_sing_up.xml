@@ -1,132 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.signUp.SignUpActivity">
 
-    <data>
-        <variable
-            name="viewModel"
-            type="com.example.digital_contest.activity.signUp.SingUpActivityViewModel" />
-    </data>
+    <fragment
+        android:id="@+id/fragment_signUp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".SingUpActivity">
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/sing_up_navigation"
 
-        <TextView
-            android:id="@+id/txt_singUp_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="회원 가입"
-            android:textSize="40dp"
-
-            android:layout_marginVertical="20dp"
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            />
-
-        <EditText
-            android:id="@+id/edt_singUp_inputName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:text="@={viewModel.name}"
-
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
-
-            app:layout_constraintTop_toBottomOf="@+id/txt_singUp_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            android:hint="이름" />
-
-        <EditText
-            android:id="@+id/edt_singUp_inputId"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:text="@={viewModel.id}"
-
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
-
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            android:hint="ID" />
-
-        <EditText
-            android:id="@+id/edt_singUp_inputEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:text="@={viewModel.email}"
-
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
-
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputId"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            android:hint="Email" />
-
-        <EditText
-            android:id="@+id/edt_singUp_inputPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:text="@={viewModel.password}"
-
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
-
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputEmail"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            android:hint="Password"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/edt_singUp_inputPasswordRe"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:text="@={viewModel.passwordRe}"
-
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
-
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            android:hint="Password"
-            android:inputType="textPassword" />
-
-        <Button
-            android:id="@+id/btn_singUp_singUp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
-
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputPasswordRe"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            android:text="회원 가입"
-            android:textSize="25dp" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

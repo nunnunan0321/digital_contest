@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.sphash.boardDB
+import com.example.digital_contest.activity.sphash.currentLocation
 import com.example.digital_contest.databinding.ActivityWriteBinding
 import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
@@ -50,7 +51,8 @@ class WriteActivity : AppCompatActivity() {
             title = viewModel.title.value!!,
             writerID = viewModel.userData.value!!.id,
             contents = viewModel.content.value!!,
-            uploadDate = Date()
+            uploadDate = Date(),
+            location = currentLocation
         )
 
 

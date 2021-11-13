@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">digital_contest</string>
+    <string name="app_name">Trace of You</string>
     <string name="title_activity_login2">LoginActivity2</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
