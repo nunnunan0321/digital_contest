@@ -6,7 +6,5 @@ import com.firebase.geofire.GeoLocation
 interface board {
     suspend fun saveBoard(boardData : Board) : BoardResult
 
-    suspend fun getAllBoard() : List<Board>
-
-//    suspend fun
+    suspend fun getAllBoard() : Map<String, Board>
 }

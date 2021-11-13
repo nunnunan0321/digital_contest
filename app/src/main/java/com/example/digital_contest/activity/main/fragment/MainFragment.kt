@@ -22,9 +22,11 @@ import androidx.fragment.app.Fragment
 import com.example.digital_contest.R
 import com.google.android.gms.location.*
 import com.example.digital_contest.activity.main.MainActivity
+import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.activity.sphash.currentLocation
 import com.example.digital_contest.activity.write.WriteActivity
 import com.example.digital_contest.databinding.FragmentMainTabBinding
+import com.example.digital_contest.model.Board
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -33,6 +35,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.util.*
 
 class MainFragment:Fragment(),
@@ -107,6 +113,16 @@ class MainFragment:Fragment(),
         googleMap.setOnMyLocationClickListener(this)
         enableMyLocation()
         googleMap.addMarker(MarkerOptions().position(LatLng(0.0, 0.0)).title("Marker"))
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val boardsData : Map<String, Board> = CoroutineScope(Dispatchers.IO).async {
+                boardDB.getAllBoard()
+            }.await()
+
+            for (board in boardsData.values){
+                googleMap.addMarker(MarkerOptions().position(LatLng(board.location.latitude, board.location.longitude)).title(board.title))
+            }
+        }
 
         locationUpdateCallback()
     }

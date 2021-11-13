@@ -46,15 +46,16 @@ class MoreMenuFragment:Fragment(){
 
         CoroutineScope(Dispatchers.IO).launch {
             val boards = boardDB.getAllBoard()
+
             withContext(Dispatchers.Main){
-                binding.listMore.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, boards)
+//                Log.d("boards", boards.values.toString())
+//                binding.listMore.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, )
             }
         }
 
         return root
     }
-    fun newInstant() : MoreMenuFragment
-    {
+    fun newInstant() : MoreMenuFragment {
         val args = Bundle()
         val frag = MoreMenuFragment()
         frag.arguments = args

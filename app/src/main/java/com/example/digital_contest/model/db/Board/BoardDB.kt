@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.model.Board
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.tasks.await
 
 class BoardDB : board {
@@ -29,16 +30,14 @@ class BoardDB : board {
         return result
     }
 
-    override suspend fun getAllBoard(): ArrayList<Board> {
-        val boardList = arrayListOf<Board>()
+    override suspend fun getAllBoard(): Map<String, Board> {
+        val boardList = mutableMapOf<String, Board>()
         db.collection("board").get()
             .addOnSuccessListener {
                 for (document in it){
-//                    Log.d("board", document.toObject(Board::class.java).toString())
-                    boardList.add(document.toObject(Board::class.java))
+                    boardList[document.id] = document.toObject(Board::class.java)
                 }
             }.await()
-
 
         return boardList
     }
