@@ -33,6 +33,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
+var userLocationLatitude : Double = 0.0 // 위치 정보는 어디서든지 접근 가능함
+var userLocationLongitude : Double = 0.0
 
 class MainFragment:Fragment(),
     GoogleMap.OnMyLocationButtonClickListener,

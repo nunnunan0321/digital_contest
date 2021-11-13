@@ -30,39 +30,11 @@ val boardDB : BoardDB = BoardDB()
 
 
 lateinit var temp_userData : User
-var currentLocation : GeoPoint? = null
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-        boardDB.mLocationManager = getSystemService(LOCATION_SERVICE) as LocationManager
-        boardDB.mLocationListener = LocationListener { location ->
-            with(location){
-                currentLocation = GeoPoint(
-                    latitude, longitude
-                )
-            }
-
-            Log.i("[Current Location]", "현재 위치 : ${currentLocation?.latitude}, ${currentLocation?.longitude}")
-        }
-
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        boardDB.mLocationManager.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER,
-            1000,
-            1.0f, boardDB.mLocationListener)
-
 
 
         val currentUser = authDB.auth.currentUser

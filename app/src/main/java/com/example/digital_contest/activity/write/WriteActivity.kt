@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.sphash.boardDB
-import com.example.digital_contest.activity.sphash.currentLocation
 import com.example.digital_contest.databinding.ActivityWriteBinding
 import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
@@ -46,17 +45,12 @@ class WriteActivity : AppCompatActivity() {
     }
 
     fun saveBoard(){
-        if(currentLocation == null){
-            Toast.makeText(this, "위치 정보를 가져올 수 없습니다.", Toast.LENGTH_LONG).show()
-            return
-        }
 
         val boardData = Board(
             title = viewModel.title.value!!,
             writerID = viewModel.userData.value!!.id,
             contents = viewModel.content.value!!,
-            uploadDate = Date(),
-            location = currentLocation!!
+            uploadDate = Date()
         )
 
 

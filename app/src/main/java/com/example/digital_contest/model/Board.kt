@@ -1,8 +1,6 @@
 package com.example.digital_contest.model
 
 import androidx.annotation.Keep
-import com.firebase.geofire.GeoLocation
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.GeoPoint
 import java.io.Serializable
 import java.util.*

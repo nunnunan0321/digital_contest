@@ -9,7 +9,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.model.Board
-import com.firebase.geofire.GeoLocation
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
