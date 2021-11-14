@@ -1,21 +1,17 @@
 package com.example.digital_contest.activity.write
 
-import android.content.Intent
+import android.app.Dialog
+import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.digital_contest.R
-import com.example.digital_contest.activity.sphash.boardDB
-import com.example.digital_contest.activity.sphash.currentLocation
 import com.example.digital_contest.databinding.ActivityWriteBinding
-import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
 import com.example.digital_contest.model.db.Board.BoardResult
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.*
 import java.util.*
 
@@ -36,30 +32,31 @@ class WriteActivity : AppCompatActivity() {
         viewModel.userData.value = (intent.getSerializableExtra("userData") as User)
 
         binding.btnWriteImgChoice.setOnClickListener {
-            val galleryIntent = Intent(Intent.ACTION_PICK)
-            galleryIntent.type = MediaStore.Images.Media.CONTENT_TYPE
-            startActivityForResult(galleryIntent, 10)
+            getImageCallback.launch("image/*")
         }
         binding.btnWriteWrite.setOnClickListener {
             saveBoard()
         }
     }
 
+    val getImageCallback = registerForActivityResult(ActivityResultContracts.GetContent()){
+        val inputStream = contentResolver.openInputStream(it)
+        val img = BitmapFactory.decodeStream(inputStream)
+        inputStream?.close()
+        binding.imgWriteImagePreView.setImageBitmap(img)
+
+        viewModel.img.value = it
+    }
+
     fun saveBoard(){
-
-        val boardData = Board(
-            title = viewModel.title.value!!,
-            writerID = viewModel.userData.value!!.id,
-            contents = viewModel.content.value!!,
-            uploadDate = Date(),
-            location = currentLocation
-        )
-
+        val loadingDialog = Dialog(this)
+        loadingDialog.setContentView(R.layout.dialog_loading)
+        loadingDialog.show()
 
         CoroutineScope(Dispatchers.Main).launch {
-            val saveBoardResult : BoardResult = CoroutineScope(Dispatchers.IO).async {
-                boardDB.saveBoard(boardData)
-            }.await()
+            val saveBoardResult : BoardResult = viewModel.saveBoard()
+
+            loadingDialog.dismiss()
 
             if(saveBoardResult == BoardResult.OK){ //게시물 저장에 성공한 경우
                 Toast.makeText(this@WriteActivity, "글쓰기 성공", Toast.LENGTH_LONG).show()

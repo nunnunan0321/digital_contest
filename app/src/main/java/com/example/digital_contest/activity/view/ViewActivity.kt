@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.activity.write.WriteActivityViewModel
@@ -34,5 +35,10 @@ class ViewActivity : AppCompatActivity() {
         viewModel.boardId = MutableLiveData(intent.getStringExtra("boardId").toString())
 
         viewModel.getBoardData()
+
+
+        viewModel.boardData.observe(this, {
+            Glide.with(this).load(it.imgUrl).into(binding.imgViewBoardImage)
+        })
     }
 }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class ViewActivityViewModel() : ViewModel() {
     lateinit var boardId : MutableLiveData<String>
-    lateinit var boardData : MutableLiveData<Board>
+    val boardData = MutableLiveData<Board>()
 
     var boardTitle = MutableLiveData<String>("")
     var boardContent = MutableLiveData<String>("")
@@ -21,8 +21,8 @@ class ViewActivityViewModel() : ViewModel() {
 
     fun getBoardData(){
         CoroutineScope(Dispatchers.Main).launch {
-            boardData = CoroutineScope(Dispatchers.IO).async{
-                MutableLiveData(boardDB.getBoardById(boardId.value.toString())!!)
+            boardData.value = CoroutineScope(Dispatchers.IO).async{
+                boardDB.getBoardById(boardId.value.toString())!!
             }.await()
 
             boardTitle.value = boardData.value!!.title
