@@ -1,5 +1,6 @@
 package com.example.digital_contest.activity.signUp
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,7 @@ class SignUpActivityViewModel : ViewModel() {
     val passwordRe = MutableLiveData<String>("")
 
     val userMSG = MutableLiveData("")
+    val profileImg = MutableLiveData<Uri>()
 
 
     suspend fun signUp() : AuthResult {
@@ -30,7 +32,7 @@ class SignUpActivityViewModel : ViewModel() {
             userMSG = userMSG.value.toString()
         )
 
-        val result = authDB.signUp(userData, password.value.toString())
+        val result = authDB.signUp(userData, password.value.toString(), profileImg.value!!)
         Log.d("signResult, viewModel", result.toString())
 
         return result

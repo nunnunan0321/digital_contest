@@ -1,11 +1,14 @@
 package com.example.digital_contest.model.db.Auth
 
+import android.net.Uri
 import com.example.digital_contest.model.User
 
 interface auth {
-    suspend fun signUp(user : User, password : String) : AuthResult
+    suspend fun signUp(user : User, password : String, profileImg : Uri) : AuthResult
 
     suspend fun createAccount(user : User, password: String) : AuthResult
+
+    suspend fun saveProfileImg(img : Uri, userID : String) : String?
 
     suspend fun saveUserData(user: User) : AuthResult
 

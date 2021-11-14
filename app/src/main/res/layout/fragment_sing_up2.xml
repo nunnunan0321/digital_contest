@@ -14,6 +14,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout_signUp2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +34,32 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/img_signUp2_profileImgPreView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/noma_profile_img"
+
+            app:layout_constraintTop_toBottomOf="@id/inputLayout_signUp2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <Button
+            android:id="@+id/btn_signUp2_choiceProfileImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="프로필 사진 선택"
+
+            app:layout_constraintTop_toBottomOf="@id/img_signUp2_profileImgPreView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+
         <Button
             android:id="@+id/btn_signUp2_prev"
             android:layout_width="0dp"
@@ -51,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="다음"
+            android:text="완료"
 
             android:layout_marginStart="4dp"
 

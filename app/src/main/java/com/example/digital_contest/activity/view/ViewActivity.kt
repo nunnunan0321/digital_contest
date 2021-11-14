@@ -38,6 +38,7 @@ class ViewActivity : AppCompatActivity() {
 
 
         viewModel.boardData.observe(this, {
+            Log.d("getBoard", "게시물 가져옴 ${it.imgUrl}")
             Glide.with(this).load(it.imgUrl).into(binding.imgViewBoardImage)
         })
     }

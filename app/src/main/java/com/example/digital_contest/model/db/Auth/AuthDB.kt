@@ -1,18 +1,28 @@
 package com.example.digital_contest.model.db.Auth
 
+import android.net.Uri
 import android.util.Log
 import com.example.digital_contest.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 
 class AuthDB : auth {
     val auth : FirebaseAuth = FirebaseAuth.getInstance()
     val db : FirebaseFirestore = FirebaseFirestore.getInstance()
+    val storage : FirebaseStorage = FirebaseStorage.getInstance()
+    val storageRef = storage.reference
     
     
-    override suspend fun signUp(user: User, password: String): AuthResult {
+    override suspend fun signUp(user: User, password: String, profileImg : Uri): AuthResult {
         //회원가입 전체를 진행하는 함수, 회원가입 결과는 AuthResult에 정의된데로 반환
+
+        Log.d("userData", user.toString())
+
+        val saveProfileImgResult = saveProfileImg(profileImg, user.id) ?: return AuthResult.Fail
+        user.profileImgUrl = saveProfileImgResult
 
         val saveUserDataResult = saveUserData(user)
         if(saveUserDataResult == AuthResult.Fail){
@@ -43,13 +53,30 @@ class AuthDB : auth {
         return result
     }
 
+    override suspend fun saveProfileImg(img: Uri, userID: String): String? {
+        var downloadUri : String? = null
+
+        val imgRef = storageRef.child("user/${userID}.png")
+
+        imgRef.putFile(img)
+            .continueWithTask{
+                return@continueWithTask imgRef.downloadUrl
+            }
+            .addOnSuccessListener {
+                downloadUri = it.toString()
+            }
+            .await()
+
+        return downloadUri
+    }
+
     override suspend fun saveUserData(user: User): AuthResult {
         //userData를 받고 데이터를 저장한다.
-        var result = AuthResult.OK
+        var result = AuthResult.Fail
 
         db.collection("user").document(user.id).set(user)
-            .addOnFailureListener {
-                result = AuthResult.Fail
+            .addOnSuccessListener {
+                result = AuthResult.OK
             }
             .await()
 

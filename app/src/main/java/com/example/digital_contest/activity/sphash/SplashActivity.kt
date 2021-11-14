@@ -40,6 +40,7 @@ class SplashActivity : AppCompatActivity() {
 
         val currentUser = authDB.auth.currentUser
         if(currentUser != null){
+            Log.d("currentUser", currentUser.email.toString())
             //이전에 사용자가 로그인한 경우 사용자 정보를 가져오고 mainActivity로 이동
             CoroutineScope(Dispatchers.IO).launch {
                 val userData = authDB.getUserDataByEmail(currentUser.email.toString())!!

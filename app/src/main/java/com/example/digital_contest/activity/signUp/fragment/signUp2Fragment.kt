@@ -2,6 +2,7 @@ package com.example.digital_contest.activity.signUp.fragment
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.login.LoginActivity
@@ -40,6 +42,10 @@ class singUp2Fragment : Fragment() {
             (activity as SignUpActivity).navController.navigate(R.id.action_singUp2Fragment_to_singUp1Fragment)
         }
 
+        binding.btnSignUp2ChoiceProfileImg.setOnClickListener {
+            getProFileImageCallback.launch("image/*")
+        }
+
         binding.btnSignUp2SignUp.setOnClickListener {
             val loadingDialog = Dialog(requireContext())
             loadingDialog.setContentView(R.layout.dialog_loading)
@@ -62,5 +68,17 @@ class singUp2Fragment : Fragment() {
             }
         }
         return root
+    }
+
+    val getProFileImageCallback = registerForActivityResult(ActivityResultContracts.GetContent()){
+        try{
+            val inputStream = requireContext().contentResolver.openInputStream(it)
+            val img = BitmapFactory.decodeStream(inputStream)
+            inputStream?.close()
+
+            binding.imgSignUp2ProfileImgPreView.setImageBitmap(img)
+            viewModel.profileImg.value = it
+
+        }   catch (e : Exception){}
     }
 }

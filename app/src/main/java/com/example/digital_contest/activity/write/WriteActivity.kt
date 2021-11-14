@@ -40,12 +40,14 @@ class WriteActivity : AppCompatActivity() {
     }
 
     val getImageCallback = registerForActivityResult(ActivityResultContracts.GetContent()){
-        val inputStream = contentResolver.openInputStream(it)
-        val img = BitmapFactory.decodeStream(inputStream)
-        inputStream?.close()
-        binding.imgWriteImagePreView.setImageBitmap(img)
+        try{
+            val inputStream = contentResolver.openInputStream(it)
+            val img = BitmapFactory.decodeStream(inputStream)
+            inputStream?.close()
+            binding.imgWriteImagePreView.setImageBitmap(img)
 
-        viewModel.img.value = it
+            viewModel.img.value = it
+        }   catch (e : Exception){}
     }
 
     fun saveBoard(){

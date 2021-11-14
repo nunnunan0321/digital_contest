@@ -7,5 +7,6 @@ data class User(
     var name : String = "",
     var email : String = "",
 
-    var userMSG : String = ""
+    var userMSG : String = "",
+    var profileImgUrl : String = ""
 )  : Serializable
