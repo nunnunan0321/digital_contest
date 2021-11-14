@@ -3,10 +3,12 @@ package com.example.digital_contest.activity.signUp.fragment
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.login.LoginActivity
@@ -39,36 +41,26 @@ class singUp2Fragment : Fragment() {
         }
 
         binding.btnSignUp2SignUp.setOnClickListener {
-            var userData : User
-            with(viewModel){
-                userData = User(
-                    id = id.value.toString(),
-                    email = email.value.toString(),
-                    name = name.value.toString(),
-                    userMSG =  userMSG.value.toString()
-                )
-            }
-
             val loadingDialog = Dialog(requireContext())
             loadingDialog.setContentView(R.layout.dialog_loading)
             loadingDialog.show()
 
             CoroutineScope(Dispatchers.Main).launch {
-                val signUpResult : AuthResult = CoroutineScope(Dispatchers.IO).async {
-                    authDB.signUp(userData, viewModel.password.value.toString())
-                }.await()
+                val signUpResult = viewModel.signUp()
+                Log.d("signResult, fragment", signUpResult.toString())
 
                 loadingDialog.dismiss()
 
                 if(signUpResult == AuthResult.OK){
+                    Toast.makeText(requireContext(), "회원가입에 성공했습니다.", Toast.LENGTH_LONG).show()
                     val intent = Intent(requireContext(), LoginActivity::class.java)
                     startActivity(intent)
                     (activity as SignUpActivity).finish()
+                }   else{
+                    Toast.makeText(requireContext(), "회원가입에 실패했습니다.", Toast.LENGTH_LONG).show()
                 }
             }
         }
-
-
         return root
     }
 }
