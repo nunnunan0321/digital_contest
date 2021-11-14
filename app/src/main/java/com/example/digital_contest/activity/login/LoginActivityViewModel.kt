@@ -18,11 +18,10 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class LoginActivityViewModel(application : Application) : AndroidViewModel(application) {
-    val my_application = application
     val id = MutableLiveData("")
     val password  = MutableLiveData("")
 
-    fun login(){
-
+    suspend fun login() : User? {
+        return authDB.login(id.value.toString(), password.value.toString())
     }
 }

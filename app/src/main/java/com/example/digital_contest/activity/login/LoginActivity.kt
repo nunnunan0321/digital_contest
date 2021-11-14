@@ -39,20 +39,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun login(){
-        val id = viewModel.id.value.toString()
-        val password = viewModel.password.value.toString()
-
         val loadingDialog = Dialog(this@LoginActivity)
         loadingDialog.setContentView(R.layout.dialog_loading)
         loadingDialog.show()
 
         CoroutineScope(Dispatchers.Main).launch {
-            val loginResult : User? = CoroutineScope(Dispatchers.IO).async {
-                authDB.login(id, password)
-            }.await()
-
-            Log.d("loginResult", loginResult.toString())
-
+            val loginResult : User? = viewModel.login()
             loadingDialog.dismiss()
 
             if(loginResult == null){
@@ -60,14 +52,10 @@ class LoginActivity : AppCompatActivity() {
                 return@launch
             }
 
-            gotoMain(loginResult)
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            intent.putExtra("userData", loginResult)
+            startActivity(intent)
+            finish()
         }
-    }
-
-    fun gotoMain(userData : User){
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("userData", userData)
-        startActivity(intent)
-        finish()
     }
 }
