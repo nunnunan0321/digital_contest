@@ -91,18 +91,19 @@ class MainFragment:Fragment(),
 
     override fun onResume() {
         super.onResume()
-        setUpMapIfNeeded()
-        if (permissionDenied) {
-            // 권한이 부여되지 않으면 오류 메세지 출력
-            showMissingPermissionError()
-            permissionDenied = false
-        }
+        printMap()
     }
 
-//    override fun onPause() {
-//        super.onPause()
-//        stopLocationUpdates()
-//    }
+    override fun onStop() {
+        super.onStop()
+        locationCallbackCheck = true
+        Log.d(TAG, "onStop 출력")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        printMap()
+    }
 
     // 지도가 준비되었을 때 실행되는 함수
     @SuppressLint("MissingPermission") // Permission 컴파일 에러 제거
@@ -125,8 +126,8 @@ class MainFragment:Fragment(),
                             board.location.latitude,
                             board.location.longitude
                         )
-                    ).title(board.title).snippet(key)
-                )
+                    ).title(board.title)
+                ).tag = key
             }
         }
 
@@ -148,10 +149,10 @@ class MainFragment:Fragment(),
     var markerTitleClickListener =
         GoogleMap.OnInfoWindowClickListener { marker ->
             val markerTitle = marker.title
-            val markerId = marker.snippet
+            val markerId = marker.tag
             Toast.makeText(requireContext(), "마커 타이틀 클릭 Marker Title : $markerTitle", Toast.LENGTH_SHORT).show()
             val intent = Intent(requireContext(), ViewActivity::class.java)
-            intent.putExtra("boardId", markerId)
+            intent.putExtra("boardId", markerId.toString())
             startActivity(intent)
         }
 
@@ -276,6 +277,15 @@ class MainFragment:Fragment(),
             locationCallback,
             Looper.getMainLooper()
         );
+    }
+
+    private fun printMap() {
+        setUpMapIfNeeded()
+        if (permissionDenied) {
+            // 권한이 부여되지 않으면 오류 메세지 출력
+            showMissingPermissionError()
+            permissionDenied = false
+        }
     }
 
     companion object {
