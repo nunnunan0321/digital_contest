@@ -10,10 +10,7 @@ data class Board(
     val title : String = "", //게시물 제목
     val writerID : String = "", //작성자 ID
     val contents : String = "", //게시물의 내용
-    val likeCount : Array<Int> = arrayOf(), //게시물의 좋아요 수
 
-//    val uploadDate: FieldValue = FieldValue.serverTimestamp(), //글을 쓴 날짜 저장
-    val uploadDate : Date? = Date(),
-    val location: GeoPoint = GeoPoint(0.0, 0.0) //위치정보를 저장
-//    val imgUrl : String
+    val uploadDate : Date = Date(), //게시물 작성일 
+    val location: GeoPoint = GeoPoint(0.0, 0.0) // 게시물의 위치 정보
 ) : Serializable
