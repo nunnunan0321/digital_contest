@@ -51,6 +51,8 @@ class LoginActivity : AppCompatActivity() {
                 authDB.login(id, password)
             }.await()
 
+            Log.d("loginResult", loginResult.toString())
+
             loadingDialog.dismiss()
 
             if(loginResult == null){

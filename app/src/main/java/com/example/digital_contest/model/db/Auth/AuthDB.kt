@@ -1,5 +1,6 @@
 package com.example.digital_contest.model.db.Auth
 
+import android.util.Log
 import com.example.digital_contest.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -104,7 +105,11 @@ class AuthDB : auth {
             return null
         }
 
-        auth.signInWithEmailAndPassword(user.email, password)
+        try{
+            auth.signInWithEmailAndPassword(user.email, password).await()
+        }   catch (e : com.google.firebase.auth.FirebaseAuthInvalidCredentialsException){
+            user = null
+        }
 
         return user
     }

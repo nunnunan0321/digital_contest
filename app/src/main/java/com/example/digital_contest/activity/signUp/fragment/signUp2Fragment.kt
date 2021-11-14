@@ -34,6 +34,10 @@ class singUp2Fragment : Fragment() {
         binding.viewModel = viewModel
         val root = binding.root
 
+        binding.btnSignUp2Prev.setOnClickListener {
+            (activity as SignUpActivity).navController.navigate(R.id.action_singUp2Fragment_to_singUp1Fragment)
+        }
+
         binding.btnSignUp2SignUp.setOnClickListener {
             var userData : User
             with(viewModel){
