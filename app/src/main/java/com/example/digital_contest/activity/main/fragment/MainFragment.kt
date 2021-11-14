@@ -91,18 +91,19 @@ class MainFragment:Fragment(),
 
     override fun onResume() {
         super.onResume()
-        setUpMapIfNeeded()
-        if (permissionDenied) {
-            // 권한이 부여되지 않으면 오류 메세지 출력
-            showMissingPermissionError()
-            permissionDenied = false
-        }
+        printMap()
     }
 
-//    override fun onPause() {
-//        super.onPause()
-//        stopLocationUpdates()
-//    }
+    override fun onStop() {
+        super.onStop()
+        locationCallbackCheck = true
+        Log.d(TAG, "onStop 출력")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        printMap()
+    }
 
     // 지도가 준비되었을 때 실행되는 함수
     @SuppressLint("MissingPermission") // Permission 컴파일 에러 제거
@@ -276,6 +277,15 @@ class MainFragment:Fragment(),
             locationCallback,
             Looper.getMainLooper()
         );
+    }
+
+    private fun printMap() {
+        setUpMapIfNeeded()
+        if (permissionDenied) {
+            // 권한이 부여되지 않으면 오류 메세지 출력
+            showMissingPermissionError()
+            permissionDenied = false
+        }
     }
 
     companion object {
