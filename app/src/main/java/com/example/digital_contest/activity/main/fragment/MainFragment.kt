@@ -126,8 +126,8 @@ class MainFragment:Fragment(),
                             board.location.latitude,
                             board.location.longitude
                         )
-                    ).title(board.title).snippet(key)
-                )
+                    ).title(board.title)
+                ).tag = key
             }
         }
 
@@ -149,10 +149,10 @@ class MainFragment:Fragment(),
     var markerTitleClickListener =
         GoogleMap.OnInfoWindowClickListener { marker ->
             val markerTitle = marker.title
-            val markerId = marker.snippet
+            val markerId = marker.tag
             Toast.makeText(requireContext(), "마커 타이틀 클릭 Marker Title : $markerTitle", Toast.LENGTH_SHORT).show()
             val intent = Intent(requireContext(), ViewActivity::class.java)
-            intent.putExtra("boardId", markerId)
+            intent.putExtra("boardId", markerId.toString())
             startActivity(intent)
         }
 
