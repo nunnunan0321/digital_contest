@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout_signUp2"
+            android:id="@+id/textInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,6 +22,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
+                android:id="@+id/inputLayout_signUp2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="자신을 소개하는 메시지를 입력하세요"
@@ -30,7 +31,7 @@
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,10 +42,9 @@
 
             android:src="@drawable/noma_profile_img"
 
-            app:layout_constraintTop_toBottomOf="@id/inputLayout_signUp2"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
         <Button
             android:id="@+id/btn_signUp2_choiceProfileImg"
