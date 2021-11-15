@@ -97,6 +97,12 @@ class MainFragment:Fragment(),
         super.onResume()
         printMap()
     }
+
+    override fun onPause() {
+        super.onPause()
+        printMap()
+    }
+
     override fun onStop() {
         super.onStop()
         locationCallbackCheck = true
@@ -135,6 +141,7 @@ class MainFragment:Fragment(),
         locationUpdateCallback()
     }
 
+    // 마커를 클릭했을 때 실행되는 함수
     var markerClickListener =
         OnMarkerClickListener { marker ->
             val markerTitle = marker.title
@@ -144,6 +151,7 @@ class MainFragment:Fragment(),
             false
         }
 
+    // 마커의 타이틀을 클릭했을 때 실행되는 함수
     var markerTitleClickListener =
         GoogleMap.OnInfoWindowClickListener { marker ->
             val markerTitle = marker.title
@@ -215,6 +223,8 @@ class MainFragment:Fragment(),
 //        fusedLocationClient.removeLocationUpdates(locationCallback)
 //    }
 
+
+    // 현재 위치를 주소로 반환 (ex: 대한민국 서울시 ~~)
     private fun getAddress(position: LatLng) {
         val geoCoder = Geocoder(context, Locale.getDefault())
         val address =
@@ -294,3 +304,4 @@ class MainFragment:Fragment(),
 
 
 }
+
