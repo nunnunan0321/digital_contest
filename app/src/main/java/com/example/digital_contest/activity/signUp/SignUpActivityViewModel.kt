@@ -23,6 +23,33 @@ class SignUpActivityViewModel : ViewModel() {
     val profileImg = MutableLiveData<Uri>()
 
 
+    fun signUp1InputCheck() : Boolean {
+        // 사용자의 입력이 비어있거나 잘못되었는지 판단하는 함수
+
+        if(id.value!!.isEmpty()) return false
+        if(name.value!!.isEmpty()) return false
+        if(email.value!!.isEmpty()) return false
+        if(password.value!!.isEmpty()) return false
+        if(passwordRe.value!!.isEmpty()) return false
+        if(password.value!!.length < 8) return false
+
+
+        return true
+    }
+
+    fun checkSamePassword() : Boolean{
+        //사용자가 입력한 비밀번호가 서로 다른지 확인
+        if(password.value != passwordRe.value) return false
+
+        return true
+    }
+
+    fun signup2InputCheck() : Boolean {
+        if(userMSG.value!!.isEmpty()) return false
+
+        return true
+    }
+
     suspend fun signUp() : AuthResult {
         val userData = User(
             id = id.value.toString(),

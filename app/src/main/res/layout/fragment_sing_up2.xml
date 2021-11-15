@@ -80,6 +80,8 @@
 
             android:text="완료"
 
+            android:enabled="false"
+
             android:layout_marginStart="4dp"
 
             app:layout_constraintBottom_toBottomOf="parent"

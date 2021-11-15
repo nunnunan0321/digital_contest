@@ -67,6 +67,13 @@ class singUp2Fragment : Fragment() {
                 }
             }
         }
+
+        viewModel.userMSG.observe(requireActivity(), {
+            binding.btnSignUp2SignUp.isEnabled = viewModel.signup2InputCheck()
+        })
+
+
+
         return root
     }
 
