@@ -28,8 +28,8 @@
             android:id="@+id/textInputLayout_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/default_radius_10"
 
+            app:hintTextColor="@color/black"
             android:layout_marginTop="65dp"
             app:layout_constraintEnd_toStartOf="@+id/rightSide_guideLine"
             app:layout_constraintStart_toStartOf="@+id/leftSide_guideLine"
@@ -37,9 +37,9 @@
 
             <EditText
                 android:id="@+id/edt_login_inputId"
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="52dp"
-
+                android:background="@drawable/default_radius_10"
 
                 android:hint="아이디"
                 android:text="@={viewModel.id}"
@@ -69,6 +69,7 @@
                 android:id="@+id/edt_login_inputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:background="@drawable/default_radius_10"
 
                 android:hint="비밀번호"
 
@@ -105,6 +106,8 @@
 
             android:layout_marginTop="45dp"
             android:layout_marginEnd="10dp"
+
+            android:backgroundTint="@color/base_darkGray"
 
             android:text="회원가입"
             android:textSize="16dp"
