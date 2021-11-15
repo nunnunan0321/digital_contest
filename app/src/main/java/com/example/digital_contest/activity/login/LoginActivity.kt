@@ -36,6 +36,14 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLoginLogin.setOnClickListener {
             login()
         }
+
+        viewModel.id.observe(this, {
+            binding.btnLoginLogin.isEnabled = viewModel.loginInputCheck()
+        })
+
+        viewModel.password.observe(this, {
+            binding.btnLoginLogin.isEnabled = viewModel.loginInputCheck()
+        })
     }
 
     fun login(){

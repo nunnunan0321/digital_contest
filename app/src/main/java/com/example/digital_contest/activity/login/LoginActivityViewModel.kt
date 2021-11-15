@@ -21,6 +21,13 @@ class LoginActivityViewModel(application : Application) : AndroidViewModel(appli
     val id = MutableLiveData("")
     val password  = MutableLiveData("")
 
+    fun loginInputCheck() : Boolean{
+        if(id.value!!.isEmpty()) return false
+        if(password.value!!.isEmpty()) return false
+
+        return true
+    }
+
     suspend fun login() : User? {
         return authDB.login(id.value.toString(), password.value.toString())
     }
