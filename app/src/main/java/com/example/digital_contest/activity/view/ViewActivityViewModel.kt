@@ -1,10 +1,12 @@
 package com.example.digital_contest.activity.view
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.model.Board
+import com.example.digital_contest.model.db.Board.BoardResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -18,7 +20,6 @@ class ViewActivityViewModel() : ViewModel() {
     var boardContent = MutableLiveData<String>("")
     var boardWriter = MutableLiveData<String>("")
 
-
     fun getBoardData(){
         CoroutineScope(Dispatchers.Main).launch {
             boardData.value = CoroutineScope(Dispatchers.IO).async{
@@ -29,5 +30,13 @@ class ViewActivityViewModel() : ViewModel() {
             boardContent.value = boardData.value!!.contents
             boardWriter.value = boardData.value!!.writerID
         }
+    }
+
+    suspend fun likeAdd() : BoardResult {
+        return boardDB.boardAddLike(
+            boardData.value!!,
+            boardId.value!!,
+            boardWriter.value!!
+        )
     }
 }

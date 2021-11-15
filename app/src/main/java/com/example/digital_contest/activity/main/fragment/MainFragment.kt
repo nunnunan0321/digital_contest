@@ -85,24 +85,22 @@ class MainFragment:Fragment(),
         class MainActivity : AppCompatActivity()
 
         //getAddress(LatLng(37.5759396,126.9758432))
+    }
 
 
+    override fun onStart() {
+        super.onStart()
+        printMap()
     }
 
     override fun onResume() {
         super.onResume()
         printMap()
     }
-
     override fun onStop() {
         super.onStop()
         locationCallbackCheck = true
         Log.d(TAG, "onStop 출력")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        printMap()
     }
 
     // 지도가 준비되었을 때 실행되는 함수

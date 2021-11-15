@@ -85,4 +85,18 @@ class BoardDB : board {
 
         return boardResult
     }
+
+    override suspend fun boardAddLike(boardData: Board, baordId : String, userId: String): BoardResult {
+        var result : BoardResult = BoardResult.Fail
+
+        boardData.likeUserList.add(userId)
+        db.collection("board").document(baordId)
+            .update("likeUserList", boardData.likeUserList)
+            .addOnSuccessListener {
+                result = BoardResult.OK
+            }
+            .await()
+
+        return result
+    }
 }

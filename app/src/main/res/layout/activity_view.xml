@@ -52,6 +52,19 @@
 
             app:layout_constraintTop_toBottomOf="@id/txt_view_boardTitle"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_view_likeBtn"
+            />
+
+        <ImageView
+            android:id="@+id/img_view_likeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_heart"
+            android:tint="@color/black"
+
+            app:layout_constraintTop_toTopOf="@id/txt_view_boardContent"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_view_boardContent"
             app:layout_constraintEnd_toEndOf="parent"
             />
 

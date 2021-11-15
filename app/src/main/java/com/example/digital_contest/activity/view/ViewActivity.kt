@@ -14,6 +14,7 @@ import com.example.digital_contest.R
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.activity.write.WriteActivityViewModel
 import com.example.digital_contest.databinding.ActivityViewBinding
+import com.example.digital_contest.model.db.Board.BoardResult
 import com.example.digital_contest.model.db.Board.board
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,12 +34,21 @@ class ViewActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         viewModel.boardId = MutableLiveData(intent.getStringExtra("boardId").toString())
-
         viewModel.getBoardData()
 
+        binding.imgViewLikeBtn.setOnClickListener{
+            CoroutineScope(Dispatchers.Main).launch {
+                val addLikeResult = viewModel.likeAdd()
+
+                if(addLikeResult == BoardResult.OK){
+                    Toast.makeText(this@ViewActivity, "게시물에 좋아요를 추가하였습니다.", Toast.LENGTH_LONG).show()
+                    binding.imgViewLikeBtn.setImageResource(R.drawable.ic_heart_fill)
+                }
+            }
+        }
 
         viewModel.boardData.observe(this, {
-            Log.d("getBoard", "게시물 가져옴 ${it.imgUrl}")
+//            Log.d("getBoard", "게시물 가져옴 ${it.imgUrl}")
             Glide.with(this).load(it.imgUrl).into(binding.imgViewBoardImage)
         })
     }
