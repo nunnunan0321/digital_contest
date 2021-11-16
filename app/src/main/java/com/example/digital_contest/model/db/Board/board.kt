@@ -12,4 +12,5 @@ interface board {
     suspend fun getBoardById(id : String) : Board?
 
     suspend fun boardLikeListUpdate(likeUserList : ArrayList<String>, boardId : String) : BoardResult
+    suspend fun getBoardLike(userID : String) : List<Board>
 }

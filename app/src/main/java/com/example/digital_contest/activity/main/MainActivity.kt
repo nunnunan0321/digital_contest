@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         userData = intent.getSerializableExtra("userData") as User
-//        temp_userData = userData
         Toast.makeText(this, "어서오세요. ${userData.name}님", Toast.LENGTH_LONG).show()
 
         val navControl = findNavController(R.id.fragment_main)

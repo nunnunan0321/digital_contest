@@ -1,6 +1,7 @@
 package com.example.digital_contest.model.db.Board
 
 import android.net.Uri
+import android.util.Log
 import com.example.digital_contest.model.Board
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -88,6 +89,21 @@ class BoardDB : board {
                 result = BoardResult.OK
             }
             .await()
+
+        return result
+    }
+
+    override suspend fun getBoardLike(userID: String): List<Board> {
+        val result = mutableListOf<Board>()
+        Log.d("likeList", "함수 호출 $userID")
+
+        db.collection("board").whereIn("likeUserList", listOf(userID)).get()
+            .addOnSuccessListener { documents ->
+                for(document in documents){
+                    result.add(document.toObject(Board::class.java))
+                    Log.d("likeList function", document.toObject(Board::class.java).toString())
+                }
+            }.await()
 
         return result
     }
