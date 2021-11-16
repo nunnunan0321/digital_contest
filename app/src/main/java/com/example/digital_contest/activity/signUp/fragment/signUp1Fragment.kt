@@ -37,29 +37,29 @@ class signUp1Fragment : Fragment() {
             (activity as SignUpActivity).navController.navigate(R.id.action_signUp1Fragment_to_signUp2Fragment)
         }
 
-//        viewModel.name.observe(requireActivity(), {
-//            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
-//        })
-//
-//        viewModel.email.observe(requireActivity(), {
-//            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
-//        })
-//
-//        viewModel.id.observe(requireActivity(), {
-//            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
-//        })
-//
-//        viewModel.id.observe(requireActivity(), {
-//            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
-//        })
-//
-//        viewModel.password.observe(requireActivity(), {
-//            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
-//        })
-//
-//        viewModel.passwordRe.observe(requireActivity(), {
-//            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
-//        })
+        viewModel.name.observe(requireActivity(), {
+            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+        })
+
+        viewModel.email.observe(requireActivity(), {
+            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+        })
+
+        viewModel.id.observe(requireActivity(), {
+            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+        })
+
+        viewModel.id.observe(requireActivity(), {
+            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+        })
+
+        viewModel.password.observe(requireActivity(), {
+            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+        })
+
+        viewModel.passwordRe.observe(requireActivity(), {
+            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+        })
 
         return root
     }

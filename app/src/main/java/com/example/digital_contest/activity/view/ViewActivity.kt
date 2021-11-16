@@ -50,6 +50,7 @@ class ViewActivity : AppCompatActivity() {
                     if(addLikeResult != BoardResult.OK){ //좋아요 목록에 자신의 ID추가에 성공했다면
                         Toast.makeText(this@ViewActivity, "게시물에 좋아요를 추가하지 못했습니다.", Toast.LENGTH_SHORT).show()
                     }
+                    Log.d("likeTest", addLikeResult.toString())
 
                 }   else{ //이전에 좋아요를 눌렀다면
                     binding.imgViewLikeBtn.setImageResource(R.drawable.ic_heart)
@@ -58,6 +59,7 @@ class ViewActivity : AppCompatActivity() {
                     if(calcelLikeResult != BoardResult.OK){
                         Toast.makeText(this@ViewActivity, "게시물에 좋아요를 취소하지못했습니다.", Toast.LENGTH_SHORT).show()
                     }
+                    Log.d("likeTest", calcelLikeResult.toString())
                 }
 
                 viewModel.userPoolLike.value = viewModel.boardData.value!!.likeUserList.contains(viewModel.userData.id)
@@ -75,10 +77,10 @@ class ViewActivity : AppCompatActivity() {
 
         viewModel.userPoolLike.observe(this, { //좋아요를 누르고 취소했을때 좋아요 아이콘을 바꾼다.
             if(it){
-                Log.d("likeTest observe", "추가됨")
+//                Log.d("likeTest observe", "추가됨")
                 binding.imgViewLikeBtn.setImageResource(R.drawable.ic_heart_fill)
             }   else{
-                Log.d("likeTest observe", "취소됨")
+//                Log.d("likeTest observe", "취소됨")
                 binding.imgViewLikeBtn.setImageResource(R.drawable.ic_heart)
             }
         })

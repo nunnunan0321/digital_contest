@@ -82,6 +82,7 @@ class BoardDB : board {
         boardId: String
     ): BoardResult {
         var result : BoardResult = BoardResult.Fail
+        Log.d("likeTest", "함수 호출")
 
         db.collection("board").document(boardId)
             .update("likeUserList", likeUserList)
@@ -90,6 +91,7 @@ class BoardDB : board {
             }
             .await()
 
+        Log.d("likeTest", "함수 종료")
         return result
     }
 

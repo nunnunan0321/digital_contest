@@ -41,6 +41,7 @@
 
         <activity
             android:name=".activity.sphash.SplashActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,25 +52,30 @@
 
         <activity
             android:name=".activity.login.LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
 
         <activity
             android:name=".activity.signUp.SignUpActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
 
         <activity
             android:name=".activity.main.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
         </activity>
 
         <activity
             android:name=".activity.write.WriteActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
 
         <activity
             android:name=".activity.view.ViewActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
-<!--        sdadasdsad-->
+
     </application>
 
 </manifest>
