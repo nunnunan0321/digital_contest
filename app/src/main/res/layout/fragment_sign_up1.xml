@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txt_singUp_title"
+            android:id="@+id/txt_signUp_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -30,7 +30,7 @@
             />
 
         <EditText
-            android:id="@+id/edt_singUp_inputName"
+            android:id="@+id/edt_signUp_inputName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -39,14 +39,14 @@
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
 
-            app:layout_constraintTop_toBottomOf="@+id/txt_singUp_title"
+            app:layout_constraintTop_toBottomOf="@+id/txt_signUp_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
             android:hint="이름" />
 
         <EditText
-            android:id="@+id/edt_singUp_inputId"
+            android:id="@+id/edt_signUp_inputId"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -55,14 +55,14 @@
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputName"
+            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
             android:hint="ID" />
 
         <EditText
-            android:id="@+id/edt_singUp_inputEmail"
+            android:id="@+id/edt_signUp_inputEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -71,14 +71,14 @@
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputId"
+            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputId"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
             android:hint="Email" />
 
         <EditText
-            android:id="@+id/edt_singUp_inputPassword"
+            android:id="@+id/edt_signUp_inputPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -87,7 +87,7 @@
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputEmail"
+            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputEmail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
@@ -95,7 +95,7 @@
             android:inputType="textPassword" />
 
         <EditText
-            android:id="@+id/edt_singUp_inputPasswordRe"
+            android:id="@+id/edt_signUp_inputPasswordRe"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -104,7 +104,7 @@
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputPassword"
+            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
@@ -112,19 +112,18 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/btn_singUp_next"
+            android:id="@+id/btn_signUp_next"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
             android:text="다음"
             android:textSize="25dp"
 
-            android:enabled="false"
 
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_singUp_inputPasswordRe"
+            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputPasswordRe"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />

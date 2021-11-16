@@ -14,7 +14,7 @@
 
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/sing_up_navigation"
+        app:navGraph="@navigation/sign_up_navigation"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

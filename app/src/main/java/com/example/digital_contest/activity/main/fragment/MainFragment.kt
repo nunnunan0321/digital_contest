@@ -90,17 +90,19 @@ class MainFragment:Fragment(),
 
     override fun onStart() {
         super.onStart()
+        locationCallbackCheck = true
         printMap()
     }
 
     override fun onResume() {
         super.onResume()
+        locationCallbackCheck = true
         printMap()
     }
 
     override fun onPause() {
         super.onPause()
-        printMap()
+        locationCallbackCheck = true
     }
 
     override fun onStop() {

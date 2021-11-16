@@ -16,30 +16,27 @@ import com.example.digital_contest.R
 import com.example.digital_contest.activity.login.LoginActivity
 import com.example.digital_contest.activity.signUp.SignUpActivity
 import com.example.digital_contest.activity.signUp.SignUpActivityViewModel
-import com.example.digital_contest.activity.sphash.authDB
-import com.example.digital_contest.databinding.FragmentSingUp2Binding
-import com.example.digital_contest.model.User
+import com.example.digital_contest.databinding.FragmentSignUp2Binding
 import com.example.digital_contest.model.db.Auth.AuthResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class singUp2Fragment : Fragment() {
-    lateinit var binding : FragmentSingUp2Binding
+class signUp2Fragment : Fragment() {
+    lateinit var binding : FragmentSignUp2Binding
     lateinit var viewModel : SignUpActivityViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sing_up2, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up2, container, false)
         viewModel = (activity as SignUpActivity).viewModel
         binding.viewModel = viewModel
         val root = binding.root
 
         binding.btnSignUp2Prev.setOnClickListener {
-            (activity as SignUpActivity).navController.navigate(R.id.action_singUp2Fragment_to_singUp1Fragment)
+            (activity as SignUpActivity).navController.navigate(R.id.action_signUp2Fragment_to_signUp1Fragment)
         }
 
         binding.btnSignUp2ChoiceProfileImg.setOnClickListener {

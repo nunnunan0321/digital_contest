@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sign_up_navigation"
+    app:startDestination="@id/signUp1Fragment">
+
+    <fragment
+        android:id="@+id/signUp1Fragment"
+        android:name="com.example.digital_contest.activity.signUp.fragment.signUp1Fragment"
+        android:label="fragment_sign_up1"
+        tools:layout="@layout/fragment_sign_up1" >
+        <action
+            android:id="@+id/action_signUp1Fragment_to_signUp2Fragment"
+            app:destination="@id/signUp2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp2Fragment"
+        android:name="com.example.digital_contest.activity.signUp.fragment.signUp2Fragment"
+        android:label="fragment_sign_up2"
+        tools:layout="@layout/fragment_sign_up2" >
+        <action
+            android:id="@+id/action_signUp2Fragment_to_signUp1Fragment"
+            app:destination="@id/signUp1Fragment" />
+    </fragment>
+</navigation>
