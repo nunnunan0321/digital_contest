@@ -39,6 +39,7 @@
             android:layout_marginTop="72dp"
 
             app:hintTextColor="@color/black"
+
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/txt_signUp_title">
@@ -48,7 +49,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+
                 android:background="@drawable/default_radius_10"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+
 
                 android:hint="이름"
                 android:textSize="16sp"
@@ -68,6 +72,7 @@
 
             android:layout_marginTop="20dp"
 
+            app:hintTextColor="@color/black"
 
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -79,6 +84,7 @@
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/default_radius_10"
+                android:inputType="textNoSuggestions|textVisiblePassword"
 
                 android:hint="아이디"
                 android:textSize="16sp"
@@ -99,6 +105,8 @@
 
             android:layout_marginTop="52dp"
 
+            app:hintTextColor="@color/black"
+
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@id/textInputLayout_id">
@@ -109,6 +117,7 @@
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/default_radius_10"
+                android:inputType="textNoSuggestions|textVisiblePassword"
 
                 android:hint="이메일"
                 android:textSize="16sp"
@@ -126,6 +135,7 @@
             android:layout_height="wrap_content"
 
             android:layout_marginTop="20dp"
+            app:hintTextColor="@color/black"
 
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -141,7 +151,9 @@
                 android:hint="비밀번호"
                 android:textSize="16sp"
 
-                android:inputType="textPassword"
+
+
+                android:inputType="textPassword|textNoSuggestions"
                 android:text="@={viewModel.password}"
                 app:layout_constraintEnd_toEndOf="parent"
 
@@ -155,6 +167,7 @@
             android:layout_height="wrap_content"
 
             android:layout_marginTop="20dp"
+            app:hintTextColor="@color/black"
 
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -170,7 +183,7 @@
                 android:hint="비밀번호 재입력"
                 android:textSize="16sp"
 
-                android:inputType="textPassword"
+                android:inputType="textPassword|textNoSuggestions"
                 android:text="@={viewModel.passwordRe}"
                 app:layout_constraintEnd_toEndOf="parent"
 

@@ -36,12 +36,27 @@ class LoginActivity : AppCompatActivity() {
             login()
         }
 
+
+
         viewModel.id.observe(this, {
             binding.btnLoginLogin.isEnabled = viewModel.loginInputCheck()
+
+            if (it.isEmpty() && viewModel.check == 0) {
+                binding.edtLoginInputId.error = "공백은 허용되지 않습니다!"
+            } else if(viewModel.check != 0) {
+                viewModel.check--
+
+            }
         })
 
         viewModel.password.observe(this, {
             binding.btnLoginLogin.isEnabled = viewModel.loginInputCheck()
+            if (it.length < 6 && viewModel.check == 0) {
+                binding.edtLoginInputPassword.error = "비밀번호는 6자리 이상입니다!"
+            } else if(viewModel.check != 0) {
+                viewModel.check--
+
+            }
         })
     }
 

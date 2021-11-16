@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 class LoginActivityViewModel(application : Application) : AndroidViewModel(application) {
     val id = MutableLiveData("")
     val password  = MutableLiveData("")
+    var check = 3
 
     fun loginInputCheck() : Boolean{
         if(id.value!!.isEmpty()) return false

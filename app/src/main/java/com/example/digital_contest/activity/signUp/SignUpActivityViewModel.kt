@@ -18,6 +18,8 @@ class SignUpActivityViewModel : ViewModel() {
     val email = MutableLiveData<String>("")
     val password = MutableLiveData<String>("")
     val passwordRe = MutableLiveData<String>("")
+    var check1 = 5
+
 
     val userMSG = MutableLiveData("")
     val profileImg = MutableLiveData<Uri>()
@@ -37,7 +39,7 @@ class SignUpActivityViewModel : ViewModel() {
         if(email.value!!.isEmpty()) return false
         if(password.value!!.isEmpty()) return false
         if(passwordRe.value!!.isEmpty()) return false
-        if(password.value!!.length < 8) return false
+        if(password.value!!.length < 6) return false
 
 
         return true

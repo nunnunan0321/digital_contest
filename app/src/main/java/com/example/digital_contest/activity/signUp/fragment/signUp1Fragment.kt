@@ -39,26 +39,47 @@ class signUp1Fragment : Fragment() {
 
         viewModel.name.observe(requireActivity(), {
             binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+            if (it.isEmpty() && viewModel.check1 == 0) {
+                binding.edtSignUpInputName.error = "공백은 허용되지 않습니다!"
+            } else if(viewModel.check1 != 0) {
+                viewModel.check1--
+            }
         })
 
         viewModel.email.observe(requireActivity(), {
             binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+            if (it.isEmpty() && viewModel.check1 == 0) {
+                binding.edtSignUpInputEmail.error = "공백은 허용되지 않습니다!"
+            } else if(viewModel.check1 != 0) {
+                viewModel.check1--
+            }
         })
 
         viewModel.id.observe(requireActivity(), {
             binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
-        })
-
-        viewModel.id.observe(requireActivity(), {
-            binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+            if (it.isEmpty() && viewModel.check1 == 0) {
+                binding.edtSignUpInputId.error = "공백은 허용되지 않습니다!"
+            } else if(viewModel.check1 != 0) {
+                viewModel.check1--
+            }
         })
 
         viewModel.password.observe(requireActivity(), {
             binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+            if (it.length < 6 && viewModel.check1 == 0) {
+                binding.edtSignUpInputPassword.error = "비밀번호는 6자리 이상입니다!"
+            } else if(viewModel.check1 != 0) {
+                viewModel.check1--
+            }
         })
 
         viewModel.passwordRe.observe(requireActivity(), {
             binding.btnSignUpNext.isEnabled = viewModel.signUp1InputCheck()
+            if (it != viewModel.password.value && viewModel.check1 == 0) {
+                binding.edtSignUpInputPasswordRe.error = "비밀번호가 같지 않습니다!"
+            } else if(viewModel.check1 != 0) {
+                viewModel.check1--
+            }
         })
 
         return root
