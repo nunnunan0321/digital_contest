@@ -1,20 +1,333 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.main.fragment.MyProfileFragment">
 
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="76dp"
+
+        android:src="@drawable/noma_profile_img"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+
+        android:layout_height="2dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginHorizontal="20dp"
+
+
+        android:background="@color/base_lightGray"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+
+    <RelativeLayout
+        android:id="@+id/layout_name"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+
+        android:clickable="true"
+
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:text="이름"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+
+
+
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:gravity="center"
+            android:layout_marginEnd="10dp"
+
+            android:text="이름 값"
+            android:textSize="14sp"
+
+            android:layout_toStartOf="@+id/txt_end1" />
+
+        <ImageView
+            android:id="@+id/txt_end1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/ic_allow"
+
+            android:gravity="center"
+
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_id"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+
+        android:clickable="true"
+
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/layout_name" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:text="아이디"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+
+
+
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/txt_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:gravity="center"
+            android:layout_marginEnd="10dp"
+
+            android:text="아이디 값"
+            android:textSize="14sp"
+
+            android:layout_toStartOf="@+id/txt_end2" />
+
+        <ImageView
+            android:id="@+id/txt_end2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/ic_allow"
+
+
+            android:gravity="center"
+
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/layout_email"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+
+        android:clickable="true"
+
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/layout_id" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:text="이메일"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+
+
+
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/txt_email"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:gravity="center"
+            android:layout_marginEnd="10dp"
+
+            android:text="example@example.cf"
+            android:textSize="14sp"
+
+            android:layout_toStartOf="@+id/txt_end3" />
+
+        <ImageView
+            android:id="@+id/txt_end3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/ic_allow"
+
+
+            android:gravity="center"
+
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="20dp"
+
+
+        android:background="@color/base_lightGray"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_email" />
+
+    <RelativeLayout
+        android:id="@+id/layout_good"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+
+        android:clickable="true"
+
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/layout_email" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:text="좋아요 수"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+
+
+
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/txt_good"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:gravity="center"
+            android:layout_marginEnd="10dp"
+
+            android:text="0"
+            android:textSize="14sp"
+
+            android:layout_toStartOf="@+id/txt_end4" />
+
+        <ImageView
+            android:id="@+id/txt_end4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/ic_allow"
+
+            android:gravity="center"
+
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="20dp"
+
+
+        android:background="@color/base_lightGray"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_good" />
+
+    <RelativeLayout
+        android:id="@+id/layout_written"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+
+        android:clickable="true"
+
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/layout_good" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:text="작성한 게시물"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+
+
+
+            android:gravity="center_vertical"
+            />
+
+
+
+        <ImageView
+            android:id="@+id/txt_end5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/ic_allow"
+
+
+            android:gravity="center"
+
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Profile"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="30dp" />
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="30dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
