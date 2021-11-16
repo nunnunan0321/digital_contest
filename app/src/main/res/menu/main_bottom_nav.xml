@@ -3,12 +3,12 @@
     <item
         android:id="@+id/MainFragment"
         android:title="Main"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_location"
         />
     <item
         android:id="@+id/LikeListFragment"
         android:title="Like List"
-        android:icon="@drawable/ic_heart"
+        android:icon="@drawable/ic_heart_fill"
         />
     <item
         android:id="@+id/MyProfileFragment"
@@ -20,5 +20,4 @@
         android:title="More Menu"
         android:icon="@drawable/ic_menu"
         />
-
 </menu>
