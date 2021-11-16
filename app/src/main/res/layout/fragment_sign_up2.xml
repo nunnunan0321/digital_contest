@@ -37,10 +37,10 @@
 
         <ImageView
             android:id="@+id/img_signUp2_profileImgPreView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="116dp"
+            android:layout_height="116dp"
 
-            android:src="@drawable/noma_profile_img"
+            android:src="@drawable/default_profile_img"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -34,7 +34,6 @@ class BoardDB : board {
     }
 
     override suspend fun saveBoardImage(img: Uri, writerId : String): String? {
-        var result : BoardResult = BoardResult.Fail
         var downloadUri : String? = null
 
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -47,7 +46,6 @@ class BoardDB : board {
                 return@continueWithTask imgRef.downloadUrl
             }
             .addOnSuccessListener {
-                result = BoardResult.OK
                 downloadUri = it.toString()
             }
             .await()
@@ -77,21 +75,16 @@ class BoardDB : board {
         return boardResult
     }
 
-    override suspend fun boardLikeListUpdate(
-        likeUserList: ArrayList<String>,
-        boardId: String
-    ): BoardResult {
+    override suspend fun likeListUpdate(likeBoardList: ArrayList<String>, userID: String): BoardResult {
         var result : BoardResult = BoardResult.Fail
-        Log.d("likeTest", "함수 호출")
 
-        db.collection("board").document(boardId)
-            .update("likeUserList", likeUserList)
+        db.collection("user").document(userID)
+            .update("likeBoardList", likeBoardList)
             .addOnSuccessListener {
-                result = BoardResult.OK
+                result = BoardResult.Fail
             }
             .await()
 
-        Log.d("likeTest", "함수 종료")
         return result
     }
 

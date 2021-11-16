@@ -13,16 +13,16 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class SignUpActivityViewModel : ViewModel() {
-    val id = MutableLiveData<String>("")
-    val name = MutableLiveData<String>("")
-    val email = MutableLiveData<String>("")
-    val password = MutableLiveData<String>("")
-    val passwordRe = MutableLiveData<String>("")
+    val id = MutableLiveData("")
+    val name = MutableLiveData("")
+    val email = MutableLiveData("")
+    val password = MutableLiveData("")
+    val passwordRe = MutableLiveData("")
+
     var check1 = 5
 
-
     val userMSG = MutableLiveData("")
-    val profileImg = MutableLiveData<Uri>()
+    val profileImg = MutableLiveData<Uri?>(null)
 
     fun checkSamePassword() : Boolean{
         //사용자가 입력한 비밀번호가 서로 다른지 확인
@@ -60,8 +60,7 @@ class SignUpActivityViewModel : ViewModel() {
             userMSG = userMSG.value.toString()
         )
 
-        val result = authDB.signUp(userData, password.value.toString(), profileImg.value!!)
-        Log.d("signResult, viewModel", result.toString())
+        val result = authDB.signUp(userData, password.value.toString(), profileImg.value)
 
         return result
     }

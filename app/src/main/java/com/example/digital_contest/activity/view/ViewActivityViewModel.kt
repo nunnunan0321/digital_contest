@@ -18,7 +18,6 @@ class ViewActivityViewModel : ViewModel() {
     val boardData = MutableLiveData<Board>(Board())
     lateinit var userData : User
 
-
     var userPoolLike = MutableLiveData(false)
 
     fun getBoardData(){
@@ -29,14 +28,13 @@ class ViewActivityViewModel : ViewModel() {
         }
     }
 
-    suspend fun likeAdd() : BoardResult {
-        boardData.value!!.likeUserList.add(userData.id)
-        return boardDB.boardLikeListUpdate(boardData.value!!.likeUserList, boardId)
+    suspend fun addLike() : BoardResult{
+        userData.likeBoardList.add(boardId)
+        return boardDB.likeListUpdate(userData.likeBoardList, userData.id)
     }
 
-    suspend fun likeCancel() : BoardResult{
-        boardData.value!!.likeUserList.remove(userData.id)
-        return boardDB.boardLikeListUpdate(boardData.value!!.likeUserList, boardId)
+    suspend fun cancelLike() : BoardResult{
+        userData.likeBoardList.remove(boardId)
+        return boardDB.likeListUpdate(userData.likeBoardList, userData.id)
     }
-
 }

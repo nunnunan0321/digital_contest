@@ -11,6 +11,6 @@ interface board {
     suspend fun getAllBoard() : Map<String, Board>
     suspend fun getBoardById(id : String) : Board?
 
-    suspend fun boardLikeListUpdate(likeUserList : ArrayList<String>, boardId : String) : BoardResult
+    suspend fun likeListUpdate(likeBoardList : ArrayList<String>, userID : String) : BoardResult
     suspend fun getBoardLike(userID : String) : List<Board>
 }

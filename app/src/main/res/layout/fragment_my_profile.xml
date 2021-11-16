@@ -15,7 +15,7 @@
 
         android:layout_marginTop="76dp"
 
-        android:src="@drawable/noma_profile_img"
+        android:src="@drawable/default_profile_img"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

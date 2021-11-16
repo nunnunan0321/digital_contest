@@ -8,5 +8,7 @@ data class User(
     var email : String = "",
 
     var userMSG : String = "",
-    var profileImgUrl : String = ""
+    var profileImgUrl : String = "",
+
+    var likeBoardList : ArrayList<String> = arrayListOf(),
 )  : Serializable

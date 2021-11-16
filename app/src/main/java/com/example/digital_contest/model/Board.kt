@@ -14,6 +14,5 @@ data class Board(
     val location: GeoPoint = GeoPoint(0.0, 0.0), // 게시물의 위치 정보
     var imgUrl : String = "",
 
-    val likeUserList : ArrayList<String> = arrayListOf(),
     val uploadDate : Date = Date(), //게시물 작성일
 ) : Serializable

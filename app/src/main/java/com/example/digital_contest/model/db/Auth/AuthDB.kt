@@ -16,13 +16,17 @@ class AuthDB : auth {
     val storageRef = storage.reference
     
     
-    override suspend fun signUp(user: User, password: String, profileImg : Uri): AuthResult {
+    override suspend fun signUp(user: User, password: String, profileImg : Uri?): AuthResult {
         //회원가입 전체를 진행하는 함수, 회원가입 결과는 AuthResult에 정의된데로 반환
 
         Log.d("userData", user.toString())
 
-        val saveProfileImgResult = saveProfileImg(profileImg, user.id) ?: return AuthResult.Fail
-        user.profileImgUrl = saveProfileImgResult
+        if (profileImg != null){
+            val saveProfileImgResult = saveProfileImg(profileImg, user.id) ?: return AuthResult.Fail
+            user.profileImgUrl = saveProfileImgResult
+        }   else{
+            user.profileImgUrl = "https://firebasestorage.googleapis.com/v0/b/digital-contest-f689c.appspot.com/o/user%2Fdefault_profile_img.png?alt=media&token=32e90ef3-ccad-4c2f-8d80-c7d999a08a82"
+        }
 
         val saveUserDataResult = saveUserData(user)
         if(saveUserDataResult == AuthResult.Fail){

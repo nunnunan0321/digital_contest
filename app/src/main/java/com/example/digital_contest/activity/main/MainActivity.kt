@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         userData = intent.getSerializableExtra("userData") as User
         Toast.makeText(this, "어서오세요. ${userData.name}님", Toast.LENGTH_LONG).show()
 
+        Log.d("userData", userData.toString())
+
         val navControl = findNavController(R.id.fragment_main)
         findViewById<BottomNavigationView>(R.id.bottomNav_main).setupWithNavController(navControl)
 

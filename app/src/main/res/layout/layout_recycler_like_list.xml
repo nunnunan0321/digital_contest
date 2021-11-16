@@ -49,7 +49,7 @@
         android:layout_marginTop="12dp"
 
 
-        android:src="@drawable/noma_profile_img"
+        android:src="@drawable/default_profile_img"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_title">
 

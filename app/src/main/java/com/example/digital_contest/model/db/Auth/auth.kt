@@ -4,7 +4,7 @@ import android.net.Uri
 import com.example.digital_contest.model.User
 
 interface auth {
-    suspend fun signUp(user : User, password : String, profileImg : Uri) : AuthResult
+    suspend fun signUp(user : User, password : String, profileImg : Uri?) : AuthResult
 
     suspend fun createAccount(user : User, password: String) : AuthResult
 
