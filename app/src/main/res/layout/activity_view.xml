@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@{viewModel.boardTitle, default=`제목`}"
+            android:text="@{viewModel.boardData.title, default=`제목`}"
             android:textSize="24sp"
 
             android:gravity="center"
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="@{`작성자 : ` + viewModel.boardWriter, default=`작성자`}"
+            android:text="@{`작성자 : ` + viewModel.boardData.writerID , default=`작성자`}"
 
             android:gravity="center"
 
@@ -45,7 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@{viewModel.boardContent, default=`내용`}"
+            android:text="@{viewModel.boardData.contents, default=`내용`}"
             android:textSize="24sp"
 
             android:gravity="center"
@@ -60,7 +60,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:src="@drawable/ic_heart"
             android:tint="@color/black"
 
             app:layout_constraintTop_toTopOf="@id/txt_view_boardContent"

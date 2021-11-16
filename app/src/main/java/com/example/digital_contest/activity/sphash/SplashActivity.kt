@@ -29,7 +29,7 @@ val authDB : AuthDB = AuthDB()
 val boardDB : BoardDB = BoardDB()
 
 
-lateinit var temp_userData : User
+//lateinit var temp_userData : User
 var currentLocation = GeoPoint(0.0, 0.0)
 
 class SplashActivity : AppCompatActivity() {

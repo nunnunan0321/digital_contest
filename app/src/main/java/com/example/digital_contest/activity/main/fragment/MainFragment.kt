@@ -151,6 +151,7 @@ class MainFragment:Fragment(),
             Toast.makeText(requireContext(), "마커 타이틀 클릭 Marker Title : $markerTitle", Toast.LENGTH_SHORT).show()
             val intent = Intent(requireContext(), ViewActivity::class.java)
             intent.putExtra("boardId", markerId.toString())
+            intent.putExtra("userData", (activity as MainActivity).userData)
             startActivity(intent)
         }
 

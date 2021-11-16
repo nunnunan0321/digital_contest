@@ -15,7 +15,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.digital_contest.activity.write.WriteActivity
 import com.example.digital_contest.model.User
 import com.example.digital_contest.R
-import com.example.digital_contest.activity.sphash.temp_userData
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -27,8 +26,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         userData = intent.getSerializableExtra("userData") as User
-        temp_userData = userData
+//        temp_userData = userData
         Toast.makeText(this, "어서오세요. ${userData.name}님", Toast.LENGTH_LONG).show()
+
+        val navControl = findNavController(R.id.fragment_main)
+        findViewById<BottomNavigationView>(R.id.bottomNav_main).setupWithNavController(navControl)
 
 
         val locationPermissionRequest = registerForActivityResult(
@@ -49,17 +51,5 @@ class MainActivity : AppCompatActivity() {
         locationPermissionRequest.launch(arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION))
-
-
-        val navControl = findNavController(R.id.fragment_main)
-        findViewById<BottomNavigationView>(R.id.bottomNav_main).setupWithNavController(navControl)
-    }
-
-    fun gotoWrite(){
-        val intent = Intent(this, WriteActivity::class.java)
-        intent.putExtra("userData", userData)
-        startActivity(intent)
-
-        Log.d("mainActivity", userData.toString())
     }
 }

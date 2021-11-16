@@ -6,37 +6,37 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.model.Board
+import com.example.digital_contest.model.User
 import com.example.digital_contest.model.db.Board.BoardResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class ViewActivityViewModel() : ViewModel() {
-    lateinit var boardId : MutableLiveData<String>
-    val boardData = MutableLiveData<Board>()
+class ViewActivityViewModel : ViewModel() {
+    lateinit var boardId : String
+    val boardData = MutableLiveData<Board>(Board())
+    lateinit var userData : User
 
-    var boardTitle = MutableLiveData<String>("")
-    var boardContent = MutableLiveData<String>("")
-    var boardWriter = MutableLiveData<String>("")
+
+    var userPoolLike = MutableLiveData(false)
 
     fun getBoardData(){
         CoroutineScope(Dispatchers.Main).launch {
             boardData.value = CoroutineScope(Dispatchers.IO).async{
-                boardDB.getBoardById(boardId.value.toString())!!
+                boardDB.getBoardById(boardId)!!
             }.await()
-
-            boardTitle.value = boardData.value!!.title
-            boardContent.value = boardData.value!!.contents
-            boardWriter.value = boardData.value!!.writerID
         }
     }
 
     suspend fun likeAdd() : BoardResult {
-        return boardDB.boardAddLike(
-            boardData.value!!,
-            boardId.value!!,
-            boardWriter.value!!
-        )
+        boardData.value!!.likeUserList.add(userData.id)
+        return boardDB.boardLikeListUpdate(boardData.value!!.likeUserList, boardId)
     }
+
+    suspend fun likeCancel() : BoardResult{
+        boardData.value!!.likeUserList.remove(userData.id)
+        return boardDB.boardLikeListUpdate(boardData.value!!.likeUserList, boardId)
+    }
+
 }

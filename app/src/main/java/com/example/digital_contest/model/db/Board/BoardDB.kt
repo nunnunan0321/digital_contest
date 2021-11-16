@@ -1,23 +1,13 @@
 package com.example.digital_contest.model.db.Board
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.location.LocationListener
-import android.location.LocationManager
 import android.net.Uri
-import android.util.Log
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.model.Board
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.GeoPoint
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class BoardDB : board {
     val db : FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -86,12 +76,14 @@ class BoardDB : board {
         return boardResult
     }
 
-    override suspend fun boardAddLike(boardData: Board, baordId : String, userId: String): BoardResult {
+    override suspend fun boardLikeListUpdate(
+        likeUserList: ArrayList<String>,
+        boardId: String
+    ): BoardResult {
         var result : BoardResult = BoardResult.Fail
 
-        boardData.likeUserList.add(userId)
-        db.collection("board").document(baordId)
-            .update("likeUserList", boardData.likeUserList)
+        db.collection("board").document(boardId)
+            .update("likeUserList", likeUserList)
             .addOnSuccessListener {
                 result = BoardResult.OK
             }
