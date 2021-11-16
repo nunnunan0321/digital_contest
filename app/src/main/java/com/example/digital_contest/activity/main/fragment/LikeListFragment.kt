@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.digital_contest.R
@@ -30,7 +29,7 @@ class LikeListFragment:Fragment(){
         val root = binding.root
 
         CoroutineScope(Dispatchers.IO).launch {
-            val likeList = boardDB.getBoardLike((activity as MainActivity).userData.id)
+            val likeList = boardDB.getLikeBoards((activity as MainActivity).userData.likeBoardList)
             Log.d("likeList", likeList.toString())
 
             val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, likeList)

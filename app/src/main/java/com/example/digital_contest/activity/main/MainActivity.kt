@@ -15,7 +15,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.digital_contest.activity.write.WriteActivity
 import com.example.digital_contest.model.User
 import com.example.digital_contest.R
+import com.example.digital_contest.activity.sphash.authDB
+import com.example.digital_contest.activity.sphash.boardDB
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var userData : User
@@ -52,5 +57,13 @@ class MainActivity : AppCompatActivity() {
         locationPermissionRequest.launch(arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION))
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            userData = authDB.getUserDataById(userData.id)!!
+        }
     }
 }

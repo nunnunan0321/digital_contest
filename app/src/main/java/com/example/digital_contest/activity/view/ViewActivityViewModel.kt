@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class ViewActivityViewModel : ViewModel() {
     lateinit var boardId : String
-    val boardData = MutableLiveData<Board>(Board())
+    val boardData = MutableLiveData(Board())
     lateinit var userData : User
 
     var userPoolLike = MutableLiveData(false)

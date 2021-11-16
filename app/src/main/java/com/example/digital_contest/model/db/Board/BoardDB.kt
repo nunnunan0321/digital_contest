@@ -88,18 +88,21 @@ class BoardDB : board {
         return result
     }
 
-    override suspend fun getBoardLike(userID: String): List<Board> {
+    override suspend fun getLikeBoards(likeBoardsList : ArrayList<String>): List<Board> {
+        Log.d("likeList", "함수 호출 $likeBoardsList")
         val result = mutableListOf<Board>()
-        Log.d("likeList", "함수 호출 $userID")
 
-        db.collection("board").whereIn("likeUserList", listOf(userID)).get()
-            .addOnSuccessListener { documents ->
-                for(document in documents){
-                    result.add(document.toObject(Board::class.java))
-                    Log.d("likeList function", document.toObject(Board::class.java).toString())
+        for(i in likeBoardsList){
+            db.collection("board").document(i).get()
+                .addOnSuccessListener {
+                    Log.d("likeList", it.toObject(Board::class.java)!!.toString())
+                    result.add(it.toObject(Board::class.java)!!)
                 }
-            }.await()
+                .await()
+        }
 
+        Log.d("likeList", "함수 종료")
+        
         return result
     }
 }
