@@ -18,115 +18,194 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="회원 가입"
-            android:textSize="40dp"
+            android:layout_marginTop="35dp"
 
-            android:layout_marginVertical="20dp"
+            android:text="회원가입"
 
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="25dp"
+            android:backgroundTint="@color/black"
+            android:textStyle="bold"
 
-            />
 
-        <EditText
-            android:id="@+id/edt_signUp_inputName"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@={viewModel.name}"
+            android:layout_marginTop="72dp"
 
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
+            app:hintTextColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/txt_signUp_title">
 
-            app:layout_constraintTop_toBottomOf="@+id/txt_signUp_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            <EditText
+                android:id="@+id/edt_signUp_inputName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:hint="이름" />
+                android:background="@drawable/default_radius_10"
 
-        <EditText
-            android:id="@+id/edt_signUp_inputId"
+                android:hint="이름"
+                android:textSize="16sp"
+
+                android:text="@={viewModel.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/txt_signUp_title" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@={viewModel.id}"
+            android:layout_marginTop="20dp"
 
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_name">
 
-            android:hint="ID" />
+            <EditText
+                android:id="@+id/edt_signUp_inputId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-        <EditText
-            android:id="@+id/edt_signUp_inputEmail"
+                android:background="@drawable/default_radius_10"
+
+                android:hint="아이디"
+                android:textSize="16sp"
+
+                android:text="@={viewModel.id}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout_name" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@={viewModel.email}"
+            android:layout_marginTop="52dp"
 
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout_id">
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputId"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            <EditText
+                android:id="@+id/edt_signUp_inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:hint="Email" />
+                android:background="@drawable/default_radius_10"
 
-        <EditText
-            android:id="@+id/edt_signUp_inputPassword"
+                android:hint="이메일"
+                android:textSize="16sp"
+
+                android:text="@={viewModel.email}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout_id" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_pw"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@={viewModel.password}"
+            android:layout_marginTop="20dp"
 
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_email">
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputEmail"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            <EditText
+                android:id="@+id/edt_signUp_inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:hint="Password"
-            android:inputType="textPassword" />
+                android:background="@drawable/default_radius_10"
 
-        <EditText
-            android:id="@+id/edt_signUp_inputPasswordRe"
+                android:hint="비밀번호"
+                android:textSize="16sp"
+
+                android:inputType="textPassword"
+                android:text="@={viewModel.password}"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout_email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_pwRe"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@={viewModel.passwordRe}"
+            android:layout_marginTop="20dp"
 
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pw">
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            <EditText
+                android:id="@+id/edt_signUp_inputPasswordRe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:hint="Password"
-            android:inputType="textPassword" />
+                android:background="@drawable/default_radius_10"
+
+                android:hint="비밀번호 재입력"
+                android:textSize="16sp"
+
+                android:inputType="textPassword"
+                android:text="@={viewModel.passwordRe}"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pw" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_signUp_next"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="124dp"
+            android:layout_height="50dp"
+
+            android:layout_marginTop="36dp"
 
             android:text="다음"
-            android:textSize="25dp"
+            android:textSize="20dp"
 
 
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pwRe" />
 
-            app:layout_constraintTop_toBottomOf="@+id/edt_signUp_inputPasswordRe"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="30dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="30dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,6 +42,7 @@
                 android:background="@drawable/default_radius_10"
 
                 android:hint="아이디"
+                android:textSize="16sp"
                 android:text="@={viewModel.id}"
 
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +73,7 @@
                 android:background="@drawable/default_radius_10"
 
                 android:hint="비밀번호"
+                android:textSize="16sp"
 
                 android:inputType="textPassword"
                 android:text="@={viewModel.password}"
