@@ -209,7 +209,7 @@
         app:layout_constraintTop_toBottomOf="@+id/layout_email" />
 
     <RelativeLayout
-        android:id="@+id/layout_good"
+        android:id="@+id/layout_like"
         android:layout_width="0dp"
         android:layout_height="60dp"
 
@@ -272,7 +272,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_good" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_like" />
 
     <RelativeLayout
         android:id="@+id/layout_written"
@@ -283,7 +283,7 @@
 
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/layout_good" >
+        app:layout_constraintTop_toBottomOf="@+id/layout_like" >
 
         <TextView
             android:layout_width="wrap_content"
