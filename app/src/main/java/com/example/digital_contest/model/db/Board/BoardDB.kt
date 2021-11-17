@@ -81,7 +81,7 @@ class BoardDB : board {
         db.collection("user").document(userID)
             .update("likeBoardList", likeBoardList)
             .addOnSuccessListener {
-                result = BoardResult.Fail
+                result = BoardResult.OK
             }
             .await()
 
