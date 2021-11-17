@@ -88,20 +88,19 @@ class BoardDB : board {
         return result
     }
 
-    override suspend fun getLikeBoards(likeBoardsList : ArrayList<String>): List<Board> {
+    override suspend fun getLikeBoards(likeBoardsList : ArrayList<String>): Map<String, Board> {
         Log.d("likeList", "함수 호출 $likeBoardsList")
-        val result = mutableListOf<Board>()
+        val result = mutableMapOf<String, Board>()
 
         for(i in likeBoardsList){
             db.collection("board").document(i).get()
                 .addOnSuccessListener {
-                    Log.d("likeList", it.toObject(Board::class.java)!!.toString())
-                    result.add(it.toObject(Board::class.java)!!)
+                    result.put(it.id, it.toObject(Board::class.java)!!)
                 }
                 .await()
         }
 
-        Log.d("likeList", "함수 종료")
+//        Log.d("likeList", "함수 종료")
         
         return result
     }

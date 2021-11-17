@@ -1,42 +1,59 @@
 package com.example.digital_contest.activity.main
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.digital_contest.R
+import com.example.digital_contest.activity.view.ViewActivity
+import com.example.digital_contest.databinding.LayoutRecyclerLikeListBinding
 import com.example.digital_contest.model.Board
 
-class LikeListAdapter(val items : List<Board>) : RecyclerView.Adapter<LikeListAdapter.Holder>(){
-    class Holder(val view : View) : RecyclerView.ViewHolder(view){
-        val title = view.findViewById<TextView>(R.id.txt_likeListItem_title)
-        val writer = view.findViewById<TextView>(R.id.txt_likeListItem_writer)
-        val timeStamp = view.findViewById<TextView>(R.id.txt_likeListItem_timeStamp)
-        val content = view.findViewById<TextView>(R.id.txt_likeListItem_content)
-        val userProfileImg = view.findViewById<ImageView>(R.id.img_likeListItem_profileImg)
-        val contentImg = view.findViewById<ImageView>(R.id.img_likeListItem_mainImg)
+class LikeListAdapter(val boardData : Map<String, Board>) : RecyclerView.Adapter<LikeListAdapter.Holder>(){
+    val keys = boardData.keys.toList()
+    val boards = boardData.values.toList()
+
+
+//    init {
+//        with(boards){
+//            Collection
+//        }
+//    }
+
+    class Holder private constructor(val binding: LayoutRecyclerLikeListBinding) : RecyclerView.ViewHolder(binding.root){
+        companion object{
+            fun from(parent: ViewGroup) : Holder{
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = LayoutRecyclerLikeListBinding.inflate(layoutInflater, parent, false)
+
+                return Holder(binding)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val layout = LayoutInflater.from(parent.context).inflate(R.layout.layout_recycler_like_list, parent, false)
-
-        return Holder(layout)
+        return Holder.from(parent)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        with(holder){
-            title.text = items[position].title
-            writer.text = items[position].writerID
-            timeStamp.text = items[position].uploadDate.toString()
-            content.text = items[position].contents
-//            contentImg
+        with(holder.binding){
+            item.setOnClickListener {
+                val intent = Intent(it.context, ViewActivity::class.java)
+                intent.putExtra("boardId", keys[position])
+                intent.putExtra("userData", (it.context as MainActivity).userData)
+                it.context.startActivity(intent)
+            }
+            title = boards[position].title
+            writer = boards[position].writerID
+            timeStamp = boards[position].uploadDate.toString()
+            content = boards[position].contents
+
+            Glide.with(imgLikeListItemMainImg.context).load(boards[position].imgUrl).into(imgLikeListItemMainImg)
         }
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return boards.size
     }
 }
