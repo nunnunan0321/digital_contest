@@ -2,26 +2,20 @@ package com.example.digital_contest.activity.main.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.model.User
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.login.LoginActivity
+import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.activity.sphash.authDB
 import com.example.digital_contest.activity.sphash.boardDB
-import com.example.digital_contest.activity.write.WriteActivity
 import com.example.digital_contest.databinding.FragmentMoreMenuTabBinding
-import com.example.digital_contest.model.Board
-import com.example.digital_contest.model.db.Board.board
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

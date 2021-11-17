@@ -1,24 +1,14 @@
 package com.example.digital_contest.activity.sphash
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import com.example.digital_contest.activity.login.LoginActivity
 import com.example.digital_contest.model.db.Auth.AuthDB
-import com.example.digital_contest.model.User
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.model.db.Board.BoardDB
-import com.example.digital_contest.model.db.Board.board
-import com.firebase.geofire.GeoLocation
 import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

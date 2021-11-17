@@ -5,12 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.digital_contest.R
-import com.example.digital_contest.activity.main.LikeListAdapter
+import com.example.digital_contest.BoardListAdapter
 import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.databinding.FragmentLikeListTabBinding
@@ -33,12 +31,11 @@ class LikeListFragment:Fragment(){
         CoroutineScope(Dispatchers.IO).launch {
             val likeList = boardDB.getLikeBoards((activity as MainActivity).userData.likeBoardList)
             Log.d("likeList", likeList.toString())
-            val likeListAdapter = LikeListAdapter(likeList)
-            likeListAdapter.notifyDataSetChanged()
+            val likeListAdapter = BoardListAdapter(likeList, (activity as MainActivity).userData)
+//            likeListAdapter.notifyDataSetChanged()
 
             withContext(Dispatchers.Main){
                 binding.recyclerLikeList.adapter = likeListAdapter
-
             }
         }
 

@@ -4,15 +4,12 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.signUp.SignUpActivity
-import com.example.digital_contest.activity.sphash.authDB
 import com.example.digital_contest.model.User
 import com.example.digital_contest.databinding.ActivityLoginBinding
 import kotlinx.coroutines.*
