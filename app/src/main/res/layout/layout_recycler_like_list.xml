@@ -22,7 +22,8 @@
         android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        android:paddingHorizontal="30dp">
+        android:paddingHorizontal="30dp"
+        >
 
         <TextView
             android:id="@+id/txt_likeListItem_title"

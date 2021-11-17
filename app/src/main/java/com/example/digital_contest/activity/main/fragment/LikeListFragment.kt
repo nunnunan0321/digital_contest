@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.digital_contest.R
@@ -33,8 +34,11 @@ class LikeListFragment:Fragment(){
             val likeList = boardDB.getLikeBoards((activity as MainActivity).userData.likeBoardList)
             Log.d("likeList", likeList.toString())
             val likeListAdapter = LikeListAdapter(likeList)
+            likeListAdapter.notifyDataSetChanged()
+
             withContext(Dispatchers.Main){
                 binding.recyclerLikeList.adapter = likeListAdapter
+
             }
         }
 
