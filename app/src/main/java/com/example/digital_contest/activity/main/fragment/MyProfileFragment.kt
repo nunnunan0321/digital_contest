@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.databinding.FragmentMyProfileBinding
@@ -21,6 +22,7 @@ class MyProfileFragment : Fragment() {
         val root = binding.root
 
         binding.userData = (activity as MainActivity).userData
+        Glide.with(this).load((activity as MainActivity).userData.profileImgUrl).into(binding.imgLikeListItemProfileImg)
 
         return root
     }

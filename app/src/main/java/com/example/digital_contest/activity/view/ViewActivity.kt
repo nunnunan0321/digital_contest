@@ -31,7 +31,6 @@ class ViewActivity : AppCompatActivity() {
         viewModel.getBoardData()
 
         binding.imgViewLikeBtn.setOnClickListener{ //좋아요 버튼을 눌렀을때
-//            Log.d("likeTest click", "하트 누름")
             CoroutineScope(Dispatchers.Main).launch {
                 if(!(viewModel.userPoolLike.value!!)){ //이전에 좋아요를 누르지 않았다면
                     binding.imgViewLikeBtn.setImageResource(R.drawable.ic_heart_fill)
@@ -41,7 +40,6 @@ class ViewActivity : AppCompatActivity() {
                     if(addLikeResult != BoardResult.OK){ //좋아요 목록에 자신의 ID추가에 성공했다면
                         Toast.makeText(this@ViewActivity, "게시물에 좋아요를 추가하지 못했습니다.", Toast.LENGTH_SHORT).show()
                     }
-//                    Log.d("likeTest", addLikeResult.toString())
 
                 }   else{ //이전에 좋아요를 눌렀다면
                     binding.imgViewLikeBtn.setImageResource(R.drawable.ic_heart)
@@ -51,31 +49,22 @@ class ViewActivity : AppCompatActivity() {
                     if(calcelLikeResult != BoardResult.OK){
                         Toast.makeText(this@ViewActivity, "게시물에 좋아요를 취소하지못했습니다.", Toast.LENGTH_SHORT).show()
                     }
-//                    Log.d("likeTest", calcelLikeResult.toString())
                 }
 
                 viewModel.userPoolLike.value = viewModel.userData.likeBoardList.contains(viewModel.boardId) //사용자가 현재게시물에 좋아요를 눌렀는지 확인
 
-//                Log.d("likeTest observe board", viewModel.userPoolLike.value.toString())
-//                Log.d("likeTest pollLike", viewModel.userPoolLike.value.toString())
-//                Log.d("likeTest arr", viewModel.boardData.value!!.likeUserList.toString())
             }
         }
 
         viewModel.boardData.observe(this, {
-            // 게시물을 가져왔을때 사진을 띄운다.
-            Glide.with(this).load(it.imgUrl).into(binding.imgViewBoardImage)
+            Glide.with(this).load(it.imgUrl).into(binding.imgViewBoardImage)// 게시물을 가져왔을때 사진을 띄운다.
+
             viewModel.userPoolLike.value = viewModel.userData.likeBoardList.contains(viewModel.boardId) //사용자가 현재게시물에 좋아요를 눌렀는지 확인
         })
 
-        viewModel.userPoolLike.observe(this, { //좋아요를 누르고 취소했을때 좋아요 아이콘을 바꾼다.
-            if(it){
-//                Log.d("likeTest observe", "좋아요 추가됨")
-                binding.imgViewLikeBtn.setImageResource(R.drawable.ic_heart_fill)
-            }   else{
-//                Log.d("likeTest observe", "좋아요 취소됨")
-                binding.imgViewLikeBtn.setImageResource(R.drawable.ic_heart)
-            }
+        viewModel.userPoolLike.observe(this, {
+            //좋아요를 누르고 취소했을때 좋아요 아이콘을 바꾼다.
+            binding.imgViewLikeBtn.setImageResource(if(it) R.drawable.ic_heart_fill else R.drawable.ic_heart)
         })
     }
 }
