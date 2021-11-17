@@ -36,6 +36,10 @@
             android:layout_height="wrap_content"
 
             app:menu="@menu/main_bottom_nav"
+            app:itemIconTint="@drawable/bottom_nav_selector_color"
+            app:itemTextColor="@drawable/bottom_nav_selector_color"
+
+            android:background="@color/base_darkGray"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -36,15 +36,15 @@ class MoreMenuFragment:Fragment(){
 
         userData = (activity as MainActivity).userData
 
-        initClickEvent()
+        binding.btnThirdTapLogout.setOnClickListener {
+            authDB.auth.signOut()
+            val intent = Intent(activity, LoginActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val boards = boardDB.getAllBoard()
-
-            withContext(Dispatchers.Main){
-//                Log.d("boards", boards.values.toString())
-//                binding.listMore.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, )
-            }
+        binding.btnThirdTapGetUserData.setOnClickListener {
+            Toast.makeText(activity, userData.toString(), Toast.LENGTH_LONG).show()
         }
 
         return root
@@ -58,19 +58,5 @@ class MoreMenuFragment:Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         class MainActivity : AppCompatActivity()
-
-    }
-
-    fun initClickEvent() = with(binding){
-        btnThirdTapLogout.setOnClickListener {
-            authDB.auth.signOut()
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
-        }
-
-        btnThirdTapGetUserData.setOnClickListener {
-            Toast.makeText(activity, userData.toString(), Toast.LENGTH_LONG).show()
-        }
     }
 }

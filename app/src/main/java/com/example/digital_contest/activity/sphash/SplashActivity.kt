@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.digital_contest.activity.login.LoginActivity
 import com.example.digital_contest.model.db.Auth.AuthDB
 import com.example.digital_contest.R
@@ -25,6 +26,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         val currentUser = authDB.auth.currentUser
         if(currentUser != null){

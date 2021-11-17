@@ -27,10 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:src="@drawable/ic_plus"
-            android:foregroundTint="@color/white"
+            android:src="@drawable/ic_pen"
+            map:backgroundTint="@color/base_gray"
+            map:borderWidth="0dp"
 
-            android:layout_margin="16dp"
+            android:layout_margin="32dp"
 
             map:layout_constraintBottom_toBottomOf="parent"
             map:layout_constraintEnd_toEndOf="parent"
