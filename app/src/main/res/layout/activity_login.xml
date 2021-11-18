@@ -44,6 +44,7 @@
                 android:hint="아이디"
                 android:textSize="16sp"
                 android:text="@={viewModel.id}"
+                android:backgroundTint="@color/albescent_white"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,11 +74,11 @@
                 android:background="@drawable/default_radius_10"
 
                 android:hint="비밀번호"
+                android:text="@={viewModel.password}"
                 android:textSize="16sp"
-
+                android:backgroundTint="@color/albescent_white"
 
                 android:inputType="textPassword"
-                android:text="@={viewModel.password}"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,11 +87,10 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login_login"
             android:layout_width="124dp"
             android:layout_height="50dp"
-
 
             android:layout_marginTop="45dp"
             android:layout_marginStart="10dp"
@@ -98,23 +98,24 @@
             android:text="로그인"
             android:textSize="16dp"
 
+            android:background="@drawable/select_btn_enabled"
+
             app:layout_constraintStart_toStartOf="@+id/leftSide_guideLine"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pw" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login_signUp"
-
             android:layout_width="124dp"
             android:layout_height="50dp"
 
             android:layout_marginTop="45dp"
             android:layout_marginEnd="10dp"
 
-            android:backgroundTint="@color/base_darkGray"
+            android:background="@drawable/select_btn_enabled"
 
             android:text="회원가입"
-            android:textSize="16dp"
 
+            android:textSize="16dp"
             app:layout_constraintEnd_toStartOf="@+id/rightSide_guideLine"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pw" />
 

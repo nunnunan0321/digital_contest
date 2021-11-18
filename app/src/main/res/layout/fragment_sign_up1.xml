@@ -51,6 +51,7 @@
 
 
                 android:background="@drawable/default_radius_10"
+                android:backgroundTint="@color/albescent_white"
                 android:inputType="textNoSuggestions|textVisiblePassword"
 
 
@@ -84,6 +85,7 @@
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/default_radius_10"
+                android:backgroundTint="@color/albescent_white"
                 android:inputType="textNoSuggestions|textVisiblePassword"
 
                 android:hint="아이디"
@@ -117,6 +119,7 @@
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/default_radius_10"
+                android:backgroundTint="@color/albescent_white"
                 android:inputType="textNoSuggestions|textVisiblePassword"
 
                 android:hint="이메일"
@@ -147,16 +150,13 @@
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/default_radius_10"
-
+                android:backgroundTint="@color/albescent_white"
                 android:hint="비밀번호"
-                android:textSize="16sp"
-
-
-
-                android:inputType="textPassword|textNoSuggestions"
                 android:text="@={viewModel.password}"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="16sp"
+                android:inputType="textPassword|textNoSuggestions"
 
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout_email" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -179,7 +179,7 @@
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/default_radius_10"
-
+                android:backgroundTint="@color/albescent_white"
                 android:hint="비밀번호 재입력"
                 android:textSize="16sp"
 
@@ -191,7 +191,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pw" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signUp_next"
             android:layout_width="124dp"
             android:layout_height="50dp"
@@ -201,6 +201,8 @@
             android:text="다음"
             android:textSize="20dp"
 
+            android:background="@drawable/select_btn_enabled"
+            android:enabled="false"
 
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline2"

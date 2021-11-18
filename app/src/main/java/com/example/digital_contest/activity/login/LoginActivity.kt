@@ -37,12 +37,10 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.id.observe(this, {
             binding.btnLoginLogin.isEnabled = viewModel.loginInputCheck()
-
             if (it.isEmpty() && viewModel.check == 0) {
                 binding.edtLoginInputId.error = "공백은 허용되지 않습니다!"
             } else if(viewModel.check != 0) {
                 viewModel.check--
-
             }
         })
 
