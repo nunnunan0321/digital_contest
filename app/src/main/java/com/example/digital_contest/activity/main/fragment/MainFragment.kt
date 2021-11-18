@@ -111,7 +111,6 @@ class MainFragment:Fragment(),
     override fun onStop() {
         super.onStop()
         locationCallbackCheck = true
-        Log.d(TAG, "onStop 출력")
     }
 
     // 지도가 준비되었을 때 실행되는 함수
@@ -129,13 +128,16 @@ class MainFragment:Fragment(),
 
             for (key in boardsData.keys){
                 val board = boardsData[key]!!
+
+                val markerColor = if(board.writerID == (activity as MainActivity).userData.id)
+                                        BitmapDescriptorFactory.HUE_RED
+                                else BitmapDescriptorFactory.HUE_ORANGE
+
                 googleMap.addMarker(
-                    MarkerOptions().position(
-                        LatLng(
-                            board.location.latitude,
-                            board.location.longitude
-                        )
-                    ).title(board.title).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                    MarkerOptions()
+                        .position(LatLng(board.location.latitude, board.location.longitude))
+                        .title(board.title)
+                        .icon(BitmapDescriptorFactory.defaultMarker(markerColor))
                 ).tag = key
             }
         }
@@ -147,8 +149,7 @@ class MainFragment:Fragment(),
     }
 
     // 마커를 클릭했을 때 실행되는 함수
-    var markerClickListener =
-        OnMarkerClickListener { marker ->
+    var markerClickListener = OnMarkerClickListener { marker ->
             val markerTitle = marker.title
             // 선택한 타겟의 위치
             val location = marker.position
@@ -157,11 +158,10 @@ class MainFragment:Fragment(),
         }
 
     // 마커의 타이틀을 클릭했을 때 실행되는 함수
-    var markerTitleClickListener =
-        GoogleMap.OnInfoWindowClickListener { marker ->
-            val markerTitle = marker.title
+    var markerTitleClickListener = GoogleMap.OnInfoWindowClickListener { marker ->
             val markerId = marker.tag
-            Toast.makeText(requireContext(), "마커 타이틀 클릭 Marker Title : $markerTitle", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), "마커 타이틀 클릭 Marker Title : $markerTitle", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(requireContext(), ViewActivity::class.java)
             intent.putExtra("boardId", markerId.toString())
             intent.putExtra("userData", (activity as MainActivity).userData)
@@ -179,7 +179,6 @@ class MainFragment:Fragment(),
         //location 에 위치 정보
 //        Log.d(TAG, "location : ${location.latitude} ${location.longitude}")
         //map.addMarker(MarkerOptions().position(LatLng(10.0, 0.0)).title("Marker"))
-
     }
 
 
