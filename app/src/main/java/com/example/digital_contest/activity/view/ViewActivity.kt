@@ -55,6 +55,10 @@ class ViewActivity : AppCompatActivity() {
             }
         }
 
+        binding.imgViewArrow.setOnClickListener {
+            finish()
+        }
+
         viewModel.boardData.observe(this, {
             Glide.with(this).load(it.imgUrl).into(binding.imgViewBoardImage)// 게시물을 가져왔을때 사진을 띄운다.
 

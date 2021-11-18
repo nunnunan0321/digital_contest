@@ -61,9 +61,10 @@
                 android:text="이름"
                 android:textSize="16sp"
                 android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
 
-
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                />
 
             <TextView
                 android:id="@+id/txt_name"
@@ -75,6 +76,9 @@
 
                 android:text="@{userData.name, default=`박희찬`}"
                 android:textSize="14sp"
+                android:textColor="@color/base_darkGray"
+                android:fontFamily="@font/roboto_light"
+
 
                 android:layout_toStartOf="@+id/txt_end1" />
 
@@ -106,12 +110,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
 
+                android:gravity="center_vertical"
                 android:text="아이디"
-                android:textSize="16sp"
                 android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
 
 
-                android:gravity="center_vertical" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txt_likeListItem_writer"
@@ -123,6 +128,8 @@
 
                 android:text="@{userData.id, default=`ckstmznf`}"
                 android:textSize="14sp"
+                android:textColor="@color/base_darkGray"
+                android:fontFamily="@font/roboto_light"
 
                 android:layout_toStartOf="@+id/txt_end2" />
 
@@ -156,12 +163,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
 
+                android:gravity="center_vertical"
                 android:text="이메일"
-                android:textSize="16sp"
                 android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
 
 
-                android:gravity="center_vertical" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txt_email"
@@ -173,6 +181,8 @@
 
                 android:text="@{userData.email, default=`ckstmznf@naver.com`}"
                 android:textSize="14sp"
+                android:textColor="@color/base_darkGray"
+                android:fontFamily="@font/roboto_light"
 
                 android:layout_toStartOf="@+id/txt_end3" />
 
@@ -220,12 +230,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
 
+                android:gravity="center_vertical"
                 android:text="좋아요 수"
-                android:textSize="16sp"
-                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
 
 
-                android:gravity="center_vertical" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txt_good"
@@ -237,6 +247,8 @@
 
                 android:text="0"
                 android:textSize="14sp"
+                android:textColor="@color/base_darkGray"
+                android:fontFamily="@font/roboto_light"
 
                 android:layout_toStartOf="@+id/txt_end4" />
 
@@ -283,12 +295,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
 
+                android:gravity="center_vertical"
                 android:text="작성한 게시물"
-                android:textSize="16sp"
-                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
 
 
-                android:gravity="center_vertical" />
+                android:textSize="16sp" />
 
 
             <ImageView

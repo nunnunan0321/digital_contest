@@ -28,5 +28,9 @@ class BoardListActivity : AppCompatActivity() {
                 binding.recyclerBoardList.adapter = BoardListAdapter(boardList, userData)
             }
         }
+
+        binding.imgBoardListArrow.setOnClickListener {
+            finish()
+        }
     }
 }
