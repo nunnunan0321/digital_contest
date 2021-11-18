@@ -31,7 +31,7 @@
             map:backgroundTint="@color/rajah"
             map:borderWidth="0dp"
 
-            android:layout_margin="32dp"
+            android:layout_margin="16dp"
 
             map:layout_constraintBottom_toBottomOf="parent"
             map:layout_constraintEnd_toEndOf="parent"
