@@ -8,7 +8,9 @@
             name="viewModel"
             type="com.example.digital_contest.activity.login.LoginActivityViewModel" />
     </data>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,11 +20,14 @@
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
+
             android:layout_marginTop="140dp"
             android:src="@mipmap/ic_launcher"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_id"
@@ -31,24 +36,26 @@
 
             app:hintTextColor="@color/black"
             android:layout_marginTop="65dp"
+
             app:layout_constraintEnd_toStartOf="@+id/rightSide_guideLine"
             app:layout_constraintStart_toStartOf="@+id/leftSide_guideLine"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            >
 
             <EditText
                 android:id="@+id/edt_login_inputId"
                 android:layout_width="280dp"
                 android:layout_height="52dp"
-                android:background="@drawable/default_radius_10"
+                style="@style/customEditTextStyle"
 
                 android:hint="아이디"
-                android:textSize="16sp"
+                android:maxLines="1"
                 android:text="@={viewModel.id}"
-                android:backgroundTint="@color/albescent_white"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +64,6 @@
             android:id="@+id/textInputLayout_pw"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/default_radius_10"
 
             android:layout_marginTop="25dp"
             app:hintTextColor="@color/black"
@@ -70,13 +76,12 @@
             <EditText
                 android:id="@+id/edt_login_inputPassword"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="@drawable/default_radius_10"
+                android:layout_height="wrap_content"
+                style="@style/customEditTextStyle"
 
                 android:hint="비밀번호"
+                android:maxLines="1"
                 android:text="@={viewModel.password}"
-                android:textSize="16sp"
-                android:backgroundTint="@color/albescent_white"
 
                 android:inputType="textPassword"
 
@@ -89,35 +94,38 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login_login"
-            android:layout_width="124dp"
-            android:layout_height="50dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/customButtonStyle"
 
             android:layout_marginTop="45dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginHorizontal="8dp"
 
             android:text="로그인"
             android:textSize="16dp"
 
-            android:background="@drawable/select_btn_enabled"
-
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pw"
             app:layout_constraintStart_toStartOf="@+id/leftSide_guideLine"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pw" />
+            app:layout_constraintEnd_toStartOf="@id/btn_login_signUp"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login_signUp"
-            android:layout_width="124dp"
-            android:layout_height="50dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/customButtonStyle"
 
             android:layout_marginTop="45dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginHorizontal="8dp"
 
-            android:background="@drawable/select_btn_enabled"
 
             android:text="회원가입"
-
             android:textSize="16dp"
+
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pw"
+            app:layout_constraintStart_toEndOf="@id/btn_login_login"
             app:layout_constraintEnd_toStartOf="@+id/rightSide_guideLine"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_pw" />
+            />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -134,4 +142,5 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="67dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

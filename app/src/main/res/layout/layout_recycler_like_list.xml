@@ -43,7 +43,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_allow"
+            android:src="@drawable/ic_arrow_right"
 
             android:layout_marginTop="36dp"
 
