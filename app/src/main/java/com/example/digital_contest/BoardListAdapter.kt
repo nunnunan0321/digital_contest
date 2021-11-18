@@ -16,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.DateFormat
 
 class BoardListAdapter(val boardData : Map<String, Board>, val userData : User) : RecyclerView.Adapter<BoardListAdapter.Holder>(){
     val keys = boardData.keys.toList()
@@ -47,13 +48,15 @@ class BoardListAdapter(val boardData : Map<String, Board>, val userData : User) 
                 it.context.startActivity(intent)
             }
 
-            title = boards[position].title
-            writer = boards[position].writerID
-            timeStamp = boards[position].uploadDate.toString()
-            content = boards[position].contents
-            Glide.with(imgLikeListItemMainImg.context).load(boards[position].imgUrl).into(imgLikeListItemMainImg)
+            val boardData = boards[position]
 
-            val writerID = boards[position].writerID
+            title = boardData.title
+            writer = boardData.writerID
+            timeStamp = DateFormat.getDateInstance(DateFormat.MEDIUM).format(boardData.uploadDate)
+            content = boardData.contents
+            Glide.with(imgLikeListItemMainImg.context).load(boardData.imgUrl).into(imgLikeListItemMainImg)
+
+            val writerID = boardData.writerID
 
             if(usersData.containsKey(writerID)){
                 Glide.with(imgLikeListItemMainImg.context).load(usersData[writerID]!!.profileImgUrl).into(imgLikeListItemProfileImg)

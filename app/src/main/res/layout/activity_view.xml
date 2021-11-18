@@ -8,51 +8,134 @@
             type="com.example.digital_contest.activity.view.ViewActivityViewModel" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/img_view_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+
+            android:src="@drawable/ic_arrow_left"
+
+            app:layout_constraintStart_toStartOf="@id/guide_view_line1"
+            app:layout_constraintTop_toTopOf="@id/txt_view_boardTitle"
+            app:layout_constraintBottom_toBottomOf="@id/txt_view_boardTitle"
+            />
+
         <TextView
             android:id="@+id/txt_view_boardTitle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:text="@{viewModel.boardData.title, default=`제목`}"
             android:textSize="24sp"
+            android:fontFamily="@font/roboto_bold"
+            android:textStyle="bold"
 
-            android:gravity="center"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="32dp"
 
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/txt_view_writer"
+            app:layout_constraintStart_toEndOf="@id/img_view_arrow"
             />
+
+        <TextView
+            android:id="@+id/txt_view_line"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+
+            android:background="@color/base_darkGray"
+
+            android:layout_marginTop="32dp"
+
+            app:layout_constraintTop_toBottomOf="@id/txt_view_boardTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_view_profileImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:src="@drawable/default_profile_img"
+
+            android:layout_marginTop="26dp"
+
+            app:layout_constraintTop_toBottomOf="@id/txt_view_line"
+            app:layout_constraintStart_toStartOf="@id/guide_view_line1"
+            />
+
+
 
         <TextView
             android:id="@+id/txt_view_writer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="@{`작성자 : ` + viewModel.boardData.writerID , default=`작성자`}"
+            android:text="@{viewModel.writerUserData.name , default=`작성자`}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_medium"
 
-            android:gravity="center"
+            android:layout_marginHorizontal="20dp"
 
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_view_profileImg"
+            app:layout_constraintBottom_toTopOf="@id/txt_view_timeStamp"
+            app:layout_constraintStart_toEndOf="@+id/img_view_profileImg"
             />
+
+        <TextView
+            android:id="@+id/txt_view_timeStamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@{viewModel.uploadDateFormat, default=`2021.11.19`}"
+            android:textSize="16sp"
+
+            android:layout_marginHorizontal="20dp"
+
+            app:layout_constraintTop_toBottomOf="@id/txt_view_writer"
+            app:layout_constraintBottom_toBottomOf="@id/img_view_profileImg"
+            app:layout_constraintStart_toEndOf="@id/img_view_profileImg"
+            />
+
 
         <TextView
             android:id="@+id/txt_view_boardContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="@{viewModel.boardData.contents, default=`내용`}"
-            android:textSize="24sp"
+            android:text="@{viewModel.boardData.contents, default=`에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 `}"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto_light"
 
-            android:gravity="center"
+            android:layout_marginVertical="20dp"
 
-            app:layout_constraintTop_toBottomOf="@id/txt_view_boardTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_view_likeBtn"
+            app:layout_constraintTop_toBottomOf="@id/img_view_profileImg"
+            app:layout_constraintBottom_toTopOf="@id/img_view_boardImage"
+            app:layout_constraintStart_toStartOf="@id/guide_view_line1"
+            app:layout_constraintEnd_toEndOf="@id/guide_view_line2"
+            />
+
+        <ImageView
+            android:id="@+id/img_view_boardImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/edcan"
+
+            android:layout_marginBottom="16dp"
+
+            app:layout_constraintTop_toBottomOf="@id/txt_view_boardContent"
+            app:layout_constraintBottom_toTopOf="@id/img_view_likeBtn"
+            app:layout_constraintStart_toStartOf="@id/guide_view_line1"
+            app:layout_constraintEnd_toEndOf="@id/guide_view_line2"
             />
 
         <ImageView
@@ -60,22 +143,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:src="@drawable/ic_heart_fill"
             android:tint="@color/black"
 
-            app:layout_constraintTop_toTopOf="@id/txt_view_boardContent"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_view_boardContent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guide_view_line1"
             />
 
-        <ImageView
-            android:id="@+id/img_view_boardImage"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_view_line1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toBottomOf="@id/txt_view_boardContent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="30dp"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_view_line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="30dp"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

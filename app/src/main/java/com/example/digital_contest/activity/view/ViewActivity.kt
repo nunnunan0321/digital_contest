@@ -18,7 +18,6 @@ class ViewActivity : AppCompatActivity() {
     lateinit var binding: ActivityViewBinding
     lateinit var viewModel: ViewActivityViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_view)
@@ -26,7 +25,7 @@ class ViewActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.userData = intent.getSerializableExtra("userData") as User
+        viewModel.currentUserData = intent.getSerializableExtra("userData") as User
         viewModel.boardId = intent.getStringExtra("boardId").toString()
         viewModel.getBoardData()
 
@@ -51,7 +50,7 @@ class ViewActivity : AppCompatActivity() {
                     }
                 }
 
-                viewModel.userPoolLike.value = viewModel.userData.likeBoardList.contains(viewModel.boardId) //사용자가 현재게시물에 좋아요를 눌렀는지 확인
+                viewModel.userPoolLike.value = viewModel.currentUserData.likeBoardList.contains(viewModel.boardId) //사용자가 현재게시물에 좋아요를 눌렀는지 확인
 
             }
         }
@@ -59,7 +58,11 @@ class ViewActivity : AppCompatActivity() {
         viewModel.boardData.observe(this, {
             Glide.with(this).load(it.imgUrl).into(binding.imgViewBoardImage)// 게시물을 가져왔을때 사진을 띄운다.
 
-            viewModel.userPoolLike.value = viewModel.userData.likeBoardList.contains(viewModel.boardId) //사용자가 현재게시물에 좋아요를 눌렀는지 확인
+            viewModel.userPoolLike.value = viewModel.currentUserData.likeBoardList.contains(viewModel.boardId) //사용자가 현재게시물에 좋아요를 눌렀는지 확인
+        })
+
+        viewModel.writerUserData.observe(this, {
+            Glide.with(this).load(it.profileImgUrl).into(binding.imgViewProfileImg)
         })
 
         viewModel.userPoolLike.observe(this, {
