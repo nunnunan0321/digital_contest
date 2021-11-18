@@ -8,7 +8,8 @@ import com.bumptech.glide.Glide
 import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.activity.sphash.authDB
 import com.example.digital_contest.activity.view.ViewActivity
-import com.example.digital_contest.databinding.LayoutRecyclerLikeListBinding
+import com.example.digital_contest.databinding.LayoutRecyclerBoardListBinding
+import com.example.digital_contest.databinding.LayoutRecyclerBoardListBindingImpl
 import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
 import kotlinx.coroutines.CoroutineScope
@@ -22,11 +23,11 @@ class BoardListAdapter(val boardData : Map<String, Board>, val userData : User) 
 
     val usersData = mutableMapOf<String, User>()
 
-    class Holder private constructor(val binding: LayoutRecyclerLikeListBinding) : RecyclerView.ViewHolder(binding.root){
+    class Holder private constructor(val binding: LayoutRecyclerBoardListBinding) : RecyclerView.ViewHolder(binding.root){
         companion object{
             fun from(parent: ViewGroup) : Holder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = LayoutRecyclerLikeListBinding.inflate(layoutInflater, parent, false)
+                val binding = LayoutRecyclerBoardListBinding.inflate(layoutInflater, parent, false)
 
                 return Holder(binding)
             }

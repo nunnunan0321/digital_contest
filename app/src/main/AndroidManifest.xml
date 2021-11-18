@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.digital_contest">
     <!--
@@ -11,13 +10,11 @@
         2. Android 11 이상이며, 백그라운드 액세스 권한을 차단한 경우
         3. 사용자가 액세스 권한을 차단한 경우
     -->
-
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 인터넷 권한 접근 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -27,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Digital_contest.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.boardList.BoardListActivity"
+            android:exported="false" />
         <!-- GoogleMap API Client ID -->
         <meta-data
             android:name="com.google.android.gms.version"
@@ -41,41 +41,34 @@
 
         <activity
             android:name=".activity.sphash.SplashActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.login.LoginActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.signUp.SignUpActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.main.MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
-        </activity>
-
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.write.WriteActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.view.ViewActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -58,6 +58,8 @@ class LoginActivity : AppCompatActivity() {
     fun login(){
         val loadingDialog = Dialog(this@LoginActivity)
         loadingDialog.setContentView(R.layout.dialog_loading)
+        loadingDialog.setCancelable(false)
+
         loadingDialog.show()
 
         CoroutineScope(Dispatchers.Main).launch {

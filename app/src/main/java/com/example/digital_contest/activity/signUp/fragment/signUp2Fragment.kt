@@ -47,6 +47,7 @@ class signUp2Fragment : Fragment() {
             val loadingDialog = Dialog(requireContext())
             loadingDialog.setContentView(R.layout.dialog_loading)
             loadingDialog.show()
+            loadingDialog.setCancelable(false)
 
             CoroutineScope(Dispatchers.Main).launch {
                 val signUpResult = viewModel.signUp()

@@ -75,6 +75,20 @@ class BoardDB : board {
         return boardResult
     }
 
+    override suspend fun getBoardByUserId(userId: String): Map<String, Board> {
+        val result = mutableMapOf<String, Board>()
+
+        db.collection("board").whereEqualTo("writerID", userId)
+            .get()
+            .addOnSuccessListener { documents ->
+                for(document in documents){
+                    result[document.id] = document.toObject(Board::class.java)
+                }
+            }.await()
+
+        return result
+    }
+
     override suspend fun likeListUpdate(likeBoardList: ArrayList<String>, userID: String): BoardResult {
         var result : BoardResult = BoardResult.Fail
 

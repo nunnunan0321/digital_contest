@@ -53,6 +53,7 @@ class WriteActivity : AppCompatActivity() {
     fun saveBoard(){
         val loadingDialog = Dialog(this)
         loadingDialog.setContentView(R.layout.dialog_loading)
+        loadingDialog.setCancelable(false)
         loadingDialog.show()
 
         CoroutineScope(Dispatchers.Main).launch {
