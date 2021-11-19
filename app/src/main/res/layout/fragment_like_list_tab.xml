@@ -54,5 +54,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="아직 좋아요를 누른 게시물이 없습니다.\n지도에서 마커를 클릭해 다른사람들의\n게시물을 구경해보세요!"
+            android:textSize="22sp"
+            android:fontFamily="@font/roboto_black"
+
+            android:gravity="center"
+
+            app:layout_constraintTop_toBottomOf="@id/textView5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

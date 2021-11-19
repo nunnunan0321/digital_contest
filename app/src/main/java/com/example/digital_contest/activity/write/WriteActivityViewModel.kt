@@ -13,8 +13,8 @@ import com.example.digital_contest.model.db.Board.BoardResult
 
 class WriteActivityViewModel : ViewModel() {
     val userData = MutableLiveData<User>()
-    val title = MutableLiveData<String>()
-    val content = MutableLiveData<String>()
+    val title = MutableLiveData<String>("")
+    val content = MutableLiveData<String>("")
     val img = MutableLiveData<Uri>()
 
     suspend fun saveBoard() : BoardResult {
@@ -30,5 +30,12 @@ class WriteActivityViewModel : ViewModel() {
         result = boardDB.saveBoard(boardData, img.value!!)
 
         return result
+    }
+
+    fun writeInputEmptyCheck() : Boolean{
+        if(title.value!!.isEmpty()) return false
+        if(content.value!!.isEmpty()) return false
+
+        return true
     }
 }

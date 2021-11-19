@@ -35,8 +35,21 @@ class WriteActivity : AppCompatActivity() {
             getImageCallback.launch("image/*")
         }
         binding.btnWriteWrite.setOnClickListener {
+            if(viewModel.img.value == null){
+                Toast.makeText(this, "이미지를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             saveBoard()
         }
+
+
+        viewModel.title.observe(this, {
+            binding.btnWriteWrite.isEnabled = viewModel.writeInputEmptyCheck()
+        })
+
+        viewModel.content.observe(this, {
+            binding.btnWriteWrite.isEnabled = viewModel.writeInputEmptyCheck()
+        })
     }
 
     val getImageCallback = registerForActivityResult(ActivityResultContracts.GetContent()){
