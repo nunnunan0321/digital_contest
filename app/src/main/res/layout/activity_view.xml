@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
 
             android:src="@drawable/ic_heart_fill"
-            android:tint="@color/black"
+            android:tint="@color/people"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/guide_view_line1"
