@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout>
 
     <data>
         <variable
@@ -10,6 +8,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activity.main.fragment.MyProfileFragment">
@@ -247,7 +248,7 @@
 
                 android:fontFamily="@font/roboto_light"
                 android:gravity="center"
-                android:text="@{userData.totalLikeCount}"
+                android:text="@{userData.totalLikeCount + ``, default=`0`}"
                 android:textColor="@color/base_darkGray"
 
                 android:textSize="14sp" />
