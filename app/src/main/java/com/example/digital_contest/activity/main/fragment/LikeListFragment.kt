@@ -29,12 +29,16 @@ class LikeListFragment:Fragment(){
 
         job = CoroutineScope(Dispatchers.IO).launch {
             val likeList = boardDB.getLikeBoards((activity as MainActivity).userData.likeBoardList)
-            Log.d("likeList", likeList.toString())
             val likeListAdapter = BoardListAdapter(likeList, (activity as MainActivity).userData)
-//            likeListAdapter.notifyDataSetChanged()
 
             withContext(Dispatchers.Main){
-                binding.recyclerLikeList.adapter = likeListAdapter
+                binding.progressLikeListLoadingProgress.visibility = View.INVISIBLE
+
+                if(likeList.isNotEmpty()){
+                    binding.recyclerLikeList.adapter = likeListAdapter
+                }   else{
+                    binding.txtLikeListPlsMsg.visibility = View.VISIBLE
+                }
             }
         }
 

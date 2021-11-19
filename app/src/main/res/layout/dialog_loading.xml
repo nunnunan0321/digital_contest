@@ -11,10 +11,9 @@
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-        android:indeterminateDrawable="@drawable/shape_progress"
 
+        android:indeterminateDrawable="@drawable/shape_progress"
         android:indeterminateDuration="1000"
 
         app:layout_constraintTop_toTopOf="parent"
