@@ -242,15 +242,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
 
-                android:gravity="center"
                 android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/txt_end4"
 
-                android:text="0"
-                android:textSize="14sp"
-                android:textColor="@color/base_darkGray"
                 android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:text="@{userData.totalLikeCount}"
+                android:textColor="@color/base_darkGray"
 
-                android:layout_toStartOf="@+id/txt_end4" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/txt_end4"

@@ -11,4 +11,5 @@ data class User(
     var profileImgUrl : String = "",
 
     var likeBoardList : ArrayList<String> = arrayListOf(),
+    var totalLikeCount : Int = 0
 )  : Serializable

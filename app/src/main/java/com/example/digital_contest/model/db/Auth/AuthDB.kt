@@ -19,8 +19,6 @@ class AuthDB : auth {
     override suspend fun signUp(user: User, password: String, profileImg : Uri?): AuthResult {
         //회원가입 전체를 진행하는 함수, 회원가입 결과는 AuthResult에 정의된데로 반환
 
-        Log.d("userData", user.toString())
-
         if (profileImg != null){
             val saveProfileImgResult = saveProfileImg(profileImg, user.id) ?: return AuthResult.Fail
             user.profileImgUrl = saveProfileImgResult
@@ -124,6 +122,19 @@ class AuthDB : auth {
             }.await()
 
         return resultUsserData
+    }
+
+    override suspend fun userTotalLikeCountUpdate(user: User): AuthResult {
+        var result = AuthResult.Fail
+
+        db.collection("user").document(user.id)
+            .update("totalLikeCount", user.totalLikeCount)
+            .addOnSuccessListener {
+                result = AuthResult.OK
+            }
+            .await()
+
+        return result
     }
 
     override suspend fun login(id: String, password: String): User? {

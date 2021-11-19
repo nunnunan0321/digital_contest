@@ -7,6 +7,7 @@ import com.example.digital_contest.activity.sphash.authDB
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
+import com.example.digital_contest.model.db.Auth.AuthResult
 import com.example.digital_contest.model.db.Board.BoardResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -44,13 +45,37 @@ class ViewActivityViewModel : ViewModel() {
         }
     }
 
-    suspend fun addLike() : BoardResult{
+    suspend fun addLike() : Boolean{
         currentUserData.likeBoardList.add(boardId)
-        return boardDB.likeListUpdate(currentUserData.likeBoardList, currentUserData.id)
+        writerUserData.value!!.totalLikeCount++
+
+        val addUserLikeCountResult = authDB.userTotalLikeCountUpdate(writerUserData.value!!)
+        if(addUserLikeCountResult == AuthResult.Fail) return false
+
+        val likeListResult =  boardDB.likeListUpdate(currentUserData.likeBoardList, currentUserData.id)
+        if(likeListResult == BoardResult.Fail){
+            writerUserData.value!!.totalLikeCount--
+            authDB.userTotalLikeCountUpdate(writerUserData.value!!)
+            return false
+        }
+
+        return true
     }
 
-    suspend fun cancelLike() : BoardResult{
+    suspend fun cancelLike() : Boolean {
         currentUserData.likeBoardList.remove(boardId)
-        return boardDB.likeListUpdate(currentUserData.likeBoardList, currentUserData.id)
+        writerUserData.value!!.totalLikeCount--
+
+        val userTotalLikeCountResult = authDB.userTotalLikeCountUpdate(writerUserData.value!!)
+        if(userTotalLikeCountResult == AuthResult.Fail) return false
+
+        val likeListResult = boardDB.likeListUpdate(currentUserData.likeBoardList, currentUserData.id)
+        if(likeListResult == BoardResult.Fail){
+            writerUserData.value!!.totalLikeCount++
+            authDB.userTotalLikeCountUpdate(writerUserData.value!!)
+            return false
+        }
+
+        return true
     }
 }

@@ -36,7 +36,7 @@ class ViewActivity : AppCompatActivity() {
 
                     val addLikeResult = viewModel.addLike()
 
-                    if(addLikeResult != BoardResult.OK){ //좋아요 목록에 자신의 ID추가에 성공했다면
+                    if(!addLikeResult){ //좋아요 목록에 자신의 ID추가에 성공했다면
                         Toast.makeText(this@ViewActivity, "게시물에 좋아요를 추가하지 못했습니다.", Toast.LENGTH_SHORT).show()
                     }
 
@@ -45,7 +45,7 @@ class ViewActivity : AppCompatActivity() {
 
                     val calcelLikeResult = viewModel.cancelLike()
 
-                    if(calcelLikeResult != BoardResult.OK){
+                    if(!calcelLikeResult){
                         Toast.makeText(this@ViewActivity, "게시물에 좋아요를 취소하지못했습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }

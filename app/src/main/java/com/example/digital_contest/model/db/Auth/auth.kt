@@ -19,4 +19,6 @@ interface auth {
     suspend fun getUserDataById(id : String) : User?
 
     suspend fun getUserDataByEmail(email : String) : User?
+
+    suspend fun userTotalLikeCountUpdate(user: User) : AuthResult
 }
