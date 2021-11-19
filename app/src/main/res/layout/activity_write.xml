@@ -74,6 +74,7 @@
 
                 android:hint="내용을 입력하세요."
                 android:text="@={viewModel.content}"
+                android:lines="10"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

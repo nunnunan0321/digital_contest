@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/MainFragment"
-        android:title="Main"
+        android:title="메인"
         android:icon="@drawable/ic_location"
         />
     <item
         android:id="@+id/LikeListFragment"
-        android:title="Like List"
+        android:title="좋아요 목록"
         android:icon="@drawable/ic_heart_fill"
         />
     <item
         android:id="@+id/MyProfileFragment"
-        android:title="More Menu"
+        android:title="프로필"
         android:icon="@drawable/ic_person"
         />
 </menu>

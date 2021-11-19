@@ -17,7 +17,7 @@ class BoardDB : board {
 
     override suspend fun saveBoard(boardData: Board, img: Uri): BoardResult {
         var result : BoardResult = BoardResult.Fail
-        
+
         val saveImgResult = saveBoardImage(img, boardData.writerID) ?: return result
 
         boardData.imgUrl = saveImgResult
@@ -27,8 +27,6 @@ class BoardDB : board {
                 result = BoardResult.OK
             }
             .await()
-
-
 
         return result
     }

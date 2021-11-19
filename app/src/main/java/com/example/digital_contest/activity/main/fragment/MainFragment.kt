@@ -120,7 +120,7 @@ class MainFragment:Fragment(),
         googleMap.setOnMyLocationClickListener(this)
         enableMyLocation()
 
-        launch = CoroutineScope(Dispatchers.IO).launch {
+        launch = CoroutineScope(Dispatchers.Main).launch {
             val boardsData : Map<String, Board> = boardDB.getAllBoard()
 
             for (key in boardsData.keys){
