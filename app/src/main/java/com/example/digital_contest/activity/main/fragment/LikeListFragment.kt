@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digital_contest.R
 import com.example.digital_contest.BoardListAdapter
 import com.example.digital_contest.activity.main.MainActivity
@@ -41,6 +43,9 @@ class LikeListFragment:Fragment(){
                 }
             }
         }
+
+        val boardListDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager(requireContext()).orientation)
+        binding.recyclerLikeList.addItemDecoration(boardListDecoration)
 
         CoroutineScope(Dispatchers.Main).launch {
             job.join()
