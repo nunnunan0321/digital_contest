@@ -24,11 +24,5 @@
         android:label="My Profile"
         tools:layout="@layout/fragment_my_profile"
         />
-    <fragment
-        android:id="@+id/MoreMenuFragment"
-        android:name="com.example.digital_contest.activity.main.fragment.MoreMenuFragment"
-        tools:layout="@layout/fragment_more_menu_tab"
-        android:label="More Menu tab"
-        />
 
 </navigation>

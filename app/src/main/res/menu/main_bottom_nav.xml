@@ -12,12 +12,7 @@
         />
     <item
         android:id="@+id/MyProfileFragment"
-        android:title="My Profile"
-        android:icon="@drawable/ic_person"
-        />
-    <item
-        android:id="@+id/MoreMenuFragment"
         android:title="More Menu"
-        android:icon="@drawable/ic_menu"
+        android:icon="@drawable/ic_person"
         />
 </menu>

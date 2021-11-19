@@ -11,7 +11,9 @@ import com.bumptech.glide.Glide
 import com.example.digital_contest.BoardListAdapter
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.boardList.BoardListActivity
+import com.example.digital_contest.activity.login.LoginActivity
 import com.example.digital_contest.activity.main.MainActivity
+import com.example.digital_contest.activity.sphash.authDB
 import com.example.digital_contest.databinding.FragmentMyProfileBinding
 
 class MyProfileFragment : Fragment() {
@@ -31,6 +33,13 @@ class MyProfileFragment : Fragment() {
             val intent = Intent(requireContext(), BoardListActivity::class.java)
             intent.putExtra("userData", (activity as MainActivity).userData)
             (activity as MainActivity).startActivity(intent)
+        }
+
+        binding.btnThirdTapLogout.setOnClickListener {
+            authDB.auth.signOut()
+            val intent = Intent(activity, LoginActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
 
         return root

@@ -36,12 +36,7 @@ class MoreMenuFragment:Fragment(){
 
         userData = (activity as MainActivity).userData
 
-        binding.btnThirdTapLogout.setOnClickListener {
-            authDB.auth.signOut()
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
-        }
+
 
         binding.btnThirdTapGetUserData.setOnClickListener {
             Toast.makeText(activity, userData.toString(), Toast.LENGTH_LONG).show()
