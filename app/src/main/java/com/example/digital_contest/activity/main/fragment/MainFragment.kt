@@ -36,10 +36,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.GeoPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
 
 
@@ -56,6 +53,8 @@ class MainFragment:Fragment(),
     private lateinit var locationCallback: LocationCallback
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var locationCallbackCheck : Boolean = true
+
+    lateinit var launch : Job
 
 
     override fun onCreateView(
@@ -121,12 +120,8 @@ class MainFragment:Fragment(),
         googleMap.setOnMyLocationClickListener(this)
         enableMyLocation()
 
-        CoroutineScope(Dispatchers.Main).launch {
-            val boardsData : Map<String, Board> = CoroutineScope(Dispatchers.IO).async {
-                boardDB.getAllBoard()
-            }.await()
-
-
+        launch = CoroutineScope(Dispatchers.IO).launch {
+            val boardsData : Map<String, Board> = boardDB.getAllBoard()
 
             for (key in boardsData.keys){
                 val board = boardsData[key]!!
@@ -140,15 +135,23 @@ class MainFragment:Fragment(),
                         .position(LatLng(board.location.latitude, board.location.longitude))
                         .title(board.title)
                         .icon(bd)
-
                 ).tag = key
             }
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            launch.join()
         }
 
         map.setOnMarkerClickListener(markerClickListener)
         map.setOnInfoWindowClickListener(markerTitleClickListener)
 
         locationUpdateCallback()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        launch.cancel()
     }
 
     // 마커를 클릭했을 때 실행되는 함수
