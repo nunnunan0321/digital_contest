@@ -2,9 +2,11 @@ package com.example.digital_contest.activity.main.fragment
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
@@ -13,11 +15,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.toColorInt
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.digital_contest.R
@@ -126,18 +126,21 @@ class MainFragment:Fragment(),
                 boardDB.getAllBoard()
             }.await()
 
+
+
             for (key in boardsData.keys){
                 val board = boardsData[key]!!
 
-                val markerColor = if(board.writerID == (activity as MainActivity).userData.id)
-                                        BitmapDescriptorFactory.HUE_RED
-                                else BitmapDescriptorFactory.HUE_ORANGE
+                val bd: BitmapDescriptor? = if(board.writerID == (activity as MainActivity).userData.id)
+                                        activity?.let { bitmapDescriptorFromVector(it, R.drawable.marker_img_2) }
+                                else activity?.let { bitmapDescriptorFromVector(it, R.drawable.marker_img_1) }
 
                 googleMap.addMarker(
                     MarkerOptions()
                         .position(LatLng(board.location.latitude, board.location.longitude))
                         .title(board.title)
-                        .icon(BitmapDescriptorFactory.defaultMarker(markerColor))
+                        .icon(bd)
+
                 ).tag = key
             }
         }
@@ -299,6 +302,25 @@ class MainFragment:Fragment(),
             showMissingPermissionError()
             permissionDenied = false
         }
+    }
+
+    // 구글 맵 마커 벡터 -> 비트맵 변경
+    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
+        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
+        vectorDrawable!!.setBounds(
+            0,
+            0,
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight
+        )
+        val bitmap = Bitmap.createBitmap(
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
     companion object {
