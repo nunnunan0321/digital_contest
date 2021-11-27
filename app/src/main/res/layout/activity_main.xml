@@ -39,7 +39,7 @@
             app:itemIconTint="@drawable/select_bottom_nav_color"
             app:itemTextColor="@drawable/select_bottom_nav_color"
 
-            android:background="@color/manhattan"
+            android:background="@color/morning_glory"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

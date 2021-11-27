@@ -11,11 +11,10 @@
     <color name="base_gray">#C4C4C4</color>
     <color name="base_darkGray">#8E8E8E</color>
 
-    <color name="linen">#FCF7EF</color>
-    <color name="albescent_white">#F8EBD7</color>
-    <color name="manhattan">#F3CA8B</color>
-    <color name="rajah">#F1B65D</color>
+    <color name="hippie_blue">#58A4AE</color>
+    <color name="downy">#6DC2CD</color>
+    <color name="morning_glory">#8AD6E1</color>
+    <color name="powder_blue">#B8E5EC</color>
 
     <color name="people">#5960EF</color>
-
 </resources>

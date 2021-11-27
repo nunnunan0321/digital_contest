@@ -7,7 +7,7 @@
 
     <style name="customEditTextStyle" parent="Theme.Digital_contest.NoActionBar">
         <item name="android:background">@drawable/default_radius_10</item>
-        <item name="android:backgroundTint">@color/albescent_white</item>
+        <item name="android:backgroundTint">@color/powder_blue</item>
         <item name="android:textSize">16sp</item>
     </style>
 </resources>

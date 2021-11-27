@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
 
             android:src="@drawable/ic_pen"
-            map:backgroundTint="@color/rajah"
+            map:backgroundTint="@color/powder_blue"
             map:borderWidth="0dp"
 
             android:layout_margin="16dp"
