@@ -46,21 +46,31 @@ class ViewActivityViewModel : ViewModel() {
     }
 
     suspend fun addLike() : Boolean{
+        val userDataScope = CoroutineScope(Dispatchers.IO).async {
+            addUserLikeData()
+        }
+
+
+        val boardDataScope = CoroutineScope(Dispatchers.IO).async {
+            addBoardLikeList()
+        }
+
+        return userDataScope.await() == BoardResult.OK && boardDataScope.await() == BoardResult.OK
+    }
+
+    suspend fun addUserLikeData() : BoardResult {
         currentUserData.likeBoardList.add(boardId)
         writerUserData.value!!.totalLikeCount++
 
-        val addUserLikeCountResult = authDB.userTotalLikeCountUpdate(writerUserData.value!!)
-        if(addUserLikeCountResult == AuthResult.Fail) return false
-
-        val likeListResult =  boardDB.likeListUpdate(currentUserData.likeBoardList, currentUserData.id)
-        if(likeListResult == BoardResult.Fail){
-            writerUserData.value!!.totalLikeCount--
-            authDB.userTotalLikeCountUpdate(writerUserData.value!!)
-            return false
-        }
-
-        return true
+        return boardDB.userLikeListUpdate(currentUserData.likeBoardList, currentUserData.id)
     }
+
+    suspend fun addBoardLikeList() : BoardResult{
+        boardData.value!!.likeUuserList.add(currentUserData.id)
+
+        return boardDB.boardLikeListUpdate(boardData.value!!.likeUuserList, boardId)
+    }
+
 
     suspend fun cancelLike() : Boolean {
         currentUserData.likeBoardList.remove(boardId)
@@ -69,7 +79,7 @@ class ViewActivityViewModel : ViewModel() {
         val userTotalLikeCountResult = authDB.userTotalLikeCountUpdate(writerUserData.value!!)
         if(userTotalLikeCountResult == AuthResult.Fail) return false
 
-        val likeListResult = boardDB.likeListUpdate(currentUserData.likeBoardList, currentUserData.id)
+        val likeListResult = boardDB.userLikeListUpdate(currentUserData.likeBoardList, currentUserData.id)
         if(likeListResult == BoardResult.Fail){
             writerUserData.value!!.totalLikeCount++
             authDB.userTotalLikeCountUpdate(writerUserData.value!!)

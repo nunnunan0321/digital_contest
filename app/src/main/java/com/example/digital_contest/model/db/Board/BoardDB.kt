@@ -87,11 +87,27 @@ class BoardDB : board {
         return result
     }
 
-    override suspend fun likeListUpdate(likeBoardList: ArrayList<String>, userID: String): BoardResult {
+    override suspend fun userLikeListUpdate(likeBoardList: ArrayList<String>, userID: String): BoardResult {
         var result : BoardResult = BoardResult.Fail
 
         db.collection("user").document(userID)
             .update("likeBoardList", likeBoardList)
+            .addOnSuccessListener {
+                result = BoardResult.OK
+            }
+            .await()
+
+        return result
+    }
+
+    override suspend fun boardLikeListUpdate(
+        likeUserList: ArrayList<String>,
+        boardID: String
+    ): BoardResult {
+        var result = BoardResult.Fail
+
+        db.collection("board").document(boardID)
+            .update("likeUuserList", likeUserList)
             .addOnSuccessListener {
                 result = BoardResult.OK
             }
