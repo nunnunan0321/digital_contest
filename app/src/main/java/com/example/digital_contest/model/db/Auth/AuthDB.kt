@@ -23,7 +23,7 @@ class AuthDB : auth {
             val saveProfileImgResult = saveProfileImg(profileImg, user.id) ?: return AuthResult.Fail
             user.profileImgUrl = saveProfileImgResult
         }   else{
-            user.profileImgUrl = "https://firebasestorage.googleapis.com/v0/b/digital-contest-f689c.appspot.com/o/user%2Fdefault_profile_img.png?alt=media&token=e81937f4-95d9-4ae5-9b1c-9355d51643a5"
+            user.profileImgUrl = "https://firebasestorage.googleapis.com/v0/b/digital-contest-f689c.appspot.com/o/user%2Fdefault_profile_img.png?alt=media&token=fddf5048-944e-4a40-af29-f95c151e7605"
         }
 
         val saveUserDataResult = saveUserData(user)

@@ -101,7 +101,6 @@ class BoardDB : board {
     }
 
     override suspend fun getLikeBoards(likeBoardsList : ArrayList<String>): Map<String, Board> {
-        Log.d("likeList", "함수 호출 $likeBoardsList")
         val result = mutableMapOf<String, Board>()
 
         for(i in likeBoardsList){
