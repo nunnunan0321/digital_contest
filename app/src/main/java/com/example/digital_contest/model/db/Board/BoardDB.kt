@@ -1,7 +1,6 @@
 package com.example.digital_contest.model.db.Board
 
 import android.net.Uri
-import android.util.Log
 import com.example.digital_contest.model.Board
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -87,11 +86,24 @@ class BoardDB : board {
         return result
     }
 
-    override suspend fun userLikeListUpdate(likeBoardList: ArrayList<String>, userID: String): BoardResult {
+    override suspend fun readersLikeListUpdate(likeBoardList: ArrayList<String>, readersUserID: String): BoardResult {
         var result : BoardResult = BoardResult.Fail
 
-        db.collection("user").document(userID)
+        db.collection("user").document(readersUserID)
             .update("likeBoardList", likeBoardList)
+            .addOnSuccessListener {
+                result = BoardResult.OK
+            }
+            .await()
+
+        return result
+    }
+
+    override suspend fun writerLikeCountUpdate(totalLikeCount: Int, writerId: String): BoardResult {
+        var result = BoardResult.Fail
+
+        db.collection("user").document(writerId)
+            .update("totalLikeCount", totalLikeCount)
             .addOnSuccessListener {
                 result = BoardResult.OK
             }

@@ -7,7 +7,6 @@ import com.example.digital_contest.activity.sphash.authDB
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.model.Board
 import com.example.digital_contest.model.User
-import com.example.digital_contest.model.db.Auth.AuthResult
 import com.example.digital_contest.model.db.Board.BoardResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,48 +48,59 @@ class ViewActivityViewModel : ViewModel() {
         val userDataScope = CoroutineScope(Dispatchers.IO).async {
             addUserLikeData()
         }
+        val writerDataScope = CoroutineScope(Dispatchers.IO).async {
+            addWriterLikeCount()
+        }
         val boardDataScope = CoroutineScope(Dispatchers.IO).async {
             addBoardLikeList()
         }
 
-        return userDataScope.await() == BoardResult.OK && boardDataScope.await() == BoardResult.OK
+        return userDataScope.await() && writerDataScope.await() && boardDataScope.await()
     }
 
-    suspend fun addUserLikeData() : BoardResult {
+    suspend fun addUserLikeData() : Boolean {
         currentUserData.likeBoardList.add(boardId)
-        writerUserData.value!!.totalLikeCount++
-
-        return boardDB.userLikeListUpdate(currentUserData.likeBoardList, currentUserData.id)
+        return boardDB.readersLikeListUpdate(currentUserData.likeBoardList, currentUserData.id) == BoardResult.OK
     }
 
-    suspend fun addBoardLikeList() : BoardResult{
+    suspend fun addBoardLikeList() : Boolean{
         boardData.value!!.likeUuserList.add(currentUserData.id)
-
-        return boardDB.boardLikeListUpdate(boardData.value!!.likeUuserList, boardId)
+        return boardDB.boardLikeListUpdate(boardData.value!!.likeUuserList, boardId) == BoardResult.OK
     }
+
+    suspend fun addWriterLikeCount() : Boolean{
+        writerUserData.value!!.totalLikeCount++
+        return boardDB.writerLikeCountUpdate(writerUserData.value!!.totalLikeCount, writerUserData.value!!.id) == BoardResult.OK
+    }
+
 
 
     suspend fun cancelLike() : Boolean {
         val userDataScope = CoroutineScope(Dispatchers.IO).async {
             cancelUserLikeData()
         }
+        val writerDataScope = CoroutineScope(Dispatchers.IO).async {
+            cancelWriterLikeData()
+        }
         val boardDataScope = CoroutineScope(Dispatchers.IO).async {
             cancelBoardLikeList()
         }
 
-        return userDataScope.await() == BoardResult.OK && boardDataScope.await() == BoardResult.OK
+        return userDataScope.await() && writerDataScope.await() && boardDataScope.await()
     }
 
-    suspend fun cancelUserLikeData() : BoardResult{
+    suspend fun cancelUserLikeData() : Boolean{
         currentUserData.likeBoardList.remove(boardId)
-        writerUserData.value!!.totalLikeCount--
-
-        return boardDB.userLikeListUpdate(currentUserData.likeBoardList, currentUserData.id)
+        return boardDB.readersLikeListUpdate(currentUserData.likeBoardList, currentUserData.id) == BoardResult.OK
     }
 
-    suspend fun cancelBoardLikeList() : BoardResult{
-        boardData.value!!.likeUuserList.remove(currentUserData.id)
+    suspend fun cancelWriterLikeData() : Boolean{
+        writerUserData.value!!.totalLikeCount--
+        return boardDB.writerLikeCountUpdate(writerUserData.value!!.totalLikeCount, writerUserData.value!!.id) == BoardResult.OK
+    }
 
-        return boardDB.boardLikeListUpdate(boardData.value!!.likeUuserList, boardId)
+    suspend fun cancelBoardLikeList() : Boolean{
+        boardData.value!!.likeUuserList.remove(currentUserData.id)
+        return boardDB.boardLikeListUpdate(boardData.value!!.likeUuserList, boardId) == BoardResult.OK
     }
 }
