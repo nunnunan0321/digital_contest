@@ -49,8 +49,6 @@ class ViewActivityViewModel : ViewModel() {
         val userDataScope = CoroutineScope(Dispatchers.IO).async {
             addUserLikeData()
         }
-
-
         val boardDataScope = CoroutineScope(Dispatchers.IO).async {
             addBoardLikeList()
         }
@@ -73,19 +71,26 @@ class ViewActivityViewModel : ViewModel() {
 
 
     suspend fun cancelLike() : Boolean {
+        val userDataScope = CoroutineScope(Dispatchers.IO).async {
+            cancelUserLikeData()
+        }
+        val boardDataScope = CoroutineScope(Dispatchers.IO).async {
+            cancelBoardLikeList()
+        }
+
+        return userDataScope.await() == BoardResult.OK && boardDataScope.await() == BoardResult.OK
+    }
+
+    suspend fun cancelUserLikeData() : BoardResult{
         currentUserData.likeBoardList.remove(boardId)
         writerUserData.value!!.totalLikeCount--
 
-        val userTotalLikeCountResult = authDB.userTotalLikeCountUpdate(writerUserData.value!!)
-        if(userTotalLikeCountResult == AuthResult.Fail) return false
+        return boardDB.userLikeListUpdate(currentUserData.likeBoardList, currentUserData.id)
+    }
 
-        val likeListResult = boardDB.userLikeListUpdate(currentUserData.likeBoardList, currentUserData.id)
-        if(likeListResult == BoardResult.Fail){
-            writerUserData.value!!.totalLikeCount++
-            authDB.userTotalLikeCountUpdate(writerUserData.value!!)
-            return false
-        }
+    suspend fun cancelBoardLikeList() : BoardResult{
+        boardData.value!!.likeUuserList.remove(currentUserData.id)
 
-        return true
+        return boardDB.boardLikeListUpdate(boardData.value!!.likeUuserList, boardId)
     }
 }
