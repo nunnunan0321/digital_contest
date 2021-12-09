@@ -5,9 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.digital_contest.activity.sphash.authDB
 import com.example.digital_contest.activity.sphash.boardDB
+import com.example.digital_contest.activity.sphash.commentDB
 import com.example.digital_contest.model.Board
+import com.example.digital_contest.model.Comment
 import com.example.digital_contest.model.User
 import com.example.digital_contest.model.db.Board.BoardResult
+import com.example.digital_contest.model.db.Comment.CommentResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -18,6 +21,7 @@ class ViewActivityViewModel : ViewModel() {
     lateinit var boardId : String
     val boardData = MutableLiveData(Board())
     val uploadDateFormat = MutableLiveData("")
+    val commentContent = MutableLiveData("")
 
     lateinit var currentUserData : User
 
@@ -73,8 +77,6 @@ class ViewActivityViewModel : ViewModel() {
         return boardDB.writerLikeCountUpdate(writerUserData.value!!.totalLikeCount, writerUserData.value!!.id) == BoardResult.OK
     }
 
-
-
     suspend fun cancelLike() : Boolean {
         val userDataScope = CoroutineScope(Dispatchers.IO).async {
             cancelUserLikeData()
@@ -102,5 +104,16 @@ class ViewActivityViewModel : ViewModel() {
     suspend fun cancelBoardLikeList() : Boolean{
         boardData.value!!.likeUuserList.remove(currentUserData.id)
         return boardDB.boardLikeListUpdate(boardData.value!!.likeUuserList, boardId) == BoardResult.OK
+    }
+
+    suspend fun writeComment() : CommentResult{
+        val commentData = Comment(
+            writerID = currentUserData.id,
+            content = commentContent.value!!,
+
+            boardID = boardId,
+        )
+
+        return commentDB.writerComment(commentData)
     }
 }

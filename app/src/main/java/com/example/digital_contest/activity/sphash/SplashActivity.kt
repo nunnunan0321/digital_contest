@@ -10,6 +10,7 @@ import com.example.digital_contest.model.db.Auth.AuthDB
 import com.example.digital_contest.R
 import com.example.digital_contest.activity.main.MainActivity
 import com.example.digital_contest.model.db.Board.BoardDB
+import com.example.digital_contest.model.db.Comment.CommentDB
 import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +19,7 @@ import kotlinx.coroutines.launch
 
 val authDB : AuthDB = AuthDB()
 val boardDB : BoardDB = BoardDB()
+val commentDB : CommentDB = CommentDB()
 
 var currentLocation = GeoPoint(0.0, 0.0)
 
