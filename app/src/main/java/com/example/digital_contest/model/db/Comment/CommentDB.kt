@@ -19,4 +19,17 @@ class CommentDB : comment {
 
         return result
     }
+
+    override suspend fun getAllCommentByBoardId(boardId: String): List<Comment> {
+        val result = mutableListOf<Comment>()
+
+        db.collection("board").document(boardId).collection("comment").get()
+            .addOnSuccessListener { documents ->
+                for(document in documents){
+                    result.add(document.toObject(Comment::class.java))
+                }
+            }
+
+        return result
+    }
 }

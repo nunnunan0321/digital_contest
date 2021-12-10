@@ -1,6 +1,7 @@
 package com.example.digital_contest.activity.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -89,6 +90,14 @@ class ViewActivity : AppCompatActivity() {
         viewModel.commentContent.observe(this){
             if(it.isEmpty()) binding.imgViewSendComment.visibility = View.GONE
             else binding.imgViewSendComment.visibility = View.VISIBLE
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.getComment()
+
+            //Log.d("commentList", viewModel.commentList.value.toString())
+            val adapter = CommentListAdapter(viewModel.commentList.value!!)
+            binding.recyclerViewCommentList.adapter = adapter
         }
     }
 }

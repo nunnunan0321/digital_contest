@@ -46,6 +46,7 @@
         />
 
     <TextView
+        android:id="@+id/txt_commentListItem_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 

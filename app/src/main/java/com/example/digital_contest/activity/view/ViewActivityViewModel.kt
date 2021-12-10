@@ -11,10 +11,7 @@ import com.example.digital_contest.model.Comment
 import com.example.digital_contest.model.User
 import com.example.digital_contest.model.db.Board.BoardResult
 import com.example.digital_contest.model.db.Comment.CommentResult
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.text.DateFormat
 
 class ViewActivityViewModel : ViewModel() {
@@ -29,6 +26,8 @@ class ViewActivityViewModel : ViewModel() {
 
     var userPoolLike = MutableLiveData(false)
 
+    val commentList = MutableLiveData<List<Comment>>()
+
     fun getBoardData(){
         CoroutineScope(Dispatchers.Main).launch {
             boardData.value = CoroutineScope(Dispatchers.IO).async{
@@ -40,7 +39,7 @@ class ViewActivityViewModel : ViewModel() {
     }
 
     fun getWriterUserData(){
-        Log.d("writerID", boardData.value!!.writerID)
+        //Log.d("writerID", boardData.value!!.writerID)
         CoroutineScope(Dispatchers.Main).launch {
             writerUserData.value = CoroutineScope(Dispatchers.IO).async {
                 authDB.getUserDataById(boardData.value!!.writerID)!!
@@ -115,5 +114,9 @@ class ViewActivityViewModel : ViewModel() {
         )
 
         return commentDB.writerComment(commentData)
+    }
+
+    suspend fun getComment() {
+        commentList.value = commentDB.getAllCommentByBoardId(boardId)
     }
 }
