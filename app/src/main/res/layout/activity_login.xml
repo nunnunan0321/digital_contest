@@ -21,13 +21,12 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
 
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="152dp"
             android:src="@drawable/ic_app_icon"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_id"
@@ -44,8 +43,8 @@
 
             <EditText
                 android:id="@+id/edt_login_inputId"
-                android:layout_width="280dp"
-                android:layout_height="52dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 style="@style/customEditTextStyle"
 
                 android:hint="아이디"

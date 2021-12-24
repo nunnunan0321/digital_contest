@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="people">#FFBB86FC</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -16,5 +17,9 @@
     <color name="morning_glory">#8AD6E1</color>
     <color name="powder_blue">#B8E5EC</color>
 
-    <color name="people">#5960EF</color>
+
+    <color name="sandyBrown">#F2B65E</color>
+    <color name="sanMarino">#4E5BA6</color>
+    <color name="background_gray">#E5E5E5</color>
+<!--    <color name="people">#5960EF</color>-->
 </resources>

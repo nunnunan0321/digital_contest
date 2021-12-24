@@ -44,8 +44,8 @@ class LikeListFragment:Fragment(){
             }
         }
 
-        val boardListDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager(requireContext()).orientation)
-        binding.recyclerLikeList.addItemDecoration(boardListDecoration)
+//        val boardListDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager(requireContext()).orientation)
+//        binding.recyclerLikeList.addItemDecoration(boardListDecoration)
 
         CoroutineScope(Dispatchers.Main).launch {
             job.join()
