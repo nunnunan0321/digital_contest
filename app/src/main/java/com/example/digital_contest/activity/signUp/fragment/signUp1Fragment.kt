@@ -25,6 +25,9 @@ class signUp1Fragment : Fragment() {
         binding.lifecycleOwner = this
         val root = binding.root
 
+        binding.imgSignUp1PrevBtn.setOnClickListener {
+            (activity as SignUpActivity).finish()
+        }
 
         binding.btnSignUpNext.setOnClickListener{
             // 다음 버튼을 눌렀을때 처리하는 기능, 사용자 프로필 선택 화면과 사용자 메시지 입력 화면으로 이동한다.

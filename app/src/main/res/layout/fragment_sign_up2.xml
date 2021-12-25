@@ -26,7 +26,7 @@
             >
 
             <ImageView
-                android:id="@+id/img_signUp2_prev"
+                android:id="@+id/img_signUp2_prevBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -43,13 +43,13 @@
 
                 android:text="회원 정보 입력"
                 android:textSize="24sp"
-                android:fontFamily="@font/roboto_black"
+                android:textStyle="bold"
 
                 android:layout_marginStart="12dp"
 
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/img_signUp2_prev"
+                app:layout_constraintStart_toEndOf="@+id/img_signUp2_prevBtn"
 
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.digital_contest.activity.write.WriteActivity
@@ -25,6 +26,8 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     lateinit var userData : User
 
+    lateinit var navControl : NavController
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("userData", userData.toString())
 
-        val navControl = findNavController(R.id.fragment_main)
+        navControl = findNavController(R.id.fragment_main)
         findViewById<BottomNavigationView>(R.id.bottomNav_main).setupWithNavController(navControl)
 
 

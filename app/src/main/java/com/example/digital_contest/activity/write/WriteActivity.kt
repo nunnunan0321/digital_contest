@@ -34,12 +34,17 @@ class WriteActivity : AppCompatActivity() {
         binding.btnWriteImgChoice.setOnClickListener {
             getImageCallback.launch("image/*")
         }
+
         binding.btnWriteWrite.setOnClickListener {
             if(viewModel.img.value == null){
                 Toast.makeText(this, "이미지를 선택해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             saveBoard()
+        }
+
+        binding.imgWritePrevBtn.setOnClickListener {
+            finish()
         }
 
 

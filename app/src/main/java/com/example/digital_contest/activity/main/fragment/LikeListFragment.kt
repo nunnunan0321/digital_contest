@@ -29,6 +29,10 @@ class LikeListFragment:Fragment(){
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_like_list_tab,container,false)
         val root = binding.root
 
+        binding.imgLikeListPrevBtn.setOnClickListener {
+            (activity as MainActivity).navControl.navigate(R.id.action_LikeListFragment_to_MainFragment)
+        }
+
         job = CoroutineScope(Dispatchers.IO).launch {
             val likeList = boardDB.getLikeBoards((activity as MainActivity).userData.likeBoardList)
             val likeListAdapter = BoardListAdapter(likeList, (activity as MainActivity).userData)

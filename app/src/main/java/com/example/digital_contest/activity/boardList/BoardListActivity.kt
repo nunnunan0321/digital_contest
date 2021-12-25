@@ -34,7 +34,7 @@ class BoardListActivity : AppCompatActivity() {
         val boardListDecoration = DividerItemDecoration(this, LinearLayoutManager(this).orientation)
         binding.recyclerBoardList.addItemDecoration(boardListDecoration)
 
-        binding.imgBoardListArrow.setOnClickListener {
+        binding.imgBoardListPrevBtn.setOnClickListener {
             finish()
         }
     }

@@ -33,14 +33,26 @@
             app:layout_constraintGuide_end="30dp"
             />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_view_titlebar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            style="@style/titleBarStyle"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
         <ImageView
-            android:id="@+id/img_view_arrow"
+            android:id="@+id/img_view_prevBtn"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
 
             android:src="@drawable/ic_arrow_left"
 
-            app:layout_constraintStart_toStartOf="@id/guide_view_line1"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/txt_view_boardTitle"
             app:layout_constraintBottom_toBottomOf="@id/txt_view_boardTitle"
             />
@@ -52,29 +64,16 @@
 
             android:text="@{viewModel.boardData.title, default=`제목`}"
             android:textSize="24sp"
-            android:fontFamily="@font/roboto_bold"
             android:textStyle="bold"
 
             android:layout_marginStart="12dp"
-            android:layout_marginTop="20dp"
 
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_view_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_view_prevBtn"
             />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/txt_view_line"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-
-            android:background="@color/base_darkGray"
-
-            android:layout_marginTop="20dp"
-
-            app:layout_constraintTop_toBottomOf="@id/txt_view_boardTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
         
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_view_profileImg"
@@ -85,7 +84,7 @@
 
             android:layout_marginTop="26dp"
 
-            app:layout_constraintTop_toBottomOf="@id/txt_view_line"
+            app:layout_constraintTop_toBottomOf="@id/constraint_view_titlebar"
             app:layout_constraintStart_toStartOf="@id/guide_view_line1"
             />
 

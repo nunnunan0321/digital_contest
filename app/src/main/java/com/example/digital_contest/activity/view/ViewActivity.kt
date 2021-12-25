@@ -57,7 +57,7 @@ class ViewActivity : AppCompatActivity() {
             }
         }
 
-        binding.imgViewArrow.setOnClickListener {
+        binding.imgViewPrevBtn.setOnClickListener {
             finish()
         }
 

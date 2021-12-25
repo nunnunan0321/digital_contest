@@ -35,6 +35,10 @@ class signUp2Fragment : Fragment() {
         binding.viewModel = viewModel
         val root = binding.root
 
+        binding.imgSignUp2PrevBtn.setOnClickListener {
+            (activity as SignUpActivity).navController.navigate(R.id.action_signUp2Fragment_to_signUp1Fragment)
+        }
+
         binding.btnSignUp2Prev.setOnClickListener {
             (activity as SignUpActivity).navController.navigate(R.id.action_signUp2Fragment_to_signUp1Fragment)
         }
