@@ -20,4 +20,14 @@
         <item name="android:paddingStart">20dp</item>
         <item name="android:paddingEnd">20dp</item>
     </style>
+
+    <style name="myProfileMenu" parent="Theme.Digital_contest.NoActionBar">
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/default_radius_10</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
 </resources>

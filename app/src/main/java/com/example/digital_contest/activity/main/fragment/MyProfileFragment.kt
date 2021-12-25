@@ -35,7 +35,7 @@ class MyProfileFragment : Fragment() {
             (activity as MainActivity).startActivity(intent)
         }
 
-        binding.btnThirdTapLogout.setOnClickListener {
+        binding.layoutLogout.setOnClickListener {
             authDB.auth.signOut()
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)

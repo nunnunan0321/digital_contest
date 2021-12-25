@@ -45,20 +45,6 @@
             app:layout_constraintEnd_toEndOf="@id/guideline5"
             />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-
-            android:layout_height="2dp"
-            android:layout_marginTop="72dp"
-            android:layout_marginHorizontal="20dp"
-
-            android:background="@color/base_lightGray"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_likeListItem_profileImg" />
-
 
 
         <RelativeLayout
@@ -66,11 +52,13 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
 
-            android:clickable="true"
+            style="@style/myProfileMenu"
+
+            android:layout_marginTop="32dp"
 
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            app:layout_constraintTop_toBottomOf="@+id/txt_myProfile_userMsg">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -118,7 +106,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
 
-            android:clickable="true"
+            style="@style/myProfileMenu"
 
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -171,7 +159,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
 
-            android:clickable="true"
+            style="@style/myProfileMenu"
 
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -218,27 +206,12 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="0dp"
-
-            android:layout_height="2dp"
-            android:layout_marginHorizontal="20dp"
-
-
-            android:background="@color/base_lightGray"
-
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_email" />
-
         <RelativeLayout
             android:id="@+id/layout_like"
             android:layout_width="0dp"
             android:layout_height="60dp"
 
-            android:clickable="true"
+            style="@style/myProfileMenu"
 
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -283,27 +256,12 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="0dp"
-
-            android:layout_height="2dp"
-            android:layout_marginHorizontal="20dp"
-
-
-            android:background="@color/base_lightGray"
-
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_like" />
-
         <RelativeLayout
             android:id="@+id/layout_myProfile_written"
             android:layout_width="0dp"
             android:layout_height="60dp"
 
-            android:clickable="true"
+            style="@style/myProfileMenu"
 
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -334,19 +292,28 @@
                 android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/layout_logout"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
 
-        <Button
-            android:id="@+id/btn_thirdTap_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/myProfileMenu"
 
-            android:text="로그아웃"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/layout_myProfile_written">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:gravity="center_vertical"
+                android:text="로그아웃"
+                android:fontFamily="@font/roboto_regular"
 
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                android:textSize="16sp" />
+        </RelativeLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
