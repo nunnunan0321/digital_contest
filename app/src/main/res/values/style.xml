@@ -11,4 +11,13 @@
 <!--        <item name="android:background">@drawable/shape_edit_text</item>-->
         <item name="android:textSize">16sp</item>
     </style>
+
+    <style name="titleBarStyle" parent="Theme.Digital_contest.NoActionBar">
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+    </style>
 </resources>
