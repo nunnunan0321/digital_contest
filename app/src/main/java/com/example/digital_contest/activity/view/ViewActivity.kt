@@ -88,8 +88,8 @@ class ViewActivity : AppCompatActivity() {
         }
 
         viewModel.commentContent.observe(this){
-            if(it.isEmpty()) binding.imgViewSendComment.visibility = View.GONE
-            else binding.imgViewSendComment.visibility = View.VISIBLE
+//            if(it.isEmpty()) binding.imgViewSendComment.visibility = View.GONE
+//            else binding.imgViewSendComment.visibility = View.VISIBLE
         }
 
         CoroutineScope(Dispatchers.Main).launch {

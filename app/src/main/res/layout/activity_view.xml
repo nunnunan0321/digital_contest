@@ -14,24 +14,9 @@
         android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide_view_line1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="30dp"
-            />
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide_view_line2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="30dp"
-            />
+        android:layout_height="match_parent"
+        android:background="@color/background_gray"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_view_titlebar"
@@ -74,107 +59,190 @@
             />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_view_profileImg"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-
-            android:src="@drawable/default_profile_img"
-
-            android:layout_marginTop="26dp"
-
-            app:layout_constraintTop_toBottomOf="@id/constraint_view_titlebar"
-            app:layout_constraintStart_toStartOf="@id/guide_view_line1"
-            />
-
-        <TextView
-            android:id="@+id/txt_view_writer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="@{viewModel.writerUserData.name , default=`작성자`}"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/roboto_medium"
-
-            android:layout_marginHorizontal="20dp"
-
-            app:layout_constraintTop_toTopOf="@+id/img_view_profileImg"
-            app:layout_constraintBottom_toTopOf="@id/txt_view_timeStamp"
-            app:layout_constraintStart_toEndOf="@+id/img_view_profileImg"
-            />
-
-        <TextView
-            android:id="@+id/txt_view_timeStamp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="@{viewModel.uploadDateFormat, default=`2021.11.19`}"
-            android:textSize="16sp"
-
-            android:layout_marginHorizontal="20dp"
-
-            app:layout_constraintTop_toBottomOf="@id/txt_view_writer"
-            app:layout_constraintBottom_toBottomOf="@id/img_view_profileImg"
-            app:layout_constraintStart_toEndOf="@id/img_view_profileImg"
-            />
-
-
-        <TextView
-            android:id="@+id/txt_view_boardContent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_view_board"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
-            android:text="@{viewModel.boardData.contents, default=`에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 `}"
-            android:textSize="16sp"
-            android:fontFamily="@font/roboto_light"
 
             android:layout_marginVertical="20dp"
 
-            app:layout_constraintTop_toBottomOf="@id/img_view_profileImg"
-            app:layout_constraintBottom_toTopOf="@id/img_view_boardImage"
+            android:background="@drawable/default_radius_20"
+            android:backgroundTint="@color/white"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+
+            android:elevation="10dp"
+
+            app:layout_constraintTop_toBottomOf="@id/constraint_view_titlebar"
             app:layout_constraintStart_toStartOf="@id/guide_view_line1"
             app:layout_constraintEnd_toEndOf="@id/guide_view_line2"
-            />
+            >
 
-        <ImageView
-            android:id="@+id/img_view_boardImage"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_view_profileImg"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+                android:src="@drawable/default_profile_img"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_view_writer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@{viewModel.writerUserData.name , default=`작성자`}"
+                android:textSize="20sp"
+
+                android:textStyle="bold"
+
+                app:layout_constraintBottom_toTopOf="@id/txt_view_timeStamp"
+                app:layout_constraintStart_toEndOf="@+id/img_view_profileImg"
+                app:layout_constraintTop_toTopOf="@+id/img_view_profileImg" />
+
+            <TextView
+                android:id="@+id/txt_view_timeStamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="20dp"
+                android:text="@{viewModel.uploadDateFormat, default=`2021.11.19`}"
+
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="@id/img_view_profileImg"
+                app:layout_constraintStart_toEndOf="@id/img_view_profileImg"
+                app:layout_constraintTop_toBottomOf="@id/txt_view_writer" />
+
+
+            <TextView
+                android:id="@+id/txt_view_boardContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="20dp"
+                android:fontFamily="@font/roboto_light"
+                android:text="@{viewModel.boardData.contents, default=`에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 에드캔 최고 `}"
+
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toTopOf="@id/img_view_boardImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_view_profileImg" />
+
+            <ImageView
+                android:id="@+id/img_view_boardImage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="16dp"
+
+                android:src="@drawable/default_profile_img"
+
+                app:layout_constraintBottom_toTopOf="@id/img_view_likeBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_view_boardContent" />
+
+            <ImageView
+                android:id="@+id/img_view_likeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_heart_fill"
+
+                android:tint="@color/sandyBrown"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_view_boardImage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_view_inputComment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:src="@drawable/edcan"
+            android:background="@drawable/default_radius_20"
+            android:backgroundTint="@color/white"
 
-            android:layout_marginBottom="16dp"
+            android:elevation="10dp"
 
-            app:layout_constraintTop_toBottomOf="@id/txt_view_boardContent"
-            app:layout_constraintBottom_toTopOf="@id/img_view_likeBtn"
+            android:layout_marginTop="16dp"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="12dp"
+
+            app:layout_constraintTop_toBottomOf="@+id/constraint_view_board"
             app:layout_constraintStart_toStartOf="@id/guide_view_line1"
             app:layout_constraintEnd_toEndOf="@id/guide_view_line2"
-            />
+            >
+            
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_view_commentProfileImg"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
 
-        <ImageView
-            android:id="@+id/img_view_likeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                android:src="@drawable/default_profile_img"
 
-            android:src="@drawable/ic_heart_fill"
-            android:tint="@color/people"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
 
-            app:layout_constraintTop_toBottomOf="@id/img_view_boardImage"
-            app:layout_constraintStart_toStartOf="@id/guide_view_line1"
-            />
+            <TextView
+                android:id="@+id/txt_view_commentCurrentUserId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="10dp"
+                android:text="@{viewModel.currentUserData.id, default=`ckstmznf`}"
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto_bold"
 
-            android:background="@color/black"
+                android:layout_marginStart="18dp"
 
-            app:layout_constraintTop_toBottomOf="@id/img_view_likeBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+                app:layout_constraintTop_toTopOf="@+id/img_view_commentProfileImg"
+                app:layout_constraintBottom_toBottomOf="@+id/img_view_commentProfileImg"
+                app:layout_constraintStart_toEndOf="@+id/img_view_commentProfileImg"
+                />
+
+            <EditText
+                android:id="@+id/edt_view_inputComment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:text="@={viewModel.commentContent}"
+
+                android:layout_marginHorizontal="12dp"
+
+                app:layout_constraintTop_toBottomOf="@+id/txt_view_commentCurrentUserId"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_view_commentProfileImg"
+                app:layout_constraintEnd_toStartOf="@+id/img_view_sendComment"
+                />
+
+            <ImageButton
+                android:id="@+id/img_view_sendComment"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+
+                android:src="@drawable/ic_send_comment"
+                android:background="@drawable/default_radius_20"
+                android:backgroundTint="@color/sandyBrown"
+
+                android:layout_marginVertical="4dp"
+                android:paddingHorizontal="16dp"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_commentList"
@@ -184,45 +252,30 @@
             tools:listitem="@layout/layout_comment_list_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
-            app:layout_constraintTop_toBottomOf="@id/img_view_likeBtn"
+            android:layout_marginTop="10dp"
+
+            app:layout_constraintTop_toBottomOf="@id/constraint_view_inputComment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_view_line1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:background="@color/hippie_blue"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp"
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_view_line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp"
+            />
 
-            android:gravity="center"
-
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view_commentList"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <EditText
-                android:id="@+id/edt_view_inputComment"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:text="@={viewModel.commentContent}"
-                android:hint="댓글을 입력하세요."
-
-                android:layout_weight="1"
-                />
-
-            <ImageView
-                android:id="@+id/img_view_sendComment"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-
-                android:src="@drawable/ic_arrow_right"
-                />
-
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
