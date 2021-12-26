@@ -183,7 +183,7 @@
             app:layout_constraintStart_toStartOf="@id/guide_view_line1"
             app:layout_constraintEnd_toEndOf="@id/guide_view_line2"
             >
-            
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_view_commentProfileImg"
                 android:layout_width="32dp"
@@ -267,6 +267,7 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="16dp"
             />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_view_line2"
             android:layout_width="wrap_content"

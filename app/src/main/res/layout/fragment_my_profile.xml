@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -8,9 +10,6 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activity.main.fragment.MyProfileFragment">
@@ -40,280 +39,311 @@
             android:gravity="center"
 
             app:layout_constraintTop_toBottomOf="@id/img_likeListItem_profileImg"
-            app:layout_constraintBottom_toTopOf="@id/layout_name"
             app:layout_constraintStart_toStartOf="@id/guideline3"
             app:layout_constraintEnd_toEndOf="@id/guideline5"
             />
 
-
-
-        <RelativeLayout
-            android:id="@+id/layout_name"
+        <ScrollView
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="0dp"
 
-            style="@style/myProfileMenu"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
 
-            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            android:scrollbars="none"
+            android:soundEffectsEnabled="false"
+            android:overScrollMode="never"
 
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/txt_myProfile_userMsg">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
 
-                android:text="이름"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/roboto_regular"
+                <RelativeLayout
+                    android:id="@+id/layout_name"
+                    style="@style/myProfileMenu"
+                    android:layout_width="match_parent"
 
-                android:gravity="center_vertical"
-                />
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
 
-            <TextView
-                android:id="@+id/txt_name"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_myProfile_userMsg">
 
-                android:gravity="center"
-                android:layout_marginEnd="10dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-                android:text="@{userData.name, default=`박희찬`}"
-                android:textSize="14sp"
-                android:textColor="@color/base_darkGray"
-                android:fontFamily="@font/roboto_light"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center_vertical"
+                        android:text="이름"
+                        android:textColor="@color/black"
 
+                        android:textSize="16sp" />
 
-                android:layout_toStartOf="@+id/txt_end1" />
+                    <TextView
+                        android:id="@+id/txt_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-            <ImageView
-                android:id="@+id/txt_end1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:layout_toStartOf="@+id/txt_end1"
 
-                android:src="@drawable/ic_arrow_right"
+                        android:fontFamily="@font/roboto_light"
+                        android:gravity="center"
+                        android:text="@{userData.name, default=`박희찬`}"
+                        android:textColor="@color/base_darkGray"
 
-                android:gravity="center"
 
-                android:layout_alignParentEnd="true" />
+                        android:textSize="14sp" />
 
-        </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/txt_end1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-        <RelativeLayout
-            android:id="@+id/layout_id"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
+                        android:layout_alignParentEnd="true"
 
-            style="@style/myProfileMenu"
+                        android:gravity="center"
 
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/layout_name">
+                        android:src="@drawable/ic_arrow_right" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                </RelativeLayout>
 
-                android:gravity="center_vertical"
-                android:text="아이디"
-                android:textColor="@color/black"
-                android:fontFamily="@font/roboto_regular"
+                <RelativeLayout
+                    android:id="@+id/layout_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
 
+                    style="@style/myProfileMenu"
+                    android:layout_marginHorizontal="10dp"
 
-                android:textSize="16sp" />
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_name">
 
-            <TextView
-                android:id="@+id/txt_likeListItem_writer"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-                android:gravity="center"
-                android:layout_marginEnd="10dp"
+                        android:gravity="center_vertical"
+                        android:text="아이디"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/roboto_regular"
 
-                android:text="@{userData.id, default=`ckstmznf`}"
-                android:textSize="14sp"
-                android:textColor="@color/base_darkGray"
-                android:fontFamily="@font/roboto_light"
 
-                android:layout_toStartOf="@+id/txt_end2" />
+                        android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/txt_end2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                    <TextView
+                        android:id="@+id/txt_likeListItem_writer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-                android:src="@drawable/ic_arrow_right"
+                        android:gravity="center"
+                        android:layout_marginEnd="10dp"
 
+                        android:text="@{userData.id, default=`ckstmznf`}"
+                        android:textSize="14sp"
+                        android:textColor="@color/base_darkGray"
+                        android:fontFamily="@font/roboto_light"
 
-                android:gravity="center"
+                        android:layout_toStartOf="@+id/txt_end2" />
 
-                android:layout_alignParentEnd="true" />
+                    <ImageView
+                        android:id="@+id/txt_end2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-        </RelativeLayout>
+                        android:src="@drawable/ic_arrow_right"
 
 
-        <RelativeLayout
-            android:id="@+id/layout_email"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
+                        android:gravity="center"
 
-            style="@style/myProfileMenu"
+                        android:layout_alignParentEnd="true" />
 
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/layout_id">
+                </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
 
-                android:gravity="center_vertical"
-                android:text="이메일"
-                android:textColor="@color/black"
-                android:fontFamily="@font/roboto_regular"
+                <RelativeLayout
+                    android:id="@+id/layout_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
 
+                    style="@style/myProfileMenu"
+                    android:layout_marginHorizontal="10dp"
 
-                android:textSize="16sp" />
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_id">
 
-            <TextView
-                android:id="@+id/txt_email"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-                android:gravity="center"
-                android:layout_marginEnd="10dp"
+                        android:gravity="center_vertical"
+                        android:text="이메일"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/roboto_regular"
 
-                android:text="@{userData.email, default=`ckstmznf@naver.com`}"
-                android:textSize="14sp"
-                android:textColor="@color/base_darkGray"
-                android:fontFamily="@font/roboto_light"
 
-                android:layout_toStartOf="@+id/txt_end3" />
+                        android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/txt_end3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                    <TextView
+                        android:id="@+id/txt_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-                android:src="@drawable/ic_arrow_right"
+                        android:gravity="center"
+                        android:layout_marginEnd="10dp"
 
+                        android:text="@{userData.email, default=`ckstmznf@naver.com`}"
+                        android:textSize="14sp"
+                        android:textColor="@color/base_darkGray"
+                        android:fontFamily="@font/roboto_light"
 
-                android:gravity="center"
+                        android:layout_toStartOf="@+id/txt_end3" />
 
-                android:layout_alignParentEnd="true" />
+                    <ImageView
+                        android:id="@+id/txt_end3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-        </RelativeLayout>
+                        android:src="@drawable/ic_arrow_right"
 
-        <RelativeLayout
-            android:id="@+id/layout_like"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
 
-            style="@style/myProfileMenu"
+                        android:gravity="center"
 
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/layout_email">
+                        android:layout_alignParentEnd="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                </RelativeLayout>
 
-                android:gravity="center_vertical"
-                android:text="좋아요 수"
-                android:fontFamily="@font/roboto_regular"
+                <RelativeLayout
+                    android:id="@+id/layout_like"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
 
+                    style="@style/myProfileMenu"
+                    android:layout_marginHorizontal="10dp"
 
-                android:textSize="16sp" />
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_email">
 
-            <TextView
-                android:id="@+id/txt_good"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-                android:layout_marginEnd="10dp"
-                android:layout_toStartOf="@+id/txt_end4"
+                        android:gravity="center_vertical"
+                        android:text="좋아요 수"
+                        android:fontFamily="@font/roboto_regular"
 
-                android:fontFamily="@font/roboto_light"
-                android:gravity="center"
-                android:text="@{userData.totalLikeCount + ``, default=`0`}"
-                android:textColor="@color/base_darkGray"
 
-                android:textSize="14sp" />
+                        android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/txt_end4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                    <TextView
+                        android:id="@+id/txt_good"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-                android:src="@drawable/ic_arrow_right"
+                        android:layout_marginEnd="10dp"
+                        android:layout_toStartOf="@+id/txt_end4"
 
-                android:gravity="center"
+                        android:fontFamily="@font/roboto_light"
+                        android:gravity="center"
+                        android:text="@{userData.totalLikeCount + ``, default=`0`}"
+                        android:textColor="@color/base_darkGray"
 
-                android:layout_alignParentEnd="true" />
+                        android:textSize="14sp" />
 
-        </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/txt_end4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-        <RelativeLayout
-            android:id="@+id/layout_myProfile_written"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
+                        android:src="@drawable/ic_arrow_right"
 
-            style="@style/myProfileMenu"
+                        android:gravity="center"
 
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/layout_like">
+                        android:layout_alignParentEnd="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                </RelativeLayout>
 
-                android:gravity="center_vertical"
-                android:text="작성한 게시물"
-                android:fontFamily="@font/roboto_regular"
+                <RelativeLayout
+                    android:id="@+id/layout_myProfile_written"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
 
+                    style="@style/myProfileMenu"
+                    android:layout_marginHorizontal="10dp"
 
-                android:textSize="16sp" />
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_like">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-            <ImageView
-                android:id="@+id/txt_end5"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="작성한 게시물"
+                        android:fontFamily="@font/roboto_regular"
 
-                android:src="@drawable/ic_arrow_right"
 
+                        android:textSize="16sp" />
 
-                android:gravity="center"
 
-                android:layout_alignParentEnd="true" />
+                    <ImageView
+                        android:id="@+id/txt_end5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/layout_logout"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
+                        android:src="@drawable/ic_arrow_right"
 
-            style="@style/myProfileMenu"
 
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/layout_myProfile_written">
+                        android:gravity="center"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true" />
 
-                android:gravity="center_vertical"
-                android:text="로그아웃"
-                android:fontFamily="@font/roboto_regular"
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/layout_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
 
+                    style="@style/myProfileMenu"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="15dp"
 
-                android:textSize="16sp" />
-        </RelativeLayout>
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_myProfile_written">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:gravity="center_vertical"
+                        android:text="로그아웃"
+                        android:textColor="#ff0000"
+                        android:fontFamily="@font/roboto_regular"
+
+
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
