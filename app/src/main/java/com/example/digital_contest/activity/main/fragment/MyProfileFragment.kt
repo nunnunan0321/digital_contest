@@ -29,6 +29,10 @@ class MyProfileFragment : Fragment() {
         binding.userData = (activity as MainActivity).userData
         Glide.with(this).load((activity as MainActivity).userData.profileImgUrl).into(binding.imgLikeListItemProfileImg)
 
+        binding.layoutLike.setOnClickListener{
+            (activity as MainActivity).navControl.navigate(R.id.action_MyProfileFragment_to_LikeListFragment)
+        }
+
         binding.layoutMyProfileWritten.setOnClickListener{
             val intent = Intent(requireContext(), BoardListActivity::class.java)
             intent.putExtra("userData", (activity as MainActivity).userData)

@@ -27,6 +27,10 @@
         android:name="com.example.digital_contest.activity.main.fragment.MyProfileFragment"
         android:label="My Profile"
         tools:layout="@layout/fragment_my_profile"
-        />
+        >
+        <action
+            android:id="@+id/action_MyProfileFragment_to_LikeListFragment"
+            app:destination="@id/LikeListFragment" />
+    </fragment>
 
 </navigation>
