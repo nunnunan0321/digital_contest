@@ -32,6 +32,8 @@ class ViewActivity : AppCompatActivity() {
         viewModel.boardId = intent.getStringExtra("boardId").toString()
         viewModel.getBoardData()
 
+        Glide.with(this).load(viewModel.currentUserData.profileImgUrl).into(binding.imgViewCommentProfileImg)
+
         binding.imgViewLikeBtn.setOnClickListener{ //좋아요 버튼을 눌렀을때
             CoroutineScope(Dispatchers.Main).launch {
                 if(!(viewModel.userPoolLike.value!!)){ //이전에 좋아요를 누르지 않았다면
