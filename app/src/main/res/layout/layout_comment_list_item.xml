@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:background="@drawable/default_radius_10"
+    android:background="@drawable/default_radius_20"
     android:backgroundTint="@color/white"
 
     android:elevation="10dp"

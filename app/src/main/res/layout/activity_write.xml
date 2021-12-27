@@ -76,7 +76,7 @@
             android:layout_marginTop="16dp"
             app:hintTextColor="@color/black"
 
-            app:layout_constraintTop_toBottomOf="@+id/txt_write_title"
+            app:layout_constraintTop_toBottomOf="@id/constraint_write_titlebar"
             app:layout_constraintStart_toStartOf="@id/guide_write_left"
             app:layout_constraintEnd_toEndOf="@id/guide_write_right">
             <EditText
@@ -111,6 +111,8 @@
                 android:hint="내용을 입력하세요."
                 android:text="@={viewModel.content}"
                 android:lines="10"
+
+                android:gravity="top"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
