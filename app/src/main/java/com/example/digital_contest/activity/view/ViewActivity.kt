@@ -2,7 +2,6 @@ package com.example.digital_contest.activity.view
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.digital_contest.R
 import com.example.digital_contest.databinding.ActivityViewBinding
 import com.example.digital_contest.model.User
-import com.example.digital_contest.model.db.Board.BoardResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,6 +18,8 @@ import kotlinx.coroutines.withContext
 class ViewActivity : AppCompatActivity() {
     lateinit var binding: ActivityViewBinding
     lateinit var viewModel: ViewActivityViewModel
+
+    lateinit var  commentListAdapter : CommentListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,11 +63,13 @@ class ViewActivity : AppCompatActivity() {
 
         binding.imgViewSendComment.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                viewModel.writeComment()
+                val comment = viewModel.writeComment() ?: return@launch
 
                 withContext(Dispatchers.Main){
                     binding.edtViewInputComment.setText("")
                     Toast.makeText(this@ViewActivity, "댓글을 추가했습니다.", Toast.LENGTH_LONG).show()
+                    commentListAdapter.items.add(comment)
+                    commentListAdapter.notifyItemInserted(0)
                 }
             }
         }
@@ -87,17 +89,18 @@ class ViewActivity : AppCompatActivity() {
             binding.imgViewLikeBtn.setImageResource(if(it) R.drawable.ic_heart_fill else R.drawable.ic_heart)
         }
 
-        viewModel.commentContent.observe(this){
-//            if(it.isEmpty()) binding.imgViewSendComment.visibility = View.GONE
-//            else binding.imgViewSendComment.visibility = View.VISIBLE
+        viewModel.commentList.observe(this){
+            Log.d("commentList obser", it.toString())
         }
+
 
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.getComment()
 
             //Log.d("commentList", viewModel.commentList.value.toString())
-            val adapter = CommentListAdapter(viewModel.commentList.value!!)
-            binding.recyclerViewCommentList.adapter = adapter
+            commentListAdapter = CommentListAdapter(viewModel.commentList.value!!)
+            commentListAdapter.notifyItemInserted(0)
+            binding.recyclerViewCommentList.adapter = commentListAdapter
         }
     }
 }

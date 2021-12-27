@@ -26,7 +26,7 @@ class ViewActivityViewModel : ViewModel() {
 
     var userPoolLike = MutableLiveData(false)
 
-    val commentList = MutableLiveData<List<Comment>>()
+    val commentList = MutableLiveData<MutableList<Comment>>()
 
     fun getBoardData(){
         CoroutineScope(Dispatchers.Main).launch {
@@ -105,7 +105,7 @@ class ViewActivityViewModel : ViewModel() {
         return boardDB.boardLikeListUpdate(boardData.value!!.likeUuserList, boardId) == BoardResult.OK
     }
 
-    suspend fun writeComment() : CommentResult{
+    suspend fun writeComment() : Comment?{
         val commentData = Comment(
             writerID = currentUserData.id,
             content = commentContent.value!!,
@@ -113,7 +113,8 @@ class ViewActivityViewModel : ViewModel() {
             boardID = boardId,
         )
 
-        return commentDB.writerComment(commentData)
+        val result = commentDB.writerComment(commentData)
+        return if(result == CommentResult.Fail) null else commentData
     }
 
     suspend fun getComment() {

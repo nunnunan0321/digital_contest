@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.DateFormat
 
-class CommentListAdapter(val items : List<Comment>) : RecyclerView.Adapter<CommentListAdapter.CommentListHolder>() {
+class CommentListAdapter(val items : MutableList<Comment>) : RecyclerView.Adapter<CommentListAdapter.CommentListHolder>() {
     val userList = mutableMapOf<String, User>()
 
     class CommentListHolder(val view : View) : RecyclerView.ViewHolder(view) {

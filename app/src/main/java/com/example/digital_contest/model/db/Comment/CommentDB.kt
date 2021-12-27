@@ -20,7 +20,7 @@ class CommentDB : comment {
         return result
     }
 
-    override suspend fun getAllCommentByBoardId(boardId: String): List<Comment> {
+    override suspend fun getAllCommentByBoardId(boardId: String): MutableList<Comment> {
         val result = mutableListOf<Comment>()
 
         db.collection("board").document(boardId).collection("comment").get()
