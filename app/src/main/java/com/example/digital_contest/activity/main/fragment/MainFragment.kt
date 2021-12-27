@@ -188,7 +188,6 @@ class MainFragment:Fragment(),
     }
 
 
-
     // Permisson 에 대한 결과를 반환하는 함수
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -270,8 +269,6 @@ class MainFragment:Fragment(),
                         userLocationLongitude = longitude
                         currentLocation = GeoPoint(userLocationLatitude, userLocationLongitude)
 
-//                        Log.d("Test", "GPS Location changed, Latitude: $latitude" + ", Longitude: $longitude")
-
                         // locationCallback 이 최초 1회 실행되었을 때만
                         if(locationCallbackCheck) {
                             map.moveCamera(
@@ -289,13 +286,12 @@ class MainFragment:Fragment(),
             }
         }
 
-
         // location 업데이트 요청, 업데이트 시작
         fusedLocationClient.requestLocationUpdates(
             locationRequest,
             locationCallback,
             Looper.getMainLooper()
-        );
+        )
     }
 
     private fun printMap() {
@@ -329,9 +325,5 @@ class MainFragment:Fragment(),
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
-
-
-
-
 }
 
