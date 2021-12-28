@@ -3,6 +3,7 @@ package com.example.digital_contest.activity.boardList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,19 +31,26 @@ class BoardListActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             if(rootBoardId == "normal") {
-                Log.d("aaaaaaaaaaaaaaa", "노말")
                 val boardList = boardDB.getBoardByUserId(userData.id)
 
                 withContext(Dispatchers.Main){
+                    binding.progressBoardListLoadingProgress.visibility = View.INVISIBLE
                     binding.recyclerBoardList.adapter = BoardListAdapter(boardList, userData)
+
+                    if(boardList.isEmpty()){
+                        binding.txtBoardListPlsMsg.visibility = View.VISIBLE
+                    }
                 }
             }
             else {
-                Log.d("aaaaaaaaaaaaaaa", "root")
                 val boardList = togetherDB.getAllBoardBtRootId(rootBoardId.toString())
-                Log.d("aaaaaaaaaaaaaaa", boardList.toString())
                 withContext(Dispatchers.Main){
+                    binding.progressBoardListLoadingProgress.visibility = View.INVISIBLE
                     binding.recyclerBoardList.adapter = TogetherBoardListAdapter(boardList, userData)
+
+                    if(boardList.isEmpty()){
+                        binding.txtBoardListPlsMsg.visibility = View.VISIBLE
+                    }
                 }
             }
 
