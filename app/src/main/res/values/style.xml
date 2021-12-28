@@ -25,7 +25,7 @@
         <item name="android:clickable">true</item>
         <item name="android:background">@drawable/default_radius_10</item>
         <item name="android:backgroundTint">@color/white</item>
-        <item name="android:elevation">5dp</item>
+        <item name="android:elevation">3dp</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
         <item name="android:layout_marginTop">8dp</item>
