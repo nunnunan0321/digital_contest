@@ -95,7 +95,8 @@ class ViewActivity : AppCompatActivity() {
 
         binding.imgViewListTogetherBoard.setOnClickListener {
             val intent = Intent(this, BoardListActivity::class.java)
-            intent.putExtra("listMode", "together")
+            intent.putExtra("rootBoardId", viewModel.boardId)
+            intent.putExtra("userData", viewModel.currentUserData)
 
             startActivity(intent)
         }

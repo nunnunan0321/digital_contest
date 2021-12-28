@@ -33,15 +33,15 @@ class TogetherDB : together{
         return TogetherResult.OK
     }
 
-    override suspend fun getAllBoardBtRootId(rootBoardID: String): List<TogetherBoard> {
-        val result = mutableListOf<TogetherBoard>()
+    override suspend fun getAllBoardBtRootId(rootBoardID: String): Map<String, TogetherBoard> {
+        val result = mutableMapOf<String, TogetherBoard>()
 
         db.collection("togetherBoard").whereEqualTo("rootBoardId", rootBoardID).get()
             .addOnSuccessListener { documents ->
                 for(document in documents){
-                    result.add(document.toObject(TogetherBoard::class.java))
+                    result[document.id] = document.toObject(TogetherBoard::class.java)
                 }
-            }
+            }.await()
 
         return result
     }
