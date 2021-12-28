@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.digital_contest.R
+import com.example.digital_contest.activity.boardList.BoardListActivity
 import com.example.digital_contest.activity.sphash.currentLocation
 import com.example.digital_contest.activity.write.WriteActivity
 import com.example.digital_contest.databinding.ActivityViewBinding
@@ -86,7 +87,15 @@ class ViewActivity : AppCompatActivity() {
 
         binding.imgViewAddTogetherBoard.setOnClickListener {
             val intent = Intent(this, WriteActivity::class.java)
-            intent.putExtra("writeMode", "together")
+            intent.putExtra("rootDocumentId", viewModel.boardId)
+            intent.putExtra("userData", viewModel.currentUserData)
+
+            startActivity(intent)
+        }
+
+        binding.imgViewListTogetherBoard.setOnClickListener {
+            val intent = Intent(this, BoardListActivity::class.java)
+            intent.putExtra("listMode", "together")
 
             startActivity(intent)
         }

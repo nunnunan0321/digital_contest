@@ -7,15 +7,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.digital_contest.activity.sphash.boardDB
 import com.example.digital_contest.activity.sphash.currentLocation
+import com.example.digital_contest.activity.sphash.togetherDB
 import com.example.digital_contest.model.Board
+import com.example.digital_contest.model.TogetherBoard
 import com.example.digital_contest.model.User
 import com.example.digital_contest.model.db.Board.BoardResult
+import com.example.digital_contest.model.db.together.TogetherResult
 
 class WriteActivityViewModel : ViewModel() {
     val userData = MutableLiveData<User>()
     val title = MutableLiveData<String>("")
     val content = MutableLiveData<String>("")
     val img = MutableLiveData<Uri>()
+
+    lateinit var rootDocumentId : String
 
     suspend fun saveBoard() : BoardResult {
         var result: BoardResult
@@ -30,6 +35,17 @@ class WriteActivityViewModel : ViewModel() {
         result = boardDB.saveBoard(boardData, img.value!!)
 
         return result
+    }
+
+    suspend fun saveTogetherBoard() : TogetherResult {
+        val boardData = TogetherBoard(
+            rootBoardId = rootDocumentId,
+            title = title.value.toString(),
+            writerID = userData.value!!.id,
+            contents = content.value.toString(),
+        )
+
+        return togetherDB.saveBoard(boardData, img.value!!)
     }
 
     fun writeInputEmptyCheck() : Boolean{
