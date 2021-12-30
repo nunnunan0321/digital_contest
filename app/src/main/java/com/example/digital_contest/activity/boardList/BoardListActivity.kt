@@ -29,6 +29,7 @@ class BoardListActivity : AppCompatActivity() {
         val userData = intent.getSerializableExtra("userData") as User
         val rootBoardId = intent.getSerializableExtra("rootBoardId") ?: "normal"
 
+
         CoroutineScope(Dispatchers.IO).launch {
             if(rootBoardId == "normal") {
                 val boardList = boardDB.getBoardByUserId(userData.id)
